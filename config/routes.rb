@@ -1,4 +1,16 @@
 ImSports::Application.routes.draw do
+  # get "session/create"
+  # get "session/destroy"
+  resources :sessions, only: [:new, :create, :destroy]
+
+  match '/signup', to: 'users#new', via: 'get'
+  match '/signin', to: 'sessions#new', via: 'get'
+  match '/signout', to: 'sessions#destroy', via: 'delete'
+
+  resources :users
+
+  root :to => 'sessions#new'
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
