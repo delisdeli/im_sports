@@ -7,7 +7,6 @@ class UsersController < ApplicationController
   # GET /users.json
   def index
     @users = User.all
-    p @users
 
     respond_to do |format|
       format.html # index.html.erb
@@ -49,7 +48,6 @@ class UsersController < ApplicationController
 
     if @user.save
       sign_in @user
-      flash[:success] = "Welcome #{@user.name}!"
       redirect_to @user
     else
       render 'new'
