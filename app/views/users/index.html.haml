@@ -4,8 +4,6 @@
   %tr
     %th Name
     %th Email
-    %th Remember token
-    %th Password digest
     %th Admin
     %th
     %th
@@ -15,8 +13,6 @@
     %tr
       %td= user.name
       %td= user.email
-      %td= user.remember_token
-      %td= user.password_digest
       %td= user.admin
       %td= link_to 'Show', user
       %td= link_to 'Edit', edit_user_path(user)
