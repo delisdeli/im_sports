@@ -5,15 +5,9 @@ Feature: create an account and authenticate
   I want to be able to register and login
 
   Background:
-    Given I am on the signup page
-    And I fill in "user[name]" with "user_name"
-    And I fill in "user[email]" with "email@email.com"
-    And I fill in "user[password]" with "password"
-    And I fill in "user[password_confirmation]" with "password"
-    When I press "Save"
-    #Given the following users exist:
-    #| name       | email            | password  | password_confirmation
-    #| user_name  | email@email.com  | password  | password
+    Given the following users exist:
+      | name       | email            | password  | password_confirmation  |
+      | user_name  | email@email.com  | password  | password               |
 
 Scenario: a user will not be created if password doesn't match password_confirmation
   Given I am on the signup page
