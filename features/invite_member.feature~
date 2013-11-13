@@ -25,6 +25,7 @@ Feature: invite a member to join team
     Given I am logged in as "email2@email.com" with password "password"
     And I am on the home page
     And I follow "league1"
+    Then show me the page
     And I follow "team1"
     Then I should be on the team page for "team1" of league "league1"
     And I should see "Invite Player"

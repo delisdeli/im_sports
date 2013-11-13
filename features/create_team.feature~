@@ -32,5 +32,3 @@ I want to be able to start a team in a league
     And I follow "Create Team"
     Then I should be on the signin page
     And I should see "Please sign in"
-
-#Create scenario should be able to see teams created in leagues page
