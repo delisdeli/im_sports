@@ -13,3 +13,11 @@
 = link_to 'Edit', edit_league_team_path(@league, @team)
 \|
 = link_to 'Back', league_teams_path
+
+-#<% if @captain%>
+-#  <h3> Invite Player </h3>
+-#  <%= form_tag :action => 'invite_player', :email => @user.email do %>
+-#    <%= text_field_tag "invite_player" %>
+-#    <%= submit_tag "Invite Player" %>
+-#  <% end %>
+-#<% end %>
