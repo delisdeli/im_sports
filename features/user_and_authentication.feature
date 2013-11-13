@@ -6,8 +6,8 @@ Feature: create an account and authenticate
 
   Background:
     Given the following users exist:
-      | name       | email            | password  | password_confirmation  |
-      | user_name  | email@email.com  | password  | password               |
+    | name       | email            | password  | password_confirmation  |
+    | user_name  | email@email.com  | password  | password               |
 
 Scenario: a user will not be created if password doesn't match password_confirmation
   Given I am on the signup page
