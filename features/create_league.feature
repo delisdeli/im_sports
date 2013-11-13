@@ -24,5 +24,5 @@ Scenario: An admin should be able to create a league
   Then I should see "New League"
   When I fill in "league[name]" with "league1"
   And I press "Create League"
-  Then I should be on the home page
+  Then I should be on the league page for "league1"
   And I should see "league1"

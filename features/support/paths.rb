@@ -19,6 +19,13 @@ module NavigationHelpers
       '/signup'
     when /^the signin page$/
       '/signin'
+    when /^the league page for "(.*)"$/
+      league_id = League.find_by_name($1).id
+      "/leagues/#{league_id}"
+    when /^the team page for "(.*)" of league "(.*)"$/
+      team_id = Team.find_by_name($1).id
+      league_id = League.find_by_name($2).id
+      "/leagues/#{league_id}/teams/#{team_id}"
 
     # Add more mappings here.
     # Here is an example that pulls values out of the Regexp:

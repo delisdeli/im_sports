@@ -11,6 +11,7 @@ class User < ActiveRecord::Base
   # has_secure_password 
   # validates :password, length: { minimum: 6 }
 
+  has_many :teams
   attr_accessible :name, :email, :password, :password_confirmation, :remember_token
   has_secure_password
 
