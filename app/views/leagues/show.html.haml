@@ -4,6 +4,8 @@
   %b Name:
   = @league.name
 
+= link_to "Create Team", new_league_team_path(@league)
+
 = link_to 'Edit', edit_league_path(@league)
 \|
 = link_to 'Back', leagues_path

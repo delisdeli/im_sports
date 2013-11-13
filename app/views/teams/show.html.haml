@@ -8,8 +8,8 @@
   = @team.name
 %p
   %b League:
-  = @team.league
+  = @team.league.name
 
-= link_to 'Edit', edit_team_path(@team)
+= link_to 'Edit', edit_league_team_path(@league, @team)
 \|
-= link_to 'Back', teams_path
+= link_to 'Back', league_teams_path

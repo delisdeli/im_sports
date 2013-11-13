@@ -24,6 +24,7 @@ I want to be able to start a team in a league
     And I press "Create Team"
     Then I should be on the team page for "team1" of league "league1"
     And I should see "team1"
+    And I should see "league1"
 
   Scenario: A non-user should not be able to create a team
     Given I am on the home page
