@@ -13,6 +13,10 @@ class UsersController < ApplicationController
   # GET /users/1.json
   def show
     @user = User.find(params[:id])
+    @user.invitations.each do |invitation|
+      team_name = Team.find(invitation.team).name
+      flash[:notice] = 'Invitation to ' + team_name
+    end
   end
 
   # GET /users/new
