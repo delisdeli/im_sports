@@ -14,7 +14,7 @@ end
 And /user with email "(.*)" has been invited to join "(.*)"$/ do |email, team_name|
   user = User.find_by_email(email)
   team = Team.find_by_name(team_name)
-  invitation = Invitation.new('user_id' => user.id, 'team_id' => team.id)
+  invitation = Invitation.new('user' => user, 'team' => team)
   user.invitations << invitation
   team.invitations << invitation
 end

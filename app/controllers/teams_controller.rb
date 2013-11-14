@@ -24,6 +24,17 @@ class TeamsController < ApplicationController
     @team = Team.find(params[:id])
   end
 
+  def invite
+    @team = Team.find_by_id(params[:team_id])
+    @league = League.find_by_id(@team.league_id)
+    user = User.find_by_email(params[:to_invite])
+    invitation = Invitation.new('user' => user, 'team' => @team)
+    @team.invitations << invitation
+    user.invitations << invitation
+    flash[:notice] = "#{user.email} has been invited."
+    redirect_to [@league, @team]
+  end 
+
   # POST /teams
   # POST /teams.json
   def create
