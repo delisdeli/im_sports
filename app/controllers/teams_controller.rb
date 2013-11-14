@@ -35,6 +35,15 @@ class TeamsController < ApplicationController
     redirect_to [@league, @team]
   end 
 
+  def add_member
+    @team = Team.find_by_id(params[:team_id])
+    @user = User.find_by_id(params[:user_id])
+    @invite = Invitation.find_by_id(params[:invite_id])
+    @team.users << @user
+    @user.invitations.delete(@invite)
+    redirect_to @user, notice: "Successfully joined #{@team.name}"
+  end
+
   # POST /teams
   # POST /teams.json
   def create

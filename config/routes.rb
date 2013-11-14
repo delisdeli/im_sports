@@ -17,6 +17,7 @@ ImSports::Application.routes.draw do
   root :to => 'leagues#index'
 
   post "teams/invite"
+  post "teams/add_member"
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
