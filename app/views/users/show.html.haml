@@ -7,6 +7,10 @@
   %b Email:
   = @user.email
 
+- @invites.each do |invite|
+  %p Invitation to join #{Team.find(invite.team).name}
+
+
 = link_to 'Edit', edit_user_path(@user)
 \|
 = link_to 'Back', users_path
