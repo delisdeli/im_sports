@@ -15,7 +15,7 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
     @user.invitations.each do |invitation|
       team_name = Team.find(invitation.team).name
-      flash[:notice] = 'Invitation to ' + team_name
+      flash[:notice] = 'Invitation to join ' + team_name
     end
   end
 

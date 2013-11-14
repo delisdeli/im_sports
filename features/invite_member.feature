@@ -36,9 +36,7 @@ Feature: invite a member to join team
     Given I am logged in as "email4@email.com" with password "password"
     And user with email "email4@email.com" has been invited to join "team1"
     And I am on the profile page for "email4@email.com"
-    Then I should see "Invitation to team1"
-    When I press "Acccept"
-    Then I should see "You have successfully joined team1"
+    Then I should see "Invitation to join team1"
 
   Scenario: A member should not be able to invite members
     Given I am logged in as "email3@email.com" with password "password"
