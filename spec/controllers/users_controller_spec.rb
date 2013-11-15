@@ -23,7 +23,7 @@ describe UsersController do
   # This should return the minimal set of attributes required to create a valid
   # User. As you add validations to User, be sure to
   # adjust the attributes here as well.
-  let(:valid_attributes) { { "name" => "MyString" } }
+  let(:valid_attributes) { { "name" => "MyString", "email" => "email@email.com", "password" => "password", "password_confirmation" => "password" } }
 
   # This should return the minimal set of values that should be in the session
   # in order to pass any filters (e.g. authentication) defined in
@@ -153,7 +153,7 @@ describe UsersController do
     it "redirects to the users list" do
       user = User.create! valid_attributes
       delete :destroy, {:id => user.to_param}, valid_session
-      response.should redirect_to(users_url)
+      response.should redirect_to(root_url)
     end
   end
 

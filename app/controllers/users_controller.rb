@@ -47,7 +47,7 @@ class UsersController < ApplicationController
   # PUT /users/1.json
   def update
     @user = User.find(params[:id])
-    if @user.update_attributes(user_params)
+    if @user.update_attributes(params[:user])
       # Handle a successful update.
       flash[:success] = "Profile updated"
       sign_in @user
@@ -62,6 +62,6 @@ class UsersController < ApplicationController
   def destroy
     @user = User.find(params[:id])
     @user.destroy
-    redirect_to users_url
+    redirect_to root_path
   end
 end

@@ -18,3 +18,9 @@ And /user with email "(.*)" has been invited to join "(.*)"$/ do |email, team_na
   user.invitations << invitation
   team.invitations << invitation
 end
+
+Then /I should see "(.*)" before "(.*)"/ do |e1, e2|
+  #  ensure that that e1 occurs before e2.
+  #  page.body is the entire content of the page as a string.
+  assert page.body =~ /#{e1}.*#{e2}/m, "not sorted correctly"
+end

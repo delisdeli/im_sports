@@ -7,11 +7,17 @@
   %b Email:
   = @user.email
 
+%p
+  %b Teams:
+  - @user.teams.each do |team|
+    = team.name
+
 - @invites.each do |invite|
   %p Invitation to join #{Team.find(invite.team).name}
   = form_tag :controller => 'teams', :action => 'add_member', :team_id => Team.find(invite.team).id, :user_id => @user.id, :invite_id => invite.id do
     = submit_tag "Accept invitation to join #{Team.find(invite.team).name}"
 
+= link_to 'Destroy', @user, :method => :delete, :data => { :confirm => 'Are you sure?' }
 
 = link_to 'Edit', edit_user_path(@user)
 \|

@@ -79,7 +79,7 @@ describe User do
 
   describe "return value of authenticate method" do
     before { @user.save }
-    let(:found_user) { User.find_by(email: @user.email) }
+    let(:found_user) { User.find_by_email(@user.email) }
 
     describe "with valid password" do
       it { should eq found_user.authenticate(@user.password) }
@@ -93,8 +93,8 @@ describe User do
     end
   end
 
-  describe "remember token" do
-    before { @user.save }
-    its(:remember_token) { should_not be_blank }
-  end
+  #describe "remember token" do
+   # before { @user.save }
+    #its(:remember_token) { should_not be_blank }
+  #end
 end

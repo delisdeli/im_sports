@@ -15,6 +15,10 @@ I want to be able to start a team in a league
     | league1 |
     | league2 |
 
+    Given the following teams exist:
+    | captain_email      | name     | league_id |
+    | email2@email.com   | team10   | 1         |
+
   Scenario: A user should be able to create a team
     Given I am logged in as "email2@email.com" with password "password"
     And I am on the home page
@@ -25,6 +29,9 @@ I want to be able to start a team in a league
     Then I should be on the team page for "team1" of league "league1"
     And I should see "team1"
     And I should see "league1"
+    And I should see "Team Members" before "email2@email.com"
+    And I am on the profile page for "email2@email.com"
+    Then I should see "team1"
 
   Scenario: A non-user should not be able to create a team
     Given I am on the home page
@@ -33,4 +40,6 @@ I want to be able to start a team in a league
     Then I should be on the signin page
     And I should see "Please sign in"
 
-#Create scenario should be able to see teams created in leagues page
+  Scenario: all the teams for a league can be seen on the league page
+    And I am on the league page for "league1"
+    Then I should see "team10"

@@ -1,17 +1,17 @@
 require 'spec_helper'
 
-describe "teams/index" do
+describe "leagues/1/teams/index" do
   before(:each) do
     assign(:teams, [
       stub_model(Team,
         :captain_email => "Captain Email",
         :name => "Name",
-        :league => nil
+        :league_id => "1"
       ),
       stub_model(Team,
         :captain_email => "Captain Email",
         :name => "Name",
-        :league => nil
+        :league_id => "1"
       )
     ])
   end

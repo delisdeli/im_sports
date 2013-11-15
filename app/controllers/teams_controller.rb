@@ -51,6 +51,7 @@ class TeamsController < ApplicationController
 
     if @team.save
       @league.teams << @team
+      @team.users << current_user
       redirect_to [@league, @team], notice: 'Team was successfully created.' 
     else
       render action: "new"

@@ -1,4 +1,4 @@
-Feature: create a leage
+Feature: create a league
  
   As a league administrator
   I want to be able to create a league
