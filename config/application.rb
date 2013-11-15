@@ -61,5 +61,8 @@ module ImSports
 
     #heroku needs this
     config.assets.initialize_on_precompile=false
+
+    # No ssl for dev environment
+    config.force_ssl = false
   end
 end
