@@ -28,10 +28,7 @@ describe LeaguesController do
   # This should return the minimal set of values that should be in the session
   # in order to pass any filters (e.g. authentication) defined in
   # LeaguesController. Be sure to keep this updated too.
-  #let(:valid_session) { {} }
-  def valid_session
-    ApplicationController.stub(:admin_user).and_return(true)
-  end
+  let(:valid_session) { {} }
 
   before do
     @user = User.new(name: "Example User", email: "user@example.com",
@@ -44,7 +41,7 @@ describe LeaguesController do
   describe "GET index" do
     it "assigns all leagues as @leagues" do
       league = League.create! valid_attributes
-      get :index, {}, valid_session
+      get :index, {}
       assigns(:leagues).should eq([league])
     end
   end
