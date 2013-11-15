@@ -47,7 +47,8 @@ before_filter :admin_user, only: [:new, :create, :edit, :update, :destroy]
   def update
     @league = League.find(params[:id])
 
-    if @league.save
+    if @league.update_attributes(params[:league])
+      # Handle a successful update.
       redirect_to @league, notice: 'League was successfully updated.'
     else
       render action: "edit"

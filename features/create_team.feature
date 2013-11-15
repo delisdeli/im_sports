@@ -43,3 +43,11 @@ I want to be able to start a team in a league
   Scenario: all the teams for a league can be seen on the league page
     And I am on the league page for "league1"
     Then I should see "team10"
+
+  Scenario: Team captain can update a team
+    Given I am logged in as "email2@email.com" with password "password"
+    And I am on the team page for "team10" of league "league1"
+    When I follow "Edit"
+    And I fill in "team[name]" with "team5"
+    And I press "Create Team"
+    Then I should be on the team page for "team5" of league "league1"

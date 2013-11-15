@@ -10,6 +10,10 @@ Feature: create a league
     | admin      | email@email.com   | password  | password               | true   |
     | user       | email2@email.com  | password  | password               | false  |
 
+    Given the following leagues exist:
+    | name    |
+    | league5 |
+
 Scenario: A non-admin should not be able to see create league button
   Given I am on the home page
   Then I should not see "Create League"
@@ -26,3 +30,11 @@ Scenario: An admin should be able to create a league
   And I press "Create League"
   Then I should be on the league page for "league1"
   And I should see "league1"
+
+Scenario: An admin can update a league
+  Given I am logged in as "email@email.com" with password "password"
+  And I am on the league page for "league5"
+  When I follow "Edit"
+  And I fill in "league[name]" with "league6"
+  And I press "Create League"
+  Then I should be on the league page for "league6"
