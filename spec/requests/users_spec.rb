@@ -9,21 +9,20 @@ describe "User pages" do
     before { visit user_path(user) }
 
     it { should have_content(user.name) }
-    it { should have_title(user.name) }
   end
 
   describe "signup page" do
     before { visit signup_path }
 
     it { should have_content('Sign up') }
-    it { should have_title('Sign up') }
+
   end
 
   describe "signup" do
 
     before { visit signup_path }
 
-    let(:submit) { "Create my account" }
+    let(:submit) { "Save" }
 
     describe "with invalid information" do
       it "should not create a user" do
@@ -36,8 +35,8 @@ describe "User pages" do
         fill_in "Name",         with: "Example User"
         fill_in "Email",        with: "user@example.com"
         fill_in "Password",     with: "foobar"
-        fill_in "Confirm Password", with: "foobar"
-        # click_button "Create my account"
+        fill_in "Password confirmation", with: "foobar"
+        # click_button "Save"
       end
 
       it "should create a user" do

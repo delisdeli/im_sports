@@ -29,7 +29,7 @@ I want to be able to start a team in a league
     Then I should be on the team page for "team1" of league "league1"
     And I should see "team1"
     And I should see "league1"
-    And I should see "Team Members" before "email2@email.com"
+    And I should see "Team Members" before "user"
     And I am on the profile page for "email2@email.com"
     Then I should see "team1"
 
