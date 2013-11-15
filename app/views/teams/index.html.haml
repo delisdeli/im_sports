@@ -13,7 +13,7 @@
     %tr
       %td= team.captain_email
       %td= team.name
-      %td= team.league
+      %td= team.league.name
       %td= link_to 'Show', [@league, team]
       %td= link_to 'Edit', edit_league_team_path(@league, team)
       %td= link_to 'Destroy', [@league, team], :method => :delete, :data => { :confirm => 'Are you sure?' }
