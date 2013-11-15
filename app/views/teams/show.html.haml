@@ -12,7 +12,7 @@
 
 %p 
   %b Team Members:
-  = @team.users.each do |user|
+  - @team.users.each do |user|
     %p
     = link_to "#{user.name}", users_path(user.name)
 
