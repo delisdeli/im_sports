@@ -1,0 +1,56 @@
+Feature: create a division
+ 
+  As an admin user
+  I want to create a division in a league
+  So that teams can sign up for divisions
+
+  Background:
+    Given the following users exist:
+    | name       | email             | password  | password_confirmation  | admin  |
+    | admin      | email@email.com   | password  | password               | true   |
+    | user       | email2@email.com  | password  | password               | false  |
+
+    Given the following leagues exist:
+    | name    |
+    | league1 |
+
+    Given the following divisions exist:
+    | name    | num_teams  | start_time  | end_time  | league_id  |
+    | testdiv | 8          | 8pm         | 10pm      | 1          |
+
+Scenario: A non-admin should not be able to see create division button
+  Given I am on the league page for "league1"
+  Then I should not see "Save"
+  Given I am logged in as "email2@email.com" with password "password"
+  And I am on the league page for "league1"
+  Then I should not see "Save"
+
+Scenario: An admin should be able to create a league
+  Given I am logged in as "email@email.com" with password "password"
+  And I am on the league page for "league1"
+  And I follow "Save"
+  Then I should see "New Division"
+  When I fill in "division[name]" with "somedivision"
+  And I fill in "division[num_teams]" with "8"
+  And I fill in "division[start_time]" with "8pm"
+  And I fill in "division[end_time" with "10pm"
+  And I press "Save"
+  Then I should be on the division page for "somedivision" of "league1"
+  And I should see "somedivision"
+
+Scenario: An admin can update a division
+  Given I am logged in as "email@email.com" with password "password"
+  And I am on the division page for "testdiv" of "league1"
+  When I follow "Edit"
+  And I fill in "division[name]" with "newdivisionname"
+  And I press "Save"
+  Then I should be on the division page for "newdivisionname" of "league1"
+
+@javascript
+Scenario: Can delete a division record
+  Given I am logged in as "email@email.com" with password "password"
+  And I am on the division page for "testdiv" of "league1"
+  When I follow "Destroy"
+  And I accept the alert
+  Then I should be on the divisions page for league "league1"
+  And I should not see "testdiv"
