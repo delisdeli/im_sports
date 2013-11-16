@@ -14,7 +14,7 @@
   %b Team Members:
   - @team.users.each do |user|
     %p
-    = link_to "#{user.name}", users_path(user.name)
+    = link_to "#{user.name}", users_path(user)
 
 - if signed_in? and @team.captain_email == current_user.email
   %p
