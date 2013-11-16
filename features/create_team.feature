@@ -51,3 +51,13 @@ I want to be able to start a team in a league
     And I fill in "team[name]" with "team5"
     And I press "Create Team"
     Then I should be on the team page for "team5" of league "league1"
+
+  @javascript
+  Scenario: Team captain can delete a team
+    Given I am logged in as "email2@email.com" with password "password"
+    And I am on the teams page for "league1"
+    Then I should see "team10"
+    When I follow "Destroy"
+    And I accept the alert
+    Then I should be on the teams page for "league1"
+    And I should not see "team10"

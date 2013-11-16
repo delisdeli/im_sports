@@ -81,3 +81,12 @@ Scenario: we can change the name of an existing user
   And I fill in "user[password_confirmation]" with "password"
   When I press "Save"
   Then I should see "anothername"
+
+@javascript
+Scenario: Can delete a user record
+  Given I am on the users page
+  Then I should see "email@email.com"
+  When I follow "Destroy"
+  And I accept the alert
+  Then I should be on the users page
+  And I should not see "email@email.com"

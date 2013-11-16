@@ -153,7 +153,7 @@ describe UsersController do
     it "redirects to the users list" do
       user = User.create! valid_attributes
       delete :destroy, {:id => user.to_param}, valid_session
-      response.should redirect_to(root_url)
+      response.should redirect_to(users_path)
     end
   end
 

@@ -38,3 +38,13 @@ Scenario: An admin can update a league
   And I fill in "league[name]" with "league6"
   And I press "Create League"
   Then I should be on the league page for "league6"
+
+@javascript
+Scenario: Can delete a league record
+  Given I am logged in as "email@email.com" with password "password"
+  And I am on the leagues page
+  Then I should see "league5"
+  When I follow "Destroy"
+  And I accept the alert
+  Then I should be on the leagues page
+  And I should not see "league5"

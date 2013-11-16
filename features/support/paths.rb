@@ -26,6 +26,9 @@ module NavigationHelpers
       team_id = Team.find_by_name($1).id
       league_id = League.find_by_name($2).id
       "/leagues/#{league_id}/teams/#{team_id}"
+    when /^the teams page for "(.*)"$/
+      league_id = League.find_by_name($1).id
+      "/leagues/#{league_id}/teams"
     when /^the profile page for "(.*)"$/
       user_id = User.find_by_email($1).id
       "/users/#{user_id}"
