@@ -10,6 +10,8 @@ class Division < ActiveRecord::Base
   validate :start_before_end_time
   # validate :fits_schedule
 
+  has_many :teams
+
   def start_before_end_time
     errors.add(:start_time, "must be before end time") unless
        self.start_time < self.end_time

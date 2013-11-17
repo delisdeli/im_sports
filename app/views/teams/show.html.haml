@@ -8,8 +8,10 @@
   = @team.name
 %p
   %b League:
-  = @team.league.name
-
+  = @team.division.league.name
+%p
+  %b Division:
+  = @team.division.name
 %p 
   %b Team Members:
   - @team.users.each do |user|
@@ -23,6 +25,6 @@
       = text_field_tag "to_invite" 
       = submit_tag "Invite Player" 
 
-= link_to 'Edit', edit_league_team_path(@league, @team)
+= link_to 'Edit', edit_league_division_team_path(@league, @division, @team)
 \|
-= link_to 'Back', league_teams_path
+= link_to 'Back', league_division_teams_path

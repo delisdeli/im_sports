@@ -1,10 +1,11 @@
 class TeamsController < ApplicationController
   before_filter :signed_in_user, only: [:new, :create, :edit, :update, :destroy]
   before_filter :set_league
+  before_filter :set_division
   # GET /teams
   # GET /teams.json
   def index
-    @teams = @league.teams.all
+    @teams = @division.teams.all
   end
 
   # GET /teams/1
@@ -26,13 +27,12 @@ class TeamsController < ApplicationController
 
   def invite
     @team = Team.find_by_id(params[:team_id])
-    @league = League.find_by_id(@team.league_id)
     user = User.find_by_email(params[:to_invite])
     invitation = Invitation.new('user' => user, 'team' => @team)
     @team.invitations << invitation
     user.invitations << invitation
     flash[:notice] = "#{user.email} has been invited."
-    redirect_to [@league, @team]
+    redirect_to [@league, @division, @team]
   end 
 
   def add_member
@@ -50,9 +50,9 @@ class TeamsController < ApplicationController
     @team = Team.new(params[:team])
 
     if @team.save
-      @league.teams << @team
+      @division.teams << @team
       @team.users << current_user
-      redirect_to [@league, @team], notice: 'Team was successfully created.' 
+      redirect_to [@league, @division, @team], notice: 'Team was successfully created.' 
     else
       render action: "new"
     end
@@ -64,7 +64,7 @@ class TeamsController < ApplicationController
     @team = Team.find(params[:id])
 
     if @team.update_attributes(params[:team])
-      redirect_to [@league, @team], notice: 'Team was successfully updated.'
+      redirect_to [@league, @division, @team], notice: 'Team was successfully updated.'
     else
       render action: "edit"
     end
@@ -76,11 +76,15 @@ class TeamsController < ApplicationController
     @team = Team.find(params[:id])
     @team.destroy
 
-    redirect_to league_teams_url
+    redirect_to league_division_teams_url
   end
 
   private
     def set_league
       @league = League.find_by_id(params[:league_id])
+    end
+
+    def set_division
+      @division = Division.find_by_id(params[:division_id])
     end
 end

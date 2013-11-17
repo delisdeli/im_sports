@@ -5,7 +5,7 @@
     %th Captain email
     %th Name
     %th League
-    %th
+    %th Division
     %th
     %th
 
@@ -13,11 +13,12 @@
     %tr
       %td= team.captain_email
       %td= team.name
-      %td= team.league.name
-      %td= link_to 'Show', [@league, team]
-      %td= link_to 'Edit', edit_league_team_path(@league, team)
-      %td= link_to 'Destroy', [@league, team], :method => :delete, :data => { :confirm => 'Are you sure?' }
+      %td= team.division.league.name
+      %td = team.division.name
+      %td= link_to 'Show', [@league, @division, team]
+      %td= link_to 'Edit', edit_league_division_team_path(@league, @division, team)
+      %td= link_to 'Destroy', [@league, @division,  team], :method => :delete, :data => { :confirm => 'Are you sure?' }
 
 %br
 
-= link_to 'New Team', new_league_team_path
+= link_to 'New Team', new_league_division_team_path
