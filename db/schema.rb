@@ -11,7 +11,21 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20131113230219) do
+ActiveRecord::Schema.define(:version => 20131117075941) do
+
+  create_table "divisions", :force => true do |t|
+    t.integer  "league_id"
+    t.string   "name"
+    t.integer  "num_teams"
+    t.time     "start_time"
+    t.time     "end_time"
+    t.string   "game_length"
+    t.integer  "num_locations"
+    t.datetime "created_at",    :null => false
+    t.datetime "updated_at",    :null => false
+  end
+
+  add_index "divisions", ["league_id"], :name => "index_divisions_on_league_id"
 
   create_table "invitations", :force => true do |t|
     t.integer  "team_id"

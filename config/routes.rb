@@ -1,7 +1,10 @@
 ImSports::Application.routes.draw do
 
+  resources :divisions
+
+
   resources :leagues do
-    resources :teams
+    resources :divisions, :teams
   end
 
   # get "session/create"

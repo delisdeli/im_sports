@@ -1,0 +1,29 @@
+%p#notice= notice
+
+%p
+  %b League:
+  = @division.league.name
+%p
+  %b Name:
+  = @division.name
+%p
+  %b Num teams:
+  = @division.num_teams
+%p
+  %b Start time:
+  = @division.start_time
+%p
+  %b End time:
+  = @division.end_time
+%p
+  %b Game length:
+  = @division.game_length
+%p
+  %b Num locations:
+  = @division.num_locations
+
+= link_to 'Edit', edit_league_division_path(@division)
+\|
+= link_to 'Back', @league
+
+= link_to 'Destroy', [@league, @division], :method => :delete, :data => { :confirm => 'Are you sure?' }
