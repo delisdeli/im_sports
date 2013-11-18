@@ -26,6 +26,19 @@ module NavigationHelpers
       team_id = Team.find_by_name($1).id
       league_id = League.find_by_name($2).id
       "/leagues/#{league_id}/teams/#{team_id}"
+    when /^the teams page for "(.*)"$/
+      league_id = League.find_by_name($1).id
+      "/leagues/#{league_id}/teams"
+    when /^the profile page for "(.*)"$/
+      user_id = User.find_by_email($1).id
+      "/users/#{user_id}"
+    when /^the division page for "(.*)" of league "(.*)"$/
+      division_id = Division.find_by_name($1).id
+      league_id = League.find_by_name($2).id
+      "/leagues/#{league_id}/divisions/#{division_id}"
+    when /^the divisions page for league "(.*)"$/
+      league_id = League.find_by_name($1).id
+      "/leagues/#{league_id}/divisions"
 
     # Add more mappings here.
     # Here is an example that pulls values out of the Regexp:

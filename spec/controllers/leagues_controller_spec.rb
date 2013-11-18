@@ -30,10 +30,18 @@ describe LeaguesController do
   # LeaguesController. Be sure to keep this updated too.
   let(:valid_session) { {} }
 
+  before do
+    @user = User.new(name: "Example User", email: "user@example.com",
+                            password: "foobar", password_confirmation: "foobar")
+    @user.save
+    @user.toggle!(:admin)
+    current_user = @user
+  end
+
   describe "GET index" do
     it "assigns all leagues as @leagues" do
       league = League.create! valid_attributes
-      get :index, {}, valid_session
+      get :index, {}
       assigns(:leagues).should eq([league])
     end
   end
@@ -48,7 +56,7 @@ describe LeaguesController do
 
   describe "GET new" do
     it "assigns a new league as @league" do
-      get :new, {}, valid_session
+      get :new, valid_attributes, valid_session
       assigns(:league).should be_a_new(League)
     end
   end

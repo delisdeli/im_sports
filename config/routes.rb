@@ -1,7 +1,10 @@
 ImSports::Application.routes.draw do
 
+  resources :divisions
+
+
   resources :leagues do
-    resources :teams
+    resources :divisions, :teams
   end
 
   # get "session/create"
@@ -15,6 +18,9 @@ ImSports::Application.routes.draw do
   resources :users
 
   root :to => 'leagues#index'
+
+  post "teams/invite"
+  post "teams/add_member"
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

@@ -1,0 +1,34 @@
+= form_for [@league, @division] do |f|
+  - if @division.errors.any?
+    #error_explanation
+      %h2= "#{pluralize(@division.errors.count, "error")} prohibited this division from being saved:"
+      %ul
+        - @division.errors.full_messages.each do |msg|
+          %li= msg
+
+  .field
+    = f.label :name
+    = f.text_field :name
+  .field
+    = f.label :num_teams
+    = f.text_field :num_teams
+  .field
+    = f.label :start_time
+    = f.time_select :start_time, :ampm => true, :minute_step => 5
+  .field
+    = f.label :end_time
+    = f.time_select :end_time, :ampm => true, :minute_step => 5
+  .field
+    = f.label :game_length
+    = f.text_field :game_length
+  .field
+    = f.label :num_locations
+    = f.text_field :num_locations
+  .field
+    = f.label :num_weeks
+    = f.text_field :num_weeks
+  .field
+    = f.label :start_date
+    = f.date_select :start_date
+  .actions
+    = f.submit 'Save'

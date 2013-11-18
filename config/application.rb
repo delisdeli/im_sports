@@ -58,5 +58,11 @@ module ImSports
 
     # Version of your assets, change this if you want to expire all your assets
     config.assets.version = '1.0'
+
+    #heroku needs this
+    config.assets.initialize_on_precompile=false
+
+    # No ssl for dev environment
+    config.force_ssl = false
   end
 end

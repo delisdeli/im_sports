@@ -13,6 +13,10 @@ class UsersController < ApplicationController
   # GET /users/1.json
   def show
     @user = User.find(params[:id])
+    @invites = []
+    if current_user?(@user)
+      @invites = @user.invitations
+    end
   end
 
   # GET /users/new
@@ -43,7 +47,7 @@ class UsersController < ApplicationController
   # PUT /users/1.json
   def update
     @user = User.find(params[:id])
-    if @user.update_attributes(user_params)
+    if @user.update_attributes(params[:user])
       # Handle a successful update.
       flash[:success] = "Profile updated"
       sign_in @user
@@ -58,6 +62,6 @@ class UsersController < ApplicationController
   def destroy
     @user = User.find(params[:id])
     @user.destroy
-    redirect_to users_url
+    redirect_to users_path
   end
 end
