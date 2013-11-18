@@ -37,14 +37,14 @@ Scenario: An admin should be able to edit a game
   And I follow "testdiv"
   And I follow "team1 vs. team2"
   Then I should see "Edit Time"
-  When I select "09 PM" from "division[start_time(4i)]"
-  And I select "00" from "division[start_time(5i)]"
+  When I select "09 PM" from "game[start_time(4i)]"
+  And I select "00" from "game[start_time(5i)]"
   And I press "Save"
   Then I should see "Game Time was successfully edited."
   When I go to the home page
   And I follow "league1"
   And I follow "testdiv"
   Then I should see "09 PM"
-  And I follow "team1 vs. team2"
+  When I follow "team1 vs. team2"
   Then I should see "09 PM"
 
