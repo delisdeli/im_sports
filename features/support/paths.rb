@@ -22,13 +22,15 @@ module NavigationHelpers
     when /^the league page for "(.*)"$/
       league_id = League.find_by_name($1).id
       "/leagues/#{league_id}"
-    when /^the team page for "(.*)" of league "(.*)"$/
+    when /^the team page for "(.*)" of division "(.*)" of league "(.*)"$/
       team_id = Team.find_by_name($1).id
+      division_id = Division.find_by_name($2).id
+      league_id = League.find_by_name($3).id
+      "/leagues/#{league_id}/divisions/#{division_id}/teams/#{team_id}"
+    when /^the teams page for division "(.*)" of league "(.*)"$/
+      division_id = Division.find_by_name($1).id
       league_id = League.find_by_name($2).id
-      "/leagues/#{league_id}/teams/#{team_id}"
-    when /^the teams page for "(.*)"$/
-      league_id = League.find_by_name($1).id
-      "/leagues/#{league_id}/teams"
+      "/leagues/#{league_id}/divisions/#{division_id}/teams"
     when /^the profile page for "(.*)"$/
       user_id = User.find_by_email($1).id
       "/users/#{user_id}"

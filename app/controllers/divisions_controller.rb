@@ -1,5 +1,5 @@
 class DivisionsController < ApplicationController
-  before_filter :admin_user, except: [:index]
+  before_filter :admin_user, except: [:index, :show]
   before_filter :set_league
 
   # GET /divisions/1

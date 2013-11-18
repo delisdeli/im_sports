@@ -15,9 +15,13 @@ Feature: User can securely join a team
     | name    |
     | league1 |
 
+    Given the following divisions exist:
+    | name    | num_teams  | start_time  | end_time  | num_locations  | game_length  | league_id  |
+    | testdiv | 8          | 8pm         | 10pm      | 2              | 60           | 1          |
+
     Given the following teams exist:
-    | captain_email   | name  | league_id |
-    | email@email.com | team1 | 1         | 
+    | captain_email   | name  | division_id |
+    | email@email.com | team1 | 1           | 
 
   Scenario: An invited member can accept the invitation and join the team
     Given I am logged in as "email2@email.com" with password "password"
@@ -35,7 +39,7 @@ Feature: User can securely join a team
     And I am on the profile page for "email2@email.com"
     Then I should not see "Invitation to join team1"
 
-  Scenario: Once a member has been successfully invited, the league page should display the member
+  Scenario: Once a member has been successfully invited, the division page should display the member
     Given I am logged in as "email2@email.com" with password "password"
     And user with email "email2@email.com" has been invited to join "team1"
     And I am on the profile page for "email2@email.com"
@@ -43,12 +47,10 @@ Feature: User can securely join a team
     When I go to the homepage
     Then I should see "league1"
     When I follow "league1"
+    And I follow "testdiv"
     And I follow "team1"
     Then I should see "user1"
     And I should not see "user300"
     When I follow "user1"
     Then I should see "user1"
     And I should see "email2@email.com"
-
-
-

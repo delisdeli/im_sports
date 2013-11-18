@@ -1,7 +1,7 @@
 Given /the following teams exist/ do |teams_table|
   teams_table.hashes.each do |team|
     current_team = Team.create!(team)
-    League.find_by_id(team[:league_id]).teams << current_team
+    Division.find_by_id(team[:division_id]).teams << current_team
   end
 end
 
