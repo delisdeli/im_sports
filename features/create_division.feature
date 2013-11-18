@@ -56,6 +56,7 @@ Scenario: An admin must fill in all fields in order to create the division
   And I should see "Game length can't be blank"
   And I should see "Num teams can't be blank"
   And I should see "Num locations can't be blank"
+  And I should see "Num weeks can't be blank"
 
 Scenario: A divion end_time must occur after the start_time(4i)
   Given I am logged in as "email@email.com" with password "password"
