@@ -1,12 +1,14 @@
 class Division < ActiveRecord::Base
   belongs_to :league
-  attr_accessible :end_time, :game_length, :name, :num_teams, :start_time, :num_locations, :league_id #start_date #num_weeks
+  attr_accessible :end_time, :game_length, :name, :num_teams, :start_time, :num_locations, :league_id, :start_date, :num_weeks
   validates :name, presence: true
   validates :start_time, presence: true
   validates :end_time, presence: true
   validates :game_length, presence: true
   validates :num_teams, presence: true
   validates :num_locations, presence: true
+  validates :num_weeks, presence: true
+  validates :start_date, presence: true
   validate :start_before_end_time
   # validate :fits_schedule
 

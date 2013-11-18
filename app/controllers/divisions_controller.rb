@@ -26,7 +26,6 @@ class DivisionsController < ApplicationController
 
     if @division.save
       @league.divisions << @division
-      p @division
       redirect_to [@league, @division], notice: 'Division was successfully created.'
     else
       render action: "new"

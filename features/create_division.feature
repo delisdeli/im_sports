@@ -15,8 +15,8 @@ Feature: create a division
     | league1 |
 
     Given the following divisions exist:
-    | name    | num_teams  | start_time  | end_time  | num_locations  | game_length  | league_id  |
-    | testdiv | 8          | 8pm         | 10pm      | 2              | 60           | 1          |
+    | name    | num_teams  | start_time  | end_time  | num_locations  | num_weeks | year | month | day | game_length  | league_id  |
+    | testdiv | 8          | 8pm         | 10pm      | 2              | 2         | 2013 | 11    | 18  | 60           | 1          |
 
 Scenario: A non-admin should not be able to see create division button
   Given I am on the league page for "league1"
@@ -39,6 +39,10 @@ Scenario: An admin should be able to create a division
   And I fill in "division[game_length]" with "60"
   And I fill in "division[num_locations]" with "2"
   And I fill in "division[num_teams]" with "8"
+  And I fill in "division[num_weeks]" with "5"
+  And I select "2013" from "division[start_date(1i)]"
+  And I select "November" from "division[start_date(2i)]"
+  And I select "18" from "division[start_date(3i)]"
   And I press "Save"
   #Then I should be on the division page for "somedivision" of league "league1"
   Then I should see "Division was successfully created."

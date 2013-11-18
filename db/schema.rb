@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20131117075941) do
+ActiveRecord::Schema.define(:version => 20131118023825) do
 
   create_table "divisions", :force => true do |t|
     t.integer  "league_id"
@@ -23,6 +23,8 @@ ActiveRecord::Schema.define(:version => 20131117075941) do
     t.integer  "num_locations"
     t.datetime "created_at",    :null => false
     t.datetime "updated_at",    :null => false
+    t.integer  "num_weeks"
+    t.date     "start_date"
   end
 
   add_index "divisions", ["league_id"], :name => "index_divisions_on_league_id"

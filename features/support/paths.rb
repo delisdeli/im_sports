@@ -33,8 +33,6 @@ module NavigationHelpers
       user_id = User.find_by_email($1).id
       "/users/#{user_id}"
     when /^the division page for "(.*)" of league "(.*)"$/
-      p $1
-      p Division.all
       division_id = Division.find_by_name($1).id
       league_id = League.find_by_name($2).id
       "/leagues/#{league_id}/divisions/#{division_id}"

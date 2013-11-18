@@ -24,5 +24,11 @@
   .field
     = f.label :num_locations
     = f.text_field :num_locations
+  .field
+    = f.label :num_weeks
+    = f.text_field :num_weeks
+  .field
+    = f.label :start_date
+    = f.date_select :start_date
   .actions
     = f.submit 'Save'
