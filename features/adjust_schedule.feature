@@ -19,24 +19,32 @@ Feature: Adjust the schedule of a division
 
 Scenario: A non-admin should not be able to see adjust schedule button
   Given I am on the home page
-  Then I should not see "Edit Division"
+  And I follow "league1"
+  And I follow "testdiv"
+  And I follow "team1 vs. team2"
+  Then I should not see "Edit Time"
   Given I am logged in as "email2@email.com" with password "password"
   And I am on the home page
-  Then I should not see "Edit Division"
+  And I follow "league1"
+  And I follow "testdiv"
+  And I follow "team1 vs. team2"
+  Then I should not see "Edit Time"
 
-Scenario: An admin should be able to edit a division
+Scenario: An admin should be able to edit a game
   Given I am logged in as "email@email.com" with password "password"
-  And I am on the league page for "league1"
-  And I follow "Edit Division"
-  Then I should see "Edit Division"
-  When I select "08 PM" from "division[start_time(4i)]"
+  And I am on the home page
+  And I follow "league1"
+  And I follow "testdiv"
+  And I follow "team1 vs. team2"
+  Then I should see "Edit Time"
+  When I select "09 PM" from "division[start_time(4i)]"
   And I select "00" from "division[start_time(5i)]"
-  And I select "10 PM" from "division[end_time(4i)]"
-  And I select "00" from "division[end_time(5i)]"
-  And I select "2013" from "division[start_date(1i)]"
-  And I select "November" from "division[start_date(2i)]"
-  And I select "18" from "division[start_date(3i)]"
   And I press "Save"
-  #Then I should be on the division page for "somedivision" of league "league1"
-  Then I should see "Division was successfully edited."
+  Then I should see "Game Time was successfully edited."
+  When I go to the home page
+  And I follow "league1"
+  And I follow "testdiv"
+  Then I should see "09 PM"
+  And I follow "team1 vs. team2"
+  Then I should see "09 PM"
 
