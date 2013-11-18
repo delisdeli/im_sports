@@ -51,6 +51,8 @@ ActiveRecord::Schema.define(:version => 20131117233819) do
     t.integer  "division_id"
   end
 
+  add_index "teams", ["division_id"], :name => "index_teams_on_division_id", :unique => true
+
   create_table "teams_users", :id => false, :force => true do |t|
     t.integer "team_id"
     t.integer "user_id"
