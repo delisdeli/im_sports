@@ -15,8 +15,8 @@ Feature: View the schedule of a division
     | league1 |
 
     Given the following divisions exist:
-    | name    | num_teams  | start_time  | end_time  | num_locations  | game_length  | league_id  |
-    | testdiv | 8          | 8pm         | 10pm      | 2              | 60           | 1          |
+    | name    | num_teams  | start_time  | end_time  | num_locations  | num_weeks | year | month | day | game_length  | league_id  |
+    | testdiv | 8          | 8pm         | 10pm      | 2              | 2         | 2013 | 11    | 18  | 60           | 1          |
 
     Given the following teams exist:
     | captain_email      | name       | division_id |
