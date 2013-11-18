@@ -28,7 +28,8 @@ Feature: Enter and adjust the results of games
     And I am on the home page
     And I follow "league1"
     And I follow "testdiv"
-    And I press "Edit Scores"
+    And I follow "testteam vs. testteam2"
+    And I press "Edit Score"
     When I fill in "testteam" with "1" and "testteam2" with "3"
     And I press "Enter"
     When I go to the home page 
@@ -41,7 +42,8 @@ Feature: Enter and adjust the results of games
     And I am on the home page
     And I follow "league1"
     And I follow "testdiv"
-    Then I should not see "Edit Scores" 
+    And I follow "testteam vs. testteam2"
+    Then I should not see "Edit Score" 
 
 
  
