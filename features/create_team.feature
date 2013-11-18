@@ -31,7 +31,7 @@ I want to be able to start a team in a league
     And I follow "Create Team"
     And I fill in "team[name]" with "team5"
     And I press "Create Team"
-    Then I should be on the team page for "team1" of division "testdiv" of league "league1"
+    Then I should be on the team page for "team5" of division "testdiv" of league "league1"
     And I should see "team5"
     And I should see "testdiv"
     And I should see "Team Members" before "user"
@@ -40,9 +40,7 @@ I want to be able to start a team in a league
 
   Scenario: A non-user should not be able to create a team
     Given I am on the division page for "testdiv" of league "league1"
-    And I follow "Create Team"
-    Then I should be on the signin page
-    And I should see "Please sign in"
+    Then I should not see "Create Team"
 
   Scenario: all the teams for a division can be seen on the division page
     Given I am on the division page for "testdiv" of league "league1"

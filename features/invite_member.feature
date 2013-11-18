@@ -17,16 +17,21 @@ Feature: invite a member to join team
     | league1 |
     | league2 |
 
+    Given the following divisions exist:
+    | name    | num_teams  | start_time  | end_time  | num_locations  | game_length  | league_id  |
+    | testdiv | 8          | 8pm         | 10pm      | 2              | 60           | 1          |
+
     Given the following teams exist:
-    | captain_email      | name    | league_id |
-    | email2@email.com   | team1   | 1         |
+    | captain_email      | name    | division_id |
+    | email2@email.com   | team1   | 1           |
 
   Scenario: A team captain should be able to invite members
     Given I am logged in as "email2@email.com" with password "password"
     And I am on the home page
     And I follow "league1"
+    And I follow "testdiv"
     And I follow "team1"
-    Then I should be on the team page for "team1" of league "league1"
+    Then I should be on the team page for "team1" of division "testdiv" of league "league1"
     And I should see "Invite Player"
     When I fill in "to_invite" with "email4@email.com"
     And I press "Invite Player"
@@ -42,6 +47,7 @@ Feature: invite a member to join team
     Given I am logged in as "email3@email.com" with password "password"
     And I am on the home page
     And I follow "league1"
+    And I follow "testdiv"
     And I follow "team1"
-    Then I should be on the team page for "team1" of league "league1"
+    Then I should be on the team page for "team1" of division "testdiv" of league "league1"
     And I should not see "Invite Player"

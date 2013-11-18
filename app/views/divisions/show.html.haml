@@ -29,8 +29,10 @@
 - if signed_in?
   = link_to "Create Team", new_league_division_team_path(@league, @division)
 
-= link_to 'Edit', edit_league_division_path(@division)
+- if signed_in? and current_user.admin?
+  = link_to 'Edit', edit_league_division_path(@division)
 \|
 = link_to 'Back', @league
 
-= link_to 'Destroy', [@league, @division], :method => :delete, :data => { :confirm => 'Are you sure?' }
+- if signed_in? and current_user.admin?
+  = link_to 'Destroy', [@league, @division], :method => :delete, :data => { :confirm => 'Are you sure?' }
