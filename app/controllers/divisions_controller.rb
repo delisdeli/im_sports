@@ -1,5 +1,5 @@
 class DivisionsController < ApplicationController
-  before_filter :admin_user, except: [:index]
+  before_filter :admin_user, except: [:index, :show]
   before_filter :set_league
 
   # GET /divisions/1
@@ -26,7 +26,6 @@ class DivisionsController < ApplicationController
 
     if @division.save
       @league.divisions << @division
-      p @division
       redirect_to [@league, @division], notice: 'Division was successfully created.'
     else
       render action: "new"
