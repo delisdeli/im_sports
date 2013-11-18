@@ -11,4 +11,5 @@ class AddDivisionsToTeams < ActiveRecord::Migration
     add_index :teams, :league_id
     remove_index :teams, :division_id
     remove_column :teams, :division_id
+  end
 end
