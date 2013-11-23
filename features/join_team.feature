@@ -45,12 +45,14 @@ Feature: User can securely join a team
     And I am on the profile page for "email2@email.com"
     And I press "Accept invitation to join team1"
     When I go to the homepage
+    And I follow "Sign out"
     Then I should see "league1"
     When I follow "league1"
     And I follow "testdiv"
     And I follow "team1"
     Then I should see "user1"
     And I should not see "user300"
+    And show me the page
     When I follow "user1"
     Then I should see "user1"
     And I should see "email2@email.com"
