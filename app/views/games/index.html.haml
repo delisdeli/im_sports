@@ -23,9 +23,9 @@
       %td= game.team2.name
       %td= game.score1
       %td= game.score2
-      %td= game.date
-      %td= game.start_time
-      %td= game.end_time
+      %td= game.print_date
+      %td= game.print_start_time
+      %td= game.print_end_time
       %td= game.get_status
       %td= game.location
       %td= link_to 'Show', [@league, @division, game]

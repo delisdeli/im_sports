@@ -12,12 +12,25 @@ class Division < ActiveRecord::Base
   validate :start_before_end_time
   # validate :fits_schedule
 
-  has_many :teams, :games
+  has_many :teams
+  has_many :games
 
   def start_before_end_time
     errors.add(:start_time, "must be before end time") unless
        self.start_time < self.end_time
   end 
+
+  def print_start_time
+    self.start_time.strftime("%I:%M %p")
+  end
+
+  def print_end_time
+    self.end_time.strftime("%I:%M %p")
+  end
+  
+  def print_start_date
+    self.start_date.strftime("%B %e, %Y")
+  end
 
   # def fits_schedule
   # 	errors.add("not enough locations to accomodate division schedule") unless

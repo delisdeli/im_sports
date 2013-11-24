@@ -2,11 +2,10 @@ class GamesController < ApplicationController
   before_filter :admin_user, only: [:new, :create, :edit, :update, :destroy]
   before_filter :set_league
   before_filter :set_division
-  before_filter :set_teams
   # GET /games
   # GET /games.json
   def index
-    @games = Game.all
+    @games = @division.games.all
   end
 
   # GET /games/1
@@ -32,8 +31,8 @@ class GamesController < ApplicationController
     @game = Game.new(params[:game])
     if @game.save
       @division.games << @game
-      @team1.games << @game
-      @team2.games << @game
+      @game.team1.games << @game
+      @game.team2.games << @game
       redirect_to [@league, @division, @team], notice: "Game was successfully created."
     else
       render action: "new"
@@ -67,10 +66,5 @@ class GamesController < ApplicationController
 
     def set_division
       @division = Division.find_by_id(params[:division_id])
-    end
-
-    def set_teams
-      @team1 = @game.team1
-      @team2 = @game.team2
     end
 end
