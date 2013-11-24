@@ -12,7 +12,7 @@ class Division < ActiveRecord::Base
   validate :start_before_end_time
   # validate :fits_schedule
 
-  has_many :teams
+  has_many :teams, :games
 
   def start_before_end_time
     errors.add(:start_time, "must be before end time") unless
