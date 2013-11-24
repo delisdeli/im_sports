@@ -13,7 +13,7 @@ class User < ActiveRecord::Base
 
   has_and_belongs_to_many :teams
   has_many :invitations
-  attr_accessible :name, :email, :password, :password_confirmation, :remember_token, :admin
+  attr_accessible :name, :email, :password, :password_confirmation, :remember_token
   has_secure_password
 
   before_save { |user| user.email = email.downcase }
