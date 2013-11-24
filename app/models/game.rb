@@ -10,6 +10,7 @@ class Game < ActiveRecord::Base
       when 2 then "Finished"
       when 3 then "TBD"
       #add extra statuses here
+      else "Unknown"
     end
   end
 end
