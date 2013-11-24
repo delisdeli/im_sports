@@ -14,6 +14,10 @@ class Game < ActiveRecord::Base
     end
   end
 
+  def self.status_options
+    return {"Scheduled"=>1, "Finished"=>2, "TBD"=>3}
+  end
+
   def print_start_time
     self.start_time.strftime("%I:%M %p")
   end

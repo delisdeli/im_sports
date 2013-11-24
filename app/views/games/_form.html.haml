@@ -32,7 +32,7 @@
     = f.time_select :end_time
   .field
     = f.label :status
-    = f.text_field :status
+    = f.select :status, Game.status_options
   .field
     = f.label :location
     = f.text_field :location
