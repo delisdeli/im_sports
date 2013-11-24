@@ -82,6 +82,28 @@ Scenario: we can change the name of an existing user
   When I press "Save"
   Then I should see "anothername"
 
+Scenario: Signed in user should see the correct user bar
+  Given I am logged in as "email@email.com" with password "password"
+  And I am on the home page
+  Then I should see "user_name"
+  And I should see "Sign out"
+  And I should not see "Sign in"
+  When I follow "user_name"
+  Then I should be on the profile page for "email@email.com"
+  Given I am on the home page
+  And I follow "Sign out"
+  Then I should be on the home page
+  And I should not see "user_name"
+
+Scenario: Non-signed in user should see the correct user bar
+  Given I am on the home page
+  Then I should not see "Sign out"
+  When I follow "Sign in"
+  Then I should be on the signin page
+  Given I am on the home page
+  When I follow "Register"
+  Then I should be on the signup page
+
 @javascript
 Scenario: Can delete a user record
   Given I am on the users page

@@ -12,6 +12,7 @@
 <% flash.each do |key, value| %>
   <div class="flash"><%= value %></div>
 <% end %>
+<%= render 'shared/user_bar' %>
 <%= yield %>
 
 </body>

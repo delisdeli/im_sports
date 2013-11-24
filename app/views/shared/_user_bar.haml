@@ -1,0 +1,8 @@
+#userbar
+  %tr
+    - if signed_in?
+      %td= link_to "#{current_user.name}", current_user
+      %td= link_to 'Sign out', signout_path, :method => :delete
+    - else
+      %td= link_to 'Sign in', signin_path
+      %td= link_to 'Register', signup_path
