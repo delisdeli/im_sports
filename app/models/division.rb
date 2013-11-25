@@ -1,6 +1,7 @@
 class Division < ActiveRecord::Base
   belongs_to :league
   after_create :generate_schedule
+  after_save :update_schedule
   attr_accessible :end_time, :game_length, :name, :num_teams, :start_time, :num_locations, :league_id, :start_date, :num_weeks
   validates :name, presence: true
   validates :start_time, presence: true
@@ -17,11 +18,12 @@ class Division < ActiveRecord::Base
   has_many :games
 
   def generate_schedule
-    for i in 1...self.num_teams
-       fake_team = Team.create!
+    for i in 0...self.num_teams
+       teamname = "team" + (i+1).to_s
+       fake_team = Team.create!(:name => teamname)
        self.teams << fake_team
     end
-    for i in 1...self.teams.length
+    for i in 0...self.teams.length
       for j in i+1...self.teams.length
         test_game = Game.create!
         test_game.team1_id = self.teams.at(i).id
@@ -30,6 +32,20 @@ class Division < ActiveRecord::Base
         self.games << test_game
       end
     end
+  end
+
+  def update_schedule
+    games = Array.new
+    for i in 0...self.teams.length
+      for j in i+1...self.teams.length
+        test_game = Game.create!
+        test_game.team1_id = self.teams.at(i).id
+        test_game.team2_id = self.teams.at(j).id
+        test_game.division_id = self.id
+        games << test_game
+      end
+    end
+    self.games = games
   end
         
   def start_before_end_time

@@ -19,8 +19,8 @@ Feature: View the schedule of a division
     | testdiv | 8          | 8pm         | 10pm      | 2              | 2         | 2013 | 11    | 18  | 60           | 1          |
 
     Given the following teams exist:
-    | captain_email      | name       | division_id |
-    | email2@email.com   | testteam   | 1           |
+    | captain_email      | name       | division_id | placeholder |
+    | email2@email.com   | testteam   | 1           | false       |
 
   Scenario: A user should be able to view his/her schedule via the division's page
     Given I am logged in as "email2@email.com" with password "password"
