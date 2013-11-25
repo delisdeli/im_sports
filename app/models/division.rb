@@ -26,9 +26,9 @@ class Division < ActiveRecord::Base
     for i in 1...fake_teams.length
       for j in i...fake_teams.length
         test_game = Game.create!
-        test_game.team1_id << fake_teams.at(i).id
-        test_game.team2_id << fake_teams.at(j).id
-        test_game.division_id << self.id
+        test_game.team1_id = fake_teams.at(i).id
+        test_game.team2_id = fake_teams.at(j).id
+        test_game.division_id = self.id
         games.push(test_game)
         
   def start_before_end_time
