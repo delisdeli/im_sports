@@ -20,7 +20,7 @@ class Division < ActiveRecord::Base
     for i in 1...self.num_teams
        teamname = "team" + i
        fake_team = Team.create!(teamname)
-       self.teams.push(fake_team)
+       self.teams << fake_team
     end
     for i in 1...self.teams.length
       for j in i...fake_teams.length
@@ -28,7 +28,7 @@ class Division < ActiveRecord::Base
         test_game.team1_id = self.teams.at(i).id
         test_game.team2_id = self.teams.at(j).id
         test_game.division_id = self.id
-        self.games.push(test_game)
+        self.games << test_game
       end
     end
   end
