@@ -1,6 +1,6 @@
 class Division < ActiveRecord::Base
   belongs_to :league
-  after_save :generate_schedule
+  after_create :generate_schedule
   attr_accessible :end_time, :game_length, :name, :num_teams, :start_time, :num_locations, :league_id, :start_date, :num_weeks
   validates :name, presence: true
   validates :start_time, presence: true
