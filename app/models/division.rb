@@ -1,5 +1,6 @@
 class Division < ActiveRecord::Base
   belongs_to :league
+  after_save :generate_schedule
   attr_accessible :end_time, :game_length, :name, :num_teams, :start_time, :num_locations, :league_id, :start_date, :num_weeks
   validates :name, presence: true
   validates :start_time, presence: true
@@ -14,6 +15,8 @@ class Division < ActiveRecord::Base
 
   has_many :teams
   has_many :games
+
+  def generate_schedule
 
   def start_before_end_time
     errors.add(:start_time, "must be before end time") unless
