@@ -20,29 +20,32 @@ Feature: View the schedule of a division
 
     Given the following teams exist:
     | captain_email      | name       | division_id | placeholder |
-    | email2@email.com   | testteam   | 1           | false       |
+    | email2@email.com   | team1      | 1           | false       |
 
   Scenario: A user should be able to view his/her schedule via the division's page
     Given I am logged in as "email2@email.com" with password "password"
+    And I am a member of "team1"
     And I am on the home page
     And I follow "league1"
     And I follow "testdiv"
-    Then I should see "testteam vs. team2"
-    And I should see "testteam vs. team3"
-    And I should see "testteam vs. team4"
-    And I should see "testteam vs. team5"
-    And I should see "testteam vs. team6"
-    And I should see "testteam vs. team7"
-    And I should see "testteam vs. team8"
+    Then I should see "team1 vs. team2"
+    And I should see "team1 vs. team3"
+    And I should see "team1 vs. team4"
+    And I should see "team1 vs. team5"
+    And I should see "team1 vs. team6"
+    And I should see "team1 vs. team7"
+    And I should see "team1 vs. team8"
 
   Scenario: A user should be able to view his/her schedule via the user's profile
     Given I am logged in as "email2@email.com" with password "password"
+    And I am a member of "team1"
     And I am on the profile page for "email2@email.com"
-    And I follow "testteam"
-    Then I should see "testteam vs. team2"
-    And I should see "testteam vs. team3"
-    And I should see "testteam vs. team4"
-    And I should see "testteam vs. team5"
-    And I should see "testteam vs. team6"
-    And I should see "testteam vs. team7"
-    And I should see "testteam vs. team8"
+    Then show me the page
+    And I follow "team1"
+    Then I should see "team1 vs. team2"
+    And I should see "team1 vs. team3"
+    And I should see "team1 vs. team4"
+    And I should see "team1 vs. team5"
+    And I should see "team1 vs. team6"
+    And I should see "team1 vs. team7"
+    And I should see "team1 vs. team8"
