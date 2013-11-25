@@ -22,7 +22,7 @@ class Division < ActiveRecord::Base
        self.teams << fake_team
     end
     for i in 1...self.teams.length
-      for j in i...fake_teams.length
+      for j in i...self.teams.length
         test_game = Game.create!
         test_game.team1_id = self.teams.at(i).id
         test_game.team2_id = self.teams.at(j).id
