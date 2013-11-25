@@ -73,7 +73,7 @@ ActiveRecord::Schema.define(:version => 20131125020106) do
     t.boolean  "placeholder"
   end
 
-  add_index "teams", ["division_id"], :name => "index_teams_on_division_id", :unique => true
+  add_index "teams", ["division_id"], :name => "index_teams_on_division_id"
 
   create_table "teams_users", :id => false, :force => true do |t|
     t.integer "team_id"
