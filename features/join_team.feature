@@ -49,11 +49,9 @@ Feature: User can securely join a team
     Then I should see "league1"
     When I follow "league1"
     And I follow "testdiv"
-    Then show me the page
     And I follow "teamawesome"
     Then I should see "user1"
     And I should not see "user300"
-    And show me the page
     When I follow "user1"
     Then I should see "user1"
     And I should see "email2@email.com"
