@@ -17,12 +17,20 @@ class Division < ActiveRecord::Base
   has_many :games
 
   def generate_schedule
+    fake_teams = Array.new
+    games = Array.new
     for i in 1...self.num_teams
-      
-    for i in 1...self.num_teams
-      for j in i...self.num_teams
+       teamname = "team" + i
+       fake_team = Team.create!(teamname)
+       fake_teams.push(fake_team)
+    for i in 1...fake_teams.length
+      for j in i...fake_teams.length
+        test_game = Game.create!
+        test_game.team1_id << fake_teams.at(i).id
+        test_game.team2_id << fake_teams.at(j).id
+        test_game.division_id << self.id
+        games.push(test_game)
         
-
   def start_before_end_time
     errors.add(:start_time, "must be before end time") unless
        self.start_time < self.end_time
