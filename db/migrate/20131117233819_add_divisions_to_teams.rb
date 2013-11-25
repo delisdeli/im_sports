@@ -3,7 +3,7 @@ class AddDivisionsToTeams < ActiveRecord::Migration
     remove_index :teams, :league_id
     remove_column :teams, :league_id
     add_column :teams, :division_id, :int
-    add_index :teams, :division_id, :unique => true
+    add_index :teams, :division_id
   end
 
   def down

@@ -9,10 +9,10 @@
   = @division.num_teams
 %p
   %b Start time:
-  = @division.start_time
+  = @division.print_start_time
 %p
   %b End time:
-  = @division.end_time
+  = @division.print_end_time
 %p
   %b Game length:
   = @division.game_length
@@ -24,7 +24,11 @@
   = @division.num_weeks
 %p
   %b Start date:
-  = @division.start_date
+  = @division.print_start_date
+
+- @division.games.each do |game|
+  %p
+    = "#{game.team1.name}" + " vs. " + "#{game.team2.name}"
 
 - @division.teams.each do |team|
   %p
