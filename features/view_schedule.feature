@@ -40,7 +40,6 @@ Feature: View the schedule of a division
     Given I am logged in as "email2@email.com" with password "password"
     And user with email "email2@email.com" is a member of "team1"
     And I am on the profile page for "email2@email.com"
-    Then show me the page
     And I follow "team1"
     Then I should see "team1 vs. team2"
     And I should see "team1 vs. team3"
