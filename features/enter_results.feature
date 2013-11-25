@@ -19,31 +19,37 @@ Feature: Enter and adjust the results of games
     | testdiv | 8          | 8pm         | 10pm      | 2              | 2         | 2013 | 11    | 18  | 60           | 1          |
 
     Given the following teams exist:
-    | captain_email      | name       | division_id |
-    | email2@email.com   | testteam   | 1           |
+    | captain_email      | name       | division_id | placeholder |
+    | email2@email.com   | testteam   | 1           |  false      |
+
 
 
   Scenario: An admin should be able to enter results of a game 
-    Given I am logged in as "email1@email.com" with password "password" 
+    Given I am logged in as "email@email.com" with password "password" 
     And I am on the home page
     And I follow "league1"
     And I follow "testdiv"
-    And I follow "testteam vs. testteam2"
-    And I press "Edit Score"
-    When I fill in "testteam" with "1" and "testteam2" with "3"
-    And I press "Enter"
+    And I follow "team1 vs. team2"
+    And I follow "Edit"  
+    When I fill in "game[score1]" with "1" 
+    And I fill in "game[score2]" with "3"
+    And I follow "Show"
     When I go to the home page 
     And I follow "league1"
     And I follow "testdiv"
-    Then I should see "testteam 1 testteam2 3"
+    Then I should see "team1 vs. team2"
+    When I follow "team1 vs. team2"
+
+
 
   Scenario: A non-admin should not be able to enter results of a game
     Given I am logged in as "email2@email.com" with password "password"
     And I am on the home page
     And I follow "league1"
     And I follow "testdiv"
-    And I follow "testteam vs. testteam2"
-    Then I should not see "Edit Score" 
+    And I follow "team1 vs. team2"
+    And I follow "Edit"
+    Then I should see "Must be admin user to access this feature" 
 
 
  
