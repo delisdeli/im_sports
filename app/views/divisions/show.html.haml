@@ -28,7 +28,7 @@
 
 - @division.games.each do |game|
   %p
-    = "#{game.team1_id, game.team2_id}"
+    = "#{game.team1_id}" + ", " + "#{game.team2_id}"
 
 - @division.teams.each do |team|
   %p
