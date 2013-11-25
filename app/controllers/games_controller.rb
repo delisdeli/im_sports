@@ -31,8 +31,6 @@ class GamesController < ApplicationController
     @game = Game.new(params[:game])
     if @game.save
       @division.games << @game
-      @game.team1.games << @game
-      @game.team2.games << @game
       redirect_to [@league, @division, @team], notice: "Game was successfully created."
     else
       render action: "new"
