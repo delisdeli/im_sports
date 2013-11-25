@@ -24,7 +24,7 @@ Feature: View the schedule of a division
 
   Scenario: A user should be able to view his/her schedule via the division's page
     Given I am logged in as "email2@email.com" with password "password"
-    And I am a member of "team1"
+    And user with email "email2@email.com" is a member of "team1"
     And I am on the home page
     And I follow "league1"
     And I follow "testdiv"
@@ -38,7 +38,7 @@ Feature: View the schedule of a division
 
   Scenario: A user should be able to view his/her schedule via the user's profile
     Given I am logged in as "email2@email.com" with password "password"
-    And I am a member of "team1"
+    And user with email "email2@email.com" is a member of "team1"
     And I am on the profile page for "email2@email.com"
     Then show me the page
     And I follow "team1"

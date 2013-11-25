@@ -19,7 +19,14 @@ And /user with email "(.*)" has been invited to join "(.*)"$/ do |email, team_na
   team.invitations << invitation
 end
 
-And /I am a member of "(.*)"/ do |team_name| 
+And /user with email "(.*)" is a member of "(.*)"/ do |email, team_name|
+  user = User.find_by_email(email)
+  team = Team.find_by_name(team_name)
+  if not user.teams.include? team
+    user.teams << team
+    team.users << user
+  end
+end
   
 
 Then /I should see "(.*)" before "(.*)"/ do |e1, e2|
