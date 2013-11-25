@@ -17,6 +17,11 @@ class Division < ActiveRecord::Base
   has_many :games
 
   def generate_schedule
+    for i in 1...self.num_teams
+      
+    for i in 1...self.num_teams
+      for j in i...self.num_teams
+        
 
   def start_before_end_time
     errors.add(:start_time, "must be before end time") unless
