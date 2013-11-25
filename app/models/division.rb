@@ -17,8 +17,6 @@ class Division < ActiveRecord::Base
   has_many :games
 
   def generate_schedule
-    self.teams = Array.new
-    games = Array.new
     for i in 1...self.num_teams
        teamname = "team" + i
        fake_team = Team.create!(teamname)
@@ -30,11 +28,9 @@ class Division < ActiveRecord::Base
         test_game.team1_id = self.teams.at(i).id
         test_game.team2_id = self.teams.at(j).id
         test_game.division_id = self.id
-        games.push(test_game)
+        self.games.push(test_game)
       end
     end
-
-    self.games = games
   end
         
   def start_before_end_time
