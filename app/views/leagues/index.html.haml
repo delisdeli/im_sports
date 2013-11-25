@@ -1,20 +1,29 @@
-%h1 Listing leagues
+%html
 
-%table
-  %tr
-    %th Name
-    %th
-    %th
-    %th
+%head
+  .leagues Leagues
 
-  - @leagues.each do |league|
+%body
+  %table 
     %tr
-      %td= league.name
-      %td= link_to "#{league.name}", league
-      %td= link_to 'Edit', edit_league_path(league)
-      %td= link_to 'Destroy', league, :method => :delete, :data => { :confirm => 'Are you sure?' }
+    .league-container
+      .league Open
+      .league Rec
+      .league Frats
 
-%br
+    .image-container
+      =image_tag "/assets/images/icons/basketball_icon.svg", :class => "images"
+      =image_tag "/assets/images/icons/football_icon.svg", :class => "images"
+      =image_tag "/assets/images/icons/volleyball_icon.svg", :class => "images"
+
+    - @leagues.each do |league|
+      %tr
+        %td= league.name
+        %td= link_to "#{league.name}", league
+        %td= link_to 'Edit', edit_league_path(league)
+        %td= link_to 'Destroy', league, :method => :delete, :data => { :confirm => 'Are you sure?' }
+
+  %br
 
 - if current_user and current_user.admin?
   = link_to 'Create League', new_league_path

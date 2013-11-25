@@ -11,3 +11,89 @@
  *= require_self
  *= require_tree .
  */
+
+html, body{
+ background: #EAE9E7;
+}
+
+
+
+/* USERBAR */
+#userbar{
+   position:inline;
+   padding-top:10px;
+   padding-bottom:10px;
+   padding-left:5px;
+   background:#3F3F3E;
+
+}
+
+
+.user-bar {
+   display:inline-block;
+   font-size:150%;
+   color: white;
+   position:relative;
+   font-family:'Helvetica Neue', 'Arial';
+   width:auto;
+}
+
+.sign.register {
+   display:inline-block;
+   font-family: 'Pacifico', cursive;
+   clear:left;
+   font-size:110%;
+}
+
+#signin {
+   color: white;
+   width:auto;
+   margin-left:900px;
+}
+
+#register {
+   color: white;
+   width:auto;
+}
+
+/*Leagues */
+
+
+head {
+    background: #EAE9E7;
+}
+.leagues {
+  color: :#3F3F3E;
+   padding:20px;
+    background: #EAE9E7;
+   display:inline-block;
+   font-size:150%;
+   color: black;
+   position:relative;
+   font-family:'Helvetica Neue', 'Arial';
+   width:auto;
+}
+
+
+.image-container {
+  height:200px;
+}
+
+.league-container {
+   display:inline-block;
+   font-family: 'Pacifico', cursive;
+   clear:left;
+   font-size:110%;
+   background: #EAE9E7;
+   padding:20px;
+   color: :#3F3F3E;
+}
+
+.league {
+  display:inline;
+   color: black;
+   width:auto;
+   margin:20px;
+}
+
+
