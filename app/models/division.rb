@@ -38,6 +38,16 @@ class Division < ActiveRecord::Base
         test_game.team1_id = self.teams.at(i).id
         test_game.team2_id = self.teams.at(j).id
         test_game.division_id = self.id
+        newDate = "2013-03-06"
+        newStartTime = "6:00"
+        newEndTime = "8:00"
+        newScore1 = "0"
+        newScore2 = "0"
+        test_game.score1 = newScore1
+        test_game.score2 = newScore2
+	test_game.start_time = newStartTime
+        test_game.end_time = newEndTime
+        test_game.date = newDate
         self.games << test_game
       end
     end

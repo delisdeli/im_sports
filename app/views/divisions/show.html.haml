@@ -28,7 +28,7 @@
 
 - @division.games.each do |game|
   %p
-    = "#{game.team1.name}" + " vs. " + "#{game.team2.name}"
+    = link_to "#{game.team1.name}" + " vs. " + "#{game.team2.name}", [@league, @division, game]
 
 - @division.teams.each do |team|
   %p
