@@ -12,9 +12,10 @@
       .league Frats
 
     .image-container
-      =image_tag "/assets/images/icons/basketball_icon.svg", :class => "images"
-      =image_tag "/assets/images/icons/football_icon.svg", :class => "images"
-      =image_tag "/assets/images/icons/volleyball_icon.svg", :class => "images"
+
+      =image_tag "icons/basketball_icon.svg", :class => "images"
+      =image_tag "icons/football_icon.svg", :class => "images"
+      =image_tag "icons/volleyball_icon.svg", :class => "images"
 
     - @leagues.each do |league|
       %tr
