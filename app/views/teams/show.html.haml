@@ -30,6 +30,7 @@
     %p
     = "#{game.team1.name}" + " vs. " + "#{game.team2.name}"
 
+= link_to 'Destroy', [@league, @division, @team], :method => :delete, :data => { :confirm => 'Are you sure?' }
 
 = link_to 'Edit', edit_league_division_team_path(@league, @division, @team)
 \|
