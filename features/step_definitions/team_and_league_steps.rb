@@ -24,7 +24,6 @@ And /user with email "(.*)" is a member of "(.*)"/ do |email, team_name|
   team = Team.find_by_name(team_name)
   if not user.teams.include? team
     user.teams << team
-    team.users << user
   end
 end
   

@@ -16,6 +16,16 @@ class Division < ActiveRecord::Base
   has_many :teams
   has_many :games
 
+  def get_games_by_team(team)
+    teamgames = Array.new
+    self.games.each do |game|
+      if game.team1 == team or game.team2 == team
+        teamgames << game
+      end
+    end
+    return teamgames
+  end
+
   def generate_schedule
     for i in 0...self.num_teams
        teamname = "team" + (i+1).to_s
