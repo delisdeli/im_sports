@@ -26,7 +26,9 @@
 
 %p
   %b Games:
-  
+  - @division.get_games_by_team(@team).each do |game|
+    %p
+    = "#{game.team1.name}" + " vs. " + "#{game.team2.name}"
 
 
 = link_to 'Edit', edit_league_division_team_path(@league, @division, @team)

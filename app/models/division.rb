@@ -17,13 +17,13 @@ class Division < ActiveRecord::Base
   has_many :games
 
   def get_games_by_team(team)
-    teamgames = Array.new
+    team_games = Array.new
     self.games.each do |game|
       if game.team1 == team or game.team2 == team
-        teamgames << game
+        team_games << game
       end
     end
-    return teamgames
+    team_games
   end
 
   def generate_schedule
