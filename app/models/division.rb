@@ -18,8 +18,7 @@ class Division < ActiveRecord::Base
 
   def generate_schedule
     for i in 1...self.num_teams
-       teamname = "team" + i
-       fake_team = Team.create!(teamname)
+       fake_team = Team.create!
        self.teams << fake_team
     end
     for i in 1...self.teams.length
