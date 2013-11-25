@@ -1,21 +1,27 @@
 %html
 
 %head
+
   .leagues Leagues
 
 %body
   %table 
     %tr
     .league-container
-      .league Open
-      .league Rec
-      .league Frats
 
-    .image-container
 
-      =image_tag "icons/basketball_icon.svg", :class => "images"
-      =image_tag "icons/football_icon.svg", :class => "images"
-      =image_tag "icons/volleyball_icon.svg", :class => "images"
+    .image-wrapper
+      .image-text Open
+      =image_tag "icons/basketball_icon.svg", :class => "bball_image"
+    
+
+    .image-wrapper
+      .image-text Rec
+      =image_tag "icons/football_icon.svg", :class => "football_image"
+
+    .image-wrapper
+      .image-text Frats
+      =image_tag "icons/volleyball_icon.svg", :class => "vball_image"
 
     - @leagues.each do |league|
       %tr
