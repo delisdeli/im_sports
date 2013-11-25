@@ -12,13 +12,10 @@
   - @teams.each do |team|
     %tr
       %td= team.captain_email
-      %td= team.name
-      %td= team.division.league.name
-      %td = team.division.name
-      %td= link_to 'Show', [@league, @division, team]
+      %td= link_to team.name, [@league, @division, team]
+      %td= link_to team.division.league.name, @league
+      %td= link_to team.division.name, [@league, @division]
       %td= link_to 'Edit', edit_league_division_team_path(@league, @division, team)
-      %td= link_to 'Destroy', [@league, @division,  team], :method => :delete, :data => { :confirm => 'Are you sure?' }
 
 %br
-
 = link_to 'New Team', new_league_division_team_path

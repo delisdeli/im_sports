@@ -19,6 +19,15 @@ And /user with email "(.*)" has been invited to join "(.*)"$/ do |email, team_na
   team.invitations << invitation
 end
 
+And /user with email "(.*)" is a member of "(.*)"/ do |email, team_name|
+  user = User.find_by_email(email)
+  team = Team.find_by_name(team_name)
+  if not user.teams.include? team
+    user.teams << team
+  end
+end
+  
+
 Then /I should see "(.*)" before "(.*)"/ do |e1, e2|
   #  ensure that that e1 occurs before e2.
   #  page.body is the entire content of the page as a string.

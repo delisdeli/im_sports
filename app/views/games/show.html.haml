@@ -1,0 +1,34 @@
+%p
+  %b Division:
+  = @game.division.name
+%p
+  %b Team1:
+  = @game.team1.name
+%p
+  %b Team2:
+  = @game.team2.name
+%p
+  %b Score1:
+  = @game.score1
+%p
+  %b Score2:
+  = @game.score2
+%p
+  %b Date:
+  = @game.print_date
+%p
+  %b Start time:
+  = @game.print_start_time
+%p
+  %b End time:
+  = @game.print_end_time
+%p
+  %b Status:
+  = @game.get_status
+%p
+  %b Location:
+  = @game.location
+
+= link_to 'Edit', edit_league_division_game_path(@league, @division, @game)
+\|
+= link_to 'Back', league_division_games_path

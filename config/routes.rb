@@ -1,11 +1,15 @@
 ImSports::Application.routes.draw do
 
+  resources :games
+
+
   resources :divisions
 
 
   resources :leagues do
     resources :divisions do
       resources :teams
+      resources :games
     end
   end
 

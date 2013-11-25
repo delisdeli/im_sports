@@ -1,0 +1,37 @@
+%h1 Listing games
+
+%table
+  %tr
+    %th Division
+    %th Team1
+    %th Team2
+    %th Score1
+    %th Score2
+    %th Date
+    %th Start time
+    %th End time
+    %th Status
+    %th Location
+    %th
+    %th
+    %th
+
+  - @games.each do |game|
+    %tr
+      %td= game.division.name
+      %td= game.team1.name
+      %td= game.team2.name
+      %td= game.score1
+      %td= game.score2
+      %td= game.print_date
+      %td= game.print_start_time
+      %td= game.print_end_time
+      %td= game.get_status
+      %td= game.location
+      %td= link_to 'Show', [@league, @division, game]
+      %td= link_to 'Edit', edit_league_division_game_path(@league, @division, game)
+      %td= link_to 'Destroy', [@league, @division, game], :method => :delete, :data => { :confirm => 'Are you sure?' }
+
+%br
+
+= link_to 'New Game', new_league_division_game_path
