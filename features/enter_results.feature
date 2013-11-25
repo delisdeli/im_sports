@@ -33,12 +33,14 @@ Feature: Enter and adjust the results of games
     And I follow "Edit"  
     When I fill in "game[score1]" with "1" 
     And I fill in "game[score2]" with "3"
-    And I follow "Show"
+    And I press "Save"
     When I go to the home page 
     And I follow "league1"
     And I follow "testdiv"
     Then I should see "team1 vs. team2"
     When I follow "team1 vs. team2"
+    Then I should see "Score1: 1"
+    And I should see "Score2: 3"
 
 
 
