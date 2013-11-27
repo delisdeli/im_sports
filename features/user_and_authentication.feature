@@ -87,7 +87,7 @@ Scenario: Signed in user should see the correct user bar
   And I am on the home page
   Then I should see "user_name"
   And I should see "Sign out"
-  And I should not see "Log in"
+  And I should not see "Sign in"
   When I follow "user_name"
   Then I should be on the profile page for "email@email.com"
   Given I am on the home page
@@ -98,7 +98,7 @@ Scenario: Signed in user should see the correct user bar
 Scenario: Non-signed in user should see the correct user bar
   Given I am on the home page
   Then I should not see "Sign out"
-  When I follow "Log in"
+  When I follow "Sign in"
   Then I should be on the signin page
   Given I am on the home page
   When I follow "Register"

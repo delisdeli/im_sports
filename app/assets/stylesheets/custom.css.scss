@@ -42,6 +42,10 @@ table {
   border-collapse: collapse;
   border-spacing: 0;
 }
+a {
+  color: white;
+  text-decoration: none;
+}
 
 // END RESET
 
@@ -60,8 +64,115 @@ $darkTan: #7A6F43;
 $lightMoss: #A5B796;
 $moss: #749665;
 $darkMoss: #344A2A;
-// Hi Daphne, use these font-families in your stylings
-// font-family: 'Pacifico', cursive;
-// font-family: league-gothic;
-// font-family: 'Helvetica Neue', 'Arial';
 
+
+html, body{
+ font-family: 'Helvetica Neue', 'Arial';
+ height: 100%;
+}
+
+.container {
+    background-color: $lightGrey;
+    margin: 0 auto;
+    min-height: 100%;
+    padding: 0;
+    width: 978px;
+    overflow: auto;
+    border-style: solid;
+    border-width: 0px 1px;
+    border-color: $darkGrey;
+}   
+
+/* USERBAR */
+.user-bar {
+  background-color: $darkGrey;
+  width: 100%;
+  color: white;
+  font-family: league-gothic, 'Arial';
+  .logo {
+    font-size: 3em;
+    padding-left: 10px;
+  }
+  .right {
+    position: absolute;
+    font-size: 1.3em;
+    font-family: 'Pacifico', cursive;
+    top: 12px;
+    right: 10px;
+  }
+}
+
+/*Leagues */
+.head {
+   background: #EAE9E7;
+}
+.leagues {
+  vertical-align: middle;
+  color: #3F3F3E;
+  padding:20px;
+  background: #EAE9E7;
+  display:inline-block;
+  font-size:150%;
+  color: black;
+  position:relative;
+  top:5px;
+  font-family: league-gothic, 'Arial';
+
+}
+
+.league-container {
+  display:inline-block;
+  font-family: 'Pacifico', cursive;
+  clear:left;
+  font-size:110%;
+  background: #EAE9E7;
+  padding:20px;
+  color: #3F3F3E;
+}
+
+.leagues {
+  top:-50px;
+  display:inline;
+  color: #3F3F3E;
+  width:auto;
+  margin-left:20px;
+  margin-bottom: 20px;
+}
+
+
+.image-wrapper {
+  margin-top:20px;
+  display:inline-block;
+  padding:20px;
+  font-family: 'Pacifico', cursive;
+}
+
+.bball_image{
+  padding:20px;
+  border-radius: 50%;
+  background-color: #8D8EBA;
+}
+
+.football_image {
+  padding:20px;
+  border-radius: 50%;
+  background-color:#CD6144;
+}
+
+.vball_image {
+  padding:20px;
+  border-radius: 50%;
+  background-color: #749665;
+}
+
+.images {
+  padding:20px;
+  border-radius: 50%;
+  background-color: black;
+}
+
+.image-text{
+  color: #BBBBBB;
+  text-align:center;
+  padding-bottom: 4px;
+}
