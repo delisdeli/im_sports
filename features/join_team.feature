@@ -20,8 +20,8 @@ Feature: User can securely join a team
     | testdiv | 8          | 8pm         | 10pm      | 2              | 2         | 2013 | 11    | 18  | 60           | 1          |
 
     Given the following teams exist:
-    | captain_email   | name  | division_id |
-    | email@email.com | teamawesome | 1           | 
+    | captain_email   | name        | division_id | placeholder |
+    | email@email.com | teamawesome | 1           | false       |
 
   Scenario: An invited member can accept the invitation and join the team
     Given I am logged in as "email2@email.com" with password "password"

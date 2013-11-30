@@ -20,8 +20,8 @@ I want to be able to start a team in a league
     | testdiv | 8          | 8pm         | 10pm      | 2              | 2         | 2013 | 11    | 18  | 60           | 1          |
 
     Given the following teams exist:
-    | captain_email      | name     | division_id |
-    | email2@email.com   | teamcool   | 1           |
+    | captain_email      | name     | division_id   | placeholder |
+    | email2@email.com   | teamcool   | 1           | false       |
 
   Scenario: A user should be able to create a team
     Given I am logged in as "email2@email.com" with password "password"
@@ -37,6 +37,8 @@ I want to be able to start a team in a league
     And I should see "Team Members" before "user"
     Given I am on the profile page for "email2@email.com"
     Then I should see "teamlame"
+    Given I am on the teams page for division "testdiv" of league "league1"
+    Then I should see "teamlame"
 
   Scenario: A non-user should not be able to create a team
     Given I am on the division page for "testdiv" of league "league1"
@@ -45,6 +47,11 @@ I want to be able to start a team in a league
   Scenario: all the teams for a division can be seen on the division page
     Given I am on the division page for "testdiv" of league "league1"
     Then I should see "teamcool"
+
+  Scenario: Fake teams should not show up in teams index
+    Given I am on the teams page for division "testdiv" of league "league1"
+    Then I should see "teamcool"
+    And I should not see "team4"
 
   Scenario: Team captain can update a team
     Given I am logged in as "email2@email.com" with password "password"

@@ -5,7 +5,7 @@ class TeamsController < ApplicationController
   # GET /teams
   # GET /teams.json
   def index
-    @teams = @division.teams.all
+    @teams = @division.teams.where(:placeholder=>false)
   end
 
   # GET /teams/1
@@ -47,6 +47,7 @@ class TeamsController < ApplicationController
   # POST /teams
   # POST /teams.json
   def create
+    params[:team][:placeholder] = false
     @team = Team.new(params[:team])
 
     if @team.save

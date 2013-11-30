@@ -1,5 +1,11 @@
 Given /the following teams exist/ do |teams_table|
   teams_table.hashes.each do |team|
+    fake_team = false
+    if team[:placeholder] == "true"
+      fake_team = true
+    end
+    team.delete("placeholder")
+    team[:placeholder] = fake_team
     current_team = Team.create!(team)
     Division.find_by_id(team[:division_id]).teams << current_team
   end
