@@ -67,7 +67,7 @@ Scenario: A divion end_time must occur after the start_time(4i)
   And I select "07 PM" from "division[end_time(4i)]"
   And I select "00" from "division[end_time(5i)]"
   And I press "Save"
-  Then I should see "must be before end time"
+  Then I should see "be before end time"
 
 Scenario: An admin can update a division
   Given I am logged in as "email@email.com" with password "password"
@@ -76,6 +76,24 @@ Scenario: An admin can update a division
   And I fill in "division[name]" with "newdivisionname"
   And I press "Save"
   Then I should be on the division page for "newdivisionname" of league "league1"
+
+Scenario: An admin can add locations to a division
+  Given I am logged in as "email@email.com" with password "password"
+  And I am on the division page for "testdiv" of league "league1"
+  When I fill in "new_location" with "Recreational Sports Facility"
+  And I press "Add Location"
+  Then I should be on the division page for "testdiv" of league "league1"
+  And I should see "Recreational Sports Facility"
+  And I should see "Successfully added Recreational Sports Facility"
+  When I fill in "new_location" with "Recreational Sports Facility"
+  And I press "Add Location"
+  Then I should not see "Recreational Sports Facility" before "Recreational Sports Facility"
+  And I should see "Division already contains that location"
+
+Scenario: A non-admin cannot add locations to a division
+  Given I am logged in as "email2@email.com" with password "password"
+  And I am on the division page for "testdiv" of league "league1"
+  Then I should not see "Add New Location"
 
 @javascript
 Scenario: Can delete a division record

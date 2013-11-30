@@ -44,6 +44,18 @@ class DivisionsController < ApplicationController
     end
   end
 
+  def add_location
+    @division = Division.find(params[:division_id])
+    loc = Location.get_by_name(params[:new_location])
+    if @division.locations.exists?(loc)
+      msg = "Division already contains that location."
+    else
+      @division.locations << loc
+      msg = "Successfully added #{loc.name}."
+    end
+    redirect_to [@league, @division], notice: msg
+  end
+
   # DELETE /divisions/1
   # DELETE /divisions/1.json
   def destroy
