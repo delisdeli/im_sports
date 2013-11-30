@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20131125020106) do
+ActiveRecord::Schema.define(:version => 20131130203228) do
 
   create_table "divisions", :force => true do |t|
     t.integer  "league_id"
@@ -19,12 +19,12 @@ ActiveRecord::Schema.define(:version => 20131125020106) do
     t.integer  "num_teams"
     t.time     "start_time"
     t.time     "end_time"
-    t.string   "game_length"
     t.integer  "num_locations"
     t.datetime "created_at",    :null => false
     t.datetime "updated_at",    :null => false
     t.integer  "num_weeks"
     t.date     "start_date"
+    t.integer  "game_length"
   end
 
   add_index "divisions", ["league_id"], :name => "index_divisions_on_league_id"
