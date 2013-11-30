@@ -15,6 +15,7 @@ class Division < ActiveRecord::Base
 
   has_many :teams
   has_many :games
+  has_and_belongs_to_many :locations
 
   def get_games_by_team(team)
     team_games = Array.new
