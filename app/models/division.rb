@@ -27,11 +27,7 @@ class Division < ActiveRecord::Base
   end
 
   def first_unplayed_team(first_team, team_queue, played_teams)
-    # p played_teams
-    # p team_queue
     team_queue.each do |team|
-      # p team 
-      # p first_team
       (return team) unless played_teams[first_team.id].include? team.id
     end
     nil
@@ -65,36 +61,6 @@ class Division < ActiveRecord::Base
       end
     end
   end
-
-
-
-
-    # for i in 0...self.teams.length
-    #   for j in i+1...self.teams.length
-    # self.teams.each do |team1|
-    #   currDate = self.start_date
-    #   self.teams.each do |team2|
-    #     test_game = Game.create!( team1_id: team1.id,
-    #                               team2_id: team2.id,
-    #                               division_id: self.id,
-    #                               newDate:  currDate,
-    #                               newScore1: "0")
-    #     test_game.team1_id = team1.id
-    #     test_game.team2_id = team2.id
-    #     test_game.division_id = self.id
-    #     newDate = "2013-03-06"
-    #     newStartTime = "6:00"
-    #     newEndTime = "8:00"
-    #     newScore1 = "0"
-    #     newScore2 = "0"
-    #     test_game.score1 = newScore1
-    #     test_game.score2 = newScore2
-    #     test_game.start_time = newStartTime
-    #     test_game.end_time = newEndTime
-    #     test_game.date = newDate
-    #     self.games << test_game
-    #   end
-    # end
 
   def gen_time_slots
     game_time = self.start_time
