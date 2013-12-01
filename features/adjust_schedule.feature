@@ -47,3 +47,14 @@ Scenario: An admin should be able to edit a game
   And I follow "team1 vs. team2"
   Then I should see "09:00 AM"
 
+@javascript
+Scenario: Can delete a game record
+  Given I am logged in as "email@email.com" with password "password"
+  And I am on the games page for division "div2" of league "league1"
+  Then I should see "team1"
+  Then I should see "team2"
+  When I follow "Destroy"
+  And I accept the alert
+  Then I should be on the games page for division "div2" of league "league1"
+  And I should not see "team1"
+  And I should not see "team2"
