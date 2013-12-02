@@ -17,3 +17,5 @@ Given /I am logged in as "(.*)" with password "(.*)"$/ do |email, password|
   fill_in("session[password]", :with => password)
   click_button("Sign in")
 end
+
+
