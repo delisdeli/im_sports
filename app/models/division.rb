@@ -44,7 +44,7 @@ class Division < ActiveRecord::Base
     game_dates.each do |game_date|
       time_slots.each do |time_slot|
         self.num_locations.times do 
-        # self.locations.each do |location|
+         self.locations.each do |location|
           team1 = team_queue[0]
           team_queue << team_queue.delete_at(0)
           team2 = first_unplayed_team(team1, team_queue, played_teams)
@@ -56,7 +56,7 @@ class Division < ActiveRecord::Base
                                       status: 1,
                                       start_time: time_slot,
                                       end_time: time_slot + self.game_length.to_i.minutes,
-                                      # location: location,
+                                      location: "location",
                                       date: game_date )
         end
       end
