@@ -67,20 +67,20 @@ $darkMoss: #344A2A;
 
 
 html, body{
- font-family: 'Helvetica Neue', 'Arial';
  height: 100%;
 }
 
 .container {
-    background-color: $lightGrey;
-    margin: 0 auto;
-    min-height: 100%;
-    padding: 0;
-    width: 978px;
-    overflow: auto;
-    border-style: solid;
-    border-width: 0px 1px;
-    border-color: $darkGrey;
+  background-color: $lightGrey;
+  margin: 0 auto;
+  min-height: 100%;
+  padding: 0;
+  width: 978px;
+  overflow: auto;
+  border-style: solid;
+  border-width: 0px 1px;
+  border-color: $darkGrey;
+  font-family: 'Helvetica Neue', 'Arial';
 }   
 
 /* USERBAR */
@@ -106,6 +106,7 @@ html, body{
 .head {
    background: #EAE9E7;
 }
+
 .leagues {
   vertical-align: middle;
   color: #3F3F3E;
@@ -117,38 +118,42 @@ html, body{
   position:relative;
   top:5px;
   font-family: league-gothic, 'Arial';
-
 }
 
 .league-container {
   display:inline-block;
   font-family: 'Pacifico', cursive;
   clear:left;
-  font-size:110%;
+  font-size: 110%;
   background: #EAE9E7;
   padding:20px;
   color: #3F3F3E;
 }
 
 .leagues {
-  top:-50px;
+  top: -50px;
   display:inline;
   color: #3F3F3E;
   width:auto;
-  margin-left:20px;
+  margin-left: 20px;
   margin-bottom: 20px;
 }
 
-
 .image-wrapper {
-  margin-top:20px;
-  display:inline-block;
-  padding:20px;
+  margin-top: 20px;
+  display: inline-block;
+  padding: 20px;
   font-family: 'Pacifico', cursive;
 }
 
+.sport_icon{
+  padding: 20px;
+  border-radius: 50%;
+  background-color: #8D8EBA;
+}
+
 .bball_image{
-  padding:20px;
+  padding: 20px;
   border-radius: 50%;
   background-color: #8D8EBA;
 }
@@ -173,6 +178,6 @@ html, body{
 
 .image-text{
   color: #BBBBBB;
-  text-align:center;
+  // text-align:center;
   padding-bottom: 4px;
 }

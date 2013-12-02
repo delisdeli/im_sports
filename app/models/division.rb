@@ -89,6 +89,10 @@ class Division < ActiveRecord::Base
     self.start_date.strftime("%B %e, %Y")
   end
 
+  def print_time_slot
+    self.print_start_time + " - " + self.print_end_time
+  end
+  
   # def fits_schedule
   # 	errors.add("not enough locations to accomodate division schedule") unless
   # 		((self.end_time - self.start_time) / game_length / num_locations) <= num_teams

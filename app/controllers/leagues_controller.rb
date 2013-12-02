@@ -5,7 +5,18 @@ before_filter :admin_user, only: [:new, :create, :edit, :update, :destroy]
   # GET /leagues
   # GET /leagues.json
   def index
-    @leagues = League.all
+    @sports = League.sports
+    if params[:sport_selected]
+      @sport_selected = params[:sport_selected]
+      @leagues = League.where(:sport => @sport_selected)
+    else
+      @leagues = League.all
+    end
+    if params[:league_selected]
+      @league_selected = League.find_by_id(params[:league_selected])
+      @league_divisions = @league_selected.sorted_divisions
+      @divisions_rows = @league_divisions.values.map {|x| x.length}.max - 1
+    end
   end
 
   # GET /leagues/1
