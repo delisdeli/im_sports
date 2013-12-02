@@ -44,11 +44,14 @@ class Division < ActiveRecord::Base
         newEndTime = "8:00"
         newScore1 = "0"
         newScore2 = "0"
+	locationName = "location"
+	newLoc = Location.create!(:name => locationName)
         test_game.score1 = newScore1
         test_game.score2 = newScore2
 	test_game.start_time = newStartTime
         test_game.end_time = newEndTime
         test_game.date = newDate
+	test_game.location = newLoc
         self.games << test_game
       end
     end
