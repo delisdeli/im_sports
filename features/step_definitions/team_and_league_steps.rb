@@ -39,3 +39,9 @@ Then /I should see "(.*)" before "(.*)"/ do |e1, e2|
   #  page.body is the entire content of the page as a string.
   assert page.body =~ /#{e1}.*#{e2}/m, "not sorted correctly"
 end
+
+Then /I should not see "(.*)" before "(.*)"/ do |e1, e2|
+  if (page.body =~ /#{e1}.*#{e2}/m)
+    flunk "Saw #{e1} before #{e2}"
+  end
+end
