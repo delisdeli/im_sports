@@ -16,7 +16,7 @@ Feature: Adjust the schedule of a division
     Given the following divisions exist:
     | name    | num_teams  | start_time  | end_time  | num_locations  | num_weeks | year | month | day | game_length  | league_id  |
     | testdiv | 8          | 8pm         | 10pm      | 2              | 2         | 2013 | 11    | 18  | 60           | 1          |
-    | div2    | 2          | 8pm         | 10pm      | 2              | 2         | 2013 | 11    | 18  | 60           | 1          |
+    | div2    | 2          | 8pm         | 9pm       | 1              | 1         | 2013 | 11    | 18  | 60           | 1          |
 
 Scenario: A non-admin should not be able to see adjust schedule button
   Given I am on the home page
