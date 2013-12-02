@@ -20,40 +20,59 @@ class Division < ActiveRecord::Base
   def get_games_by_team(team)
     team_games = Array.new
     self.games.each do |game|
-      if game.team1 == team or game.team2 == team
+      if game.team1_id == team.id or game.team2_id == team.id
         team_games << game
       end
     end
     team_games
   end
 
-  def generate_schedule
-    for i in 0...self.num_teams
-       teamname = "team" + (i+1).to_s
-       fake_team = Team.create!(:name => teamname, :placeholder => true)
-       self.teams << fake_team
+  def first_unplayed_team(first_team, team_queue, played_teams)
+    team_queue.each do |team|
+      (return team) unless played_teams[first_team.id].include? team.id
     end
-    for i in 0...self.teams.length
-      for j in i+1...self.teams.length
-        test_game = Game.create!
-        test_game.team1_id = self.teams.at(i).id
-        test_game.team2_id = self.teams.at(j).id
-        test_game.division_id = self.id
-        newDate = "2013-03-06"
-        newStartTime = "6:00"
-        newEndTime = "8:00"
-        newScore1 = "0"
-        newScore2 = "0"
-        test_game.score1 = newScore1
-        test_game.score2 = newScore2
-	test_game.start_time = newStartTime
-        test_game.end_time = newEndTime
-        test_game.date = newDate
-        self.games << test_game
+    nil
+  end
+
+  def generate_schedule
+    self.teams = (1..self.num_teams).map {|x| Team.create!(name: "team#{x}")}
+    game_dates = (0..(num_weeks-1)).map {|week_num| start_date.advance(weeks: week_num)}
+    time_slots = self.gen_time_slots
+    team_queue = self.teams.map {|team| team}
+    played_teams = {}
+    self.teams.each {|team| played_teams[team.id] = [team.id]}
+    game_dates.each do |game_date|
+      time_slots.each do |time_slot|
+        self.num_locations.times do 
+        # self.locations.each do |location|
+          team1 = team_queue[0]
+          team_queue << team_queue.delete_at(0)
+          team2 = first_unplayed_team(team1, team_queue, played_teams)
+          played_teams[team1.id] << team2.id
+          played_teams[team2.id] << team1.id
+          self.games << Game.create!( team1_id: team1.id,
+                                      team2_id: team2.id,
+                                      division_id: self.id,
+                                      status: 1,
+                                      start_time: time_slot,
+                                      end_time: time_slot + self.game_length.to_i.minutes,
+                                      # location: location,
+                                      date: game_date )
+        end
       end
     end
   end
-        
+
+  def gen_time_slots
+    game_time = self.start_time
+    game_times = []
+    while game_time < end_time
+      game_times << game_time
+      game_time += self.game_length.to_i.minutes
+    end
+    game_times
+  end
+
   def start_before_end_time
     errors.add(:start_time, "must be before end time") unless
        self.start_time < self.end_time

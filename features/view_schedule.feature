@@ -16,7 +16,7 @@ Feature: View the schedule of a division
 
     Given the following divisions exist:
     | name    | num_teams  | start_time  | end_time  | num_locations  | num_weeks | year | month | day | game_length  | league_id  |
-    | testdiv | 8          | 8pm         | 10pm      | 2              | 2         | 2013 | 11    | 18  | 60           | 1          |
+    | testdiv | 8          | 8pm         | 10pm      | 2              | 7         | 2013 | 11    | 18  | 60           | 1          |
 
     Given the following teams exist:
     | captain_email      | name       | division_id | placeholder |
@@ -28,23 +28,23 @@ Feature: View the schedule of a division
     And I am on the home page
     And I follow "league1"
     And I follow "testdiv"
-    Then I should see "team1 vs. team2"
-    And I should see "team1 vs. team3"
-    And I should see "team1 vs. team4"
-    And I should see "team1 vs. team5"
-    And I should see "team1 vs. team6"
-    And I should see "team1 vs. team7"
-    And I should see "team1 vs. team8"
+    Then I should see "team1 vs. team2" or "team2 vs. team1"
+    And I should see "team1 vs. team3" or "team3 vs. team1"
+    And I should see "team1 vs. team4" or "team4 vs. team1"
+    And I should see "team1 vs. team5" or "team5 vs. team1"
+    And I should see "team1 vs. team6" or "team6 vs. team1"
+    And I should see "team1 vs. team7" or "team7 vs. team1"
+    And I should see "team1 vs. team8" or "team8 vs. team1"
 
   Scenario: A user should be able to view his/her schedule via the user's profile
     Given I am logged in as "email2@email.com" with password "password"
     And user with email "email2@email.com" is a member of "team1"
     And I am on the profile page for "email2@email.com"
     And I follow "team1"
-    Then I should see "team1 vs. team2"
-    And I should see "team1 vs. team3"
-    And I should see "team1 vs. team4"
-    And I should see "team1 vs. team5"
-    And I should see "team1 vs. team6"
-    And I should see "team1 vs. team7"
-    And I should see "team1 vs. team8"
+    Then I should see "team1 vs. team2" or "team2 vs. team1"
+    And I should see "team1 vs. team3" or "team3 vs. team1"
+    And I should see "team1 vs. team4" or "team4 vs. team1"
+    And I should see "team1 vs. team5" or "team5 vs. team1"
+    And I should see "team1 vs. team6" or "team6 vs. team1"
+    And I should see "team1 vs. team7" or "team7 vs. team1"
+    And I should see "team1 vs. team8" or "team8 vs. team1"
