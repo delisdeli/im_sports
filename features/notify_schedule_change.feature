@@ -52,7 +52,6 @@ Feature: Notify teams when schedule is altered
      And I press "Save"
      And I follow "Sign out"
      Given I am logged in as "email3@email.com" with password "password"
-     Then show me the page
      When I follow "team5"
      Then I should not see "Schedule was changed" 
 
