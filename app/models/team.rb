@@ -7,4 +7,12 @@ class Team < ActiveRecord::Base
   def fake?
     return self.placeholder
   end
+
+  def Team.get_fake_by_name(name)
+    fake_team = Team.find_by_name(name)
+    unless fake_team and fake_team.fake?
+      fake_team = Team.create(:name=>name, :placeholder=>true)
+    end
+    return fake_team
+  end
 end
