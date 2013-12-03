@@ -19,32 +19,32 @@ Feature: View the schedule of a division
     | testdiv | 8          | 8pm         | 10pm      | 2              | 7         | 2013 | 11    | 18  | 60           | 1          |
 
     Given the following teams exist:
-    | captain_email      | name       | division_id | placeholder |
-    | email2@email.com   | team1      | 1           | false       |
+    | captain_email      | name               | division_id | placeholder |
+    | email2@email.com   | Placeholder Team 1 | 1           | false       |
 
   Scenario: A user should be able to view his/her schedule via the division's page
     Given I am logged in as "email2@email.com" with password "password"
-    And user with email "email2@email.com" is a member of "team1"
+    And user with email "email2@email.com" is a member of "Placeholder Team 1"
     And I am on the home page
     And I follow "league1"
     And I follow "testdiv"
-    Then I should see "team1 vs. team2" or "team2 vs. team1"
-    And I should see "team1 vs. team3" or "team3 vs. team1"
-    And I should see "team1 vs. team4" or "team4 vs. team1"
-    And I should see "team1 vs. team5" or "team5 vs. team1"
-    And I should see "team1 vs. team6" or "team6 vs. team1"
-    And I should see "team1 vs. team7" or "team7 vs. team1"
-    And I should see "team1 vs. team8" or "team8 vs. team1"
+    Then I should see "Placeholder Team 1 vs. Placeholder Team 2" or "Placeholder Team 2 vs. Placeholder Team 1"
+    And I should see "Placeholder Team 1 vs. Placeholder Team 3" or "Placeholder Team 3 vs. Placeholder Team 1"
+    And I should see "Placeholder Team 1 vs. Placeholder Team 4" or "Placeholder Team 4 vs. Placeholder Team 1"
+    And I should see "Placeholder Team 1 vs. Placeholder Team 5" or "Placeholder Team 5 vs. Placeholder Team 1"
+    And I should see "Placeholder Team 1 vs. Placeholder Team 6" or "Placeholder Team 6 vs. Placeholder Team 1"
+    And I should see "Placeholder Team 1 vs. Placeholder Team 7" or "Placeholder Team 7 vs. Placeholder Team 1"
+    And I should see "Placeholder Team 1 vs. Placeholder Team 8" or "Placeholder Team 8 vs. Placeholder Team 1"
 
   Scenario: A user should be able to view his/her schedule via the user's profile
     Given I am logged in as "email2@email.com" with password "password"
-    And user with email "email2@email.com" is a member of "team1"
+    And user with email "email2@email.com" is a member of "Placeholder Team 1"
     And I am on the profile page for "email2@email.com"
-    And I follow "team1"
-    Then I should see "team1 vs. team2" or "team2 vs. team1"
-    And I should see "team1 vs. team3" or "team3 vs. team1"
-    And I should see "team1 vs. team4" or "team4 vs. team1"
-    And I should see "team1 vs. team5" or "team5 vs. team1"
-    And I should see "team1 vs. team6" or "team6 vs. team1"
-    And I should see "team1 vs. team7" or "team7 vs. team1"
-    And I should see "team1 vs. team8" or "team8 vs. team1"
+    And I follow "Placeholder Team 1"
+    Then I should see "Placeholder Team 1 vs. Placeholder Team 2" or "Placeholder Team 2 vs. Placeholder Team 1"
+    And I should see "Placeholder Team 1 vs. Placeholder Team 3" or "Placeholder Team 3 vs. Placeholder Team 1"
+    And I should see "Placeholder Team 1 vs. Placeholder Team 4" or "Placeholder Team 4 vs. Placeholder Team 1"
+    And I should see "Placeholder Team 1 vs. Placeholder Team 5" or "Placeholder Team 5 vs. Placeholder Team 1"
+    And I should see "Placeholder Team 1 vs. Placeholder Team 6" or "Placeholder Team 6 vs. Placeholder Team 1"
+    And I should see "Placeholder Team 1 vs. Placeholder Team 7" or "Placeholder Team 7 vs. Placeholder Team 1"
+    And I should see "Placeholder Team 1 vs. Placeholder Team 8" or "Placeholder Team 8 vs. Placeholder Team 1"

@@ -29,7 +29,7 @@ Feature: Enter and adjust the results of games
     And I am on the home page
     And I follow "league1"
     And I follow "testdiv"
-    And I follow "team1 vs. team2"
+    And I follow "Placeholder Team 1 vs. Placeholder Team 2"
     And I follow "Edit"  
     Then show me the page
     When I fill in "game[score1]" with "1" 
@@ -38,8 +38,8 @@ Feature: Enter and adjust the results of games
     When I go to the home page 
     And I follow "league1"
     And I follow "testdiv"
-    Then I should see "team1 vs. team2"
-    When I follow "team1 vs. team2"
+    Then I should see "Placeholder Team 1 vs. Placeholder Team 2"
+    When I follow "Placeholder Team 1 vs. Placeholder Team 2"
     Then I should see "Score1: 1"
     And I should see "Score2: 3"
 
@@ -50,13 +50,6 @@ Feature: Enter and adjust the results of games
     And I am on the home page
     And I follow "league1"
     And I follow "testdiv"
-    And I follow "team1 vs. team2"
+    And I follow "Placeholder Team 1 vs. Placeholder Team 2"
     And I follow "Edit"
     Then I should see "Must be admin user to access this feature" 
-
-
- 
-
-
-
-

@@ -35,7 +35,7 @@ class Division < ActiveRecord::Base
   end
 
   def generate_schedule
-    self.teams = (1..self.num_teams).map {|x| Team.get_fake_by_name("team#{x}")}
+    self.teams = (1..self.num_teams).map {|x| Team.get_fake_by_name("Placeholder Team #{x}")}
     game_dates = (0..(num_weeks-1)).map {|week_num| start_date.advance(weeks: week_num)}
     time_slots = self.gen_time_slots
     team_queue = self.teams.map {|team| team}
@@ -44,7 +44,6 @@ class Division < ActiveRecord::Base
     game_dates.each do |game_date|
       time_slots.each do |time_slot|
         self.num_locations.times do 
-         self.locations.each do |location|
           team1 = team_queue[0]
           team_queue << team_queue.delete_at(0)
           team2 = first_unplayed_team(team1, team_queue, played_teams)
