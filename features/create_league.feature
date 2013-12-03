@@ -11,8 +11,8 @@ Feature: create a league
     | user       | email2@email.com  | password  | password               | false  |
 
     Given the following leagues exist:
-    | name    |
-    | league5 |
+    | name    | sport      |
+    | league5 | basketball |
 
 Scenario: A non-admin should not be able to see create league button
   Given I am on the home page

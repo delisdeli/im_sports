@@ -13,9 +13,9 @@ Feature: invite a member to join team
     | user2      | email4@email.com  | password  | password               | false  |
 
     Given the following leagues exist:
-    | name    |
-    | league1 |
-    | league2 |
+    | name    | sport      |
+    | league1 | basketball |
+    | league2 | basketball |
 
     Given the following divisions exist:
     | name    | num_teams  | start_time  | end_time  | num_locations  | num_weeks | year | month | day | game_length  | league_id  |

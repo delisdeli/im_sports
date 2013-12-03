@@ -12,8 +12,8 @@ Feature: User can securely join a team
     | user2      | email3@email.com  | password  | password               | false  |
 
     Given the following leagues exist:
-    | name    |
-    | league1 |
+    | name    | sport      |
+    | league1 | basketball |
 
     Given the following divisions exist:
     | name    | num_teams  | start_time  | end_time  | num_locations  | num_weeks | year | month | day | game_length  | league_id  |
