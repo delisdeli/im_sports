@@ -28,6 +28,7 @@ ImSports::Application.routes.draw do
   post "teams/invite"
   post "teams/add_member"
   post "divisions/add_location"
+  post "divisions/remove_location"
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

@@ -20,39 +20,39 @@ Feature: Notify teams when schedule is altered
 
     Given the following teams exist:
     | captain_email      | name       | division_id | placeholder |
-    | email2@email.com   | team1      | 1           | false       |
-    | email3@email.com   | team5      | 1           | false       |
+    | email2@email.com   | teamcool   | 1           | false       |
+    | email3@email.com   | teamlame   | 1           | false       |
 
    
    Scenario: A team member should see a notification when schedule has been altered
      Given I am logged in as "email@email.com" with password "password"
-     And user with email "email2@email.com" is a member of "team1"
+     And user with email "email2@email.com" is a member of "teamcool"
      And I am on the home page   
      And I follow "league1"
      And I follow "testdiv"
-     And I follow "team1 vs. team2"
+     And I follow "teamcool vs. Placeholder Team 2"
      And I follow "Edit"
      And I fill in "game[location]" with "haas pav"
      And I press "Save"
      Given I am logged in as "email2@email.com" with password "password"
-     When I follow "team1"
+     When I follow "teamcool"
      Then I should see "Schedule was changed" 
 
 
    Scenario: A non-member should not see a notification
      Given I am logged in as "email@email.com" with password "password"
-     And user with email "email2@email.com" is a member of "team1"
-     And user with email "email3@email.com" is a member of "team5"
+     And user with email "email2@email.com" is a member of "teamcool"
+     And user with email "email3@email.com" is a member of "teamlame"
      And I am on the home page   
      And I follow "league1"
      And I follow "testdiv"
-     And I follow "team1 vs. team2"
+     And I follow "teamcool vs. Placeholder Team 2"
      And I follow "Edit"
      And I fill in "game[location]" with "haas pav"
      And I press "Save"
      And I follow "Sign out"
      Given I am logged in as "email3@email.com" with password "password"
-     When I follow "team5"
+     When I follow "teamlame"
      Then I should not see "Schedule was changed" 
 
 

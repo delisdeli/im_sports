@@ -53,6 +53,7 @@ class TeamsController < ApplicationController
     if @team.save
       @division.teams << @team
       @team.users << current_user
+      @division.replace_fake_team(@team)
       redirect_to [@league, @division, @team], notice: 'Team was successfully created.' 
     else
       render action: "new"
@@ -75,6 +76,7 @@ class TeamsController < ApplicationController
   # DELETE /teams/1.json
   def destroy
     @team = Team.find(params[:id])
+    @division.restore_fake_team(@team)
     @team.destroy
 
     redirect_to league_division_teams_url

@@ -27,11 +27,41 @@ class Division < ActiveRecord::Base
     team_games
   end
 
+  def replace_fake_team(team)
+    #iterate over games and replace all instances of placeholder team X with team
+    x = self.teams.count
+  end
+
+  def restore_fake_team(team)
+    #Iterate over games and replace all instances of team with placeholder team X
+    x = self.teams.count
+  end
+
+  def replace_fake_location(location)
+    #Iterate over games and replace all instances of location X with location
+    x = self.locations.count
+  end
+
+  def restore_fake_location(location)
+    #Iterate over games and replace all instances of location with location X
+    x = self.locations.count
+  end
+
   def first_unplayed_team(first_team, team_queue, played_teams)
     team_queue.each do |team|
       (return team) unless played_teams[first_team.id].include? team.id
     end
     nil
+  end
+
+  def gen_time_slots
+    game_time = self.start_time
+    game_times = []
+    while game_time < end_time
+      game_times << game_time
+      game_time += self.game_length.to_i.minutes
+    end
+    game_times
   end
 
   def generate_schedule
@@ -43,7 +73,7 @@ class Division < ActiveRecord::Base
     self.teams.each {|team| played_teams[team.id] = [team.id]}
     game_dates.each do |game_date|
       time_slots.each do |time_slot|
-        self.num_locations.times do 
+        self.num_locations.times do |i|
           team1 = team_queue[0]
           team_queue << team_queue.delete_at(0)
           team2 = first_unplayed_team(team1, team_queue, played_teams)
@@ -54,22 +84,12 @@ class Division < ActiveRecord::Base
                                       division_id: self.id,
                                       status: 1,
                                       start_time: time_slot,
-                                      end_time: time_slot + self.game_length.to_i.minutes,
-                                      location: "location",
+                                      end_time: time_slot + self.game_length.minutes,
+                                      location: "Placeholder Location #{i+1}",
                                       date: game_date )
         end
       end
     end
-  end
-
-  def gen_time_slots
-    game_time = self.start_time
-    game_times = []
-    while game_time < end_time
-      game_times << game_time
-      game_time += self.game_length.to_i.minutes
-    end
-    game_times
   end
 
   def start_before_end_time

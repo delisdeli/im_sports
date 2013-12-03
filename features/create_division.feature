@@ -84,16 +84,33 @@ Scenario: An admin can add locations to a division
   And I press "Add Location"
   Then I should be on the division page for "testdiv" of league "league1"
   And I should see "Recreational Sports Facility"
-  And I should see "Successfully added Recreational Sports Facility"
+  And I should see "Location was successfully added."
   When I fill in "new_location" with "Recreational Sports Facility"
   And I press "Add Location"
-  Then I should not see "Recreational Sports Facility" before "Recreational Sports Facility"
   And I should see "Division already contains that location"
 
 Scenario: A non-admin cannot add locations to a division
   Given I am logged in as "email2@email.com" with password "password"
   And I am on the division page for "testdiv" of league "league1"
   Then I should not see "Add New Location"
+
+Scenario: A non-admin cannot delete locations
+  Given I am logged in as "email@email.com" with password "password"
+  And I am on the division page for "testdiv" of league "league1"
+  When I fill in "new_location" with "Recreational Sports Facility"
+  And I press "Add Location"
+  When I follow "Sign out"
+  Given I am on the division page for "testdiv" of league "league1"
+  Then I should not see "Remove Recreational Sports Facility"
+
+Scenario: An admin can delete locations
+  Given I am logged in as "email@email.com" with password "password"
+  And I am on the division page for "testdiv" of league "league1"
+  When I fill in "new_location" with "Recreational Sports Facility"
+  And I press "Add Location"
+  When I press "Remove Recreational Sports Facility"
+  Then I should be on the division page for "testdiv" of league "league1"
+  And I should see "Location was successfully removed."
 
 @javascript
 Scenario: Can delete a division record

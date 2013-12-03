@@ -38,6 +38,9 @@
 - @division.locations.each do |location|
   %p
     = "#{location.name}"
+    - if signed_in? and current_user.admin?
+      = form_tag :action => "remove_location", :id => @division.id, :league_id => @league.id, :location_id => location.id do
+        = submit_tag "Remove #{location.name}"
 
 - if signed_in?
   = link_to "Create Team", new_league_division_team_path(@league, @division)

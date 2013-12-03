@@ -51,9 +51,21 @@ class DivisionsController < ApplicationController
       msg = "Division already contains that location."
     else
       @division.locations << loc
-      msg = "Successfully added #{loc.name}."
+      @division.replace_fake_location(loc)
+      msg = "Location was successfully added."
     end
     redirect_to [@league, @division], notice: msg
+  end
+
+  def remove_location
+    @division = Division.find(params[:id])
+    loc = Location.find_by_id(params[:location_id])
+    @division.restore_fake_location(loc)
+    @division.locations.delete(loc)
+    if (loc.divisions.count == 0)
+        loc.destroy
+    end
+    redirect_to [@league, @division], notice: "Location was successfully removed."
   end
 
   # DELETE /divisions/1
