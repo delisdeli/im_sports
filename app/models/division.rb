@@ -52,6 +52,12 @@ class Division < ActiveRecord::Base
   def restore_fake_location(location)
     #Iterate over games and replace all instances of location with location X
     x = self.locations.count
+    self.games.each do |game|
+        if game.location == location.name
+            game.location = "Placeholder Location #{x}"
+            game.save
+        end
+    end
   end
 
   def first_unplayed_team(first_team, team_queue, played_teams)

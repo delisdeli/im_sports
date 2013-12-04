@@ -84,6 +84,27 @@ Scenario: An admin adding a real location replaces placeholder locations
     And I should not see "Haas"
     And I should not see "Placeholder Location"
 
+Scenario: An admin deleting a location restores placeholder locations
+    Given I am logged in as "email@email.com" with password "password"
+    And I am on the division page for "testdiv" of league "league1"
+    When I fill in "new_location" with "RSF"
+    And I press "Add Location"
+    When I fill in "new_location" with "Haas"
+    And I press "Add Location"
+    And I press "Remove RSF"
+    And I press "Haas"
+    And I follow "Placeholder Team 1 vs. Placeholder Team 2"
+    Then I should see "Placeholder Location 2"
+    Given I am on the division page for "testdiv" of league "league1"
+    And I follow "Placeholder Team 2 vs. Placeholder Team 3"
+    Then I should see "Placeholder Location 1"
+    Given I am on the division page for "testdiv" of league "league1"
+    And I follow "Placeholder Team 3 vs. Placeholder Team 4"
+    Then I should see "Placeholder Location 2"
+    Given I am on the division page for "testdiv" of league "league1"
+    And I follow "Placeholder Team 4 vs. Placeholder Team 5"
+    Then I should see "Placeholder Location 1"
+
 @javascript
 Scenario: Can delete a game record
   Given I am logged in as "email@email.com" with password "password"
