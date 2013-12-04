@@ -35,6 +35,11 @@ Feature: View the schedule of a division
     And I should see "Placeholder Team 1 vs. Placeholder Team 6" or "Placeholder Team 6 vs. Placeholder Team 1"
     And I should see "Placeholder Team 1 vs. Placeholder Team 7" or "Placeholder Team 7 vs. Placeholder Team 1"
     And I should see "Placeholder Team 1 vs. Placeholder Team 8" or "Placeholder Team 8 vs. Placeholder Team 1"
+    When I follow "Placeholder Team 1 vs. Placeholder Team 2"
+    Then I should see "Placeholder Location 1"
+    Given I am on the division page for "testdiv" of league "league1"
+    When I follow "Placeholder Team 2 vs. Placeholder Team 3"
+    Then I should see "Placeholder Location 2"
 
   Scenario: A user should be able to view his/her schedule via the user's profile
     Given I am logged in as "email2@email.com" with password "password"
