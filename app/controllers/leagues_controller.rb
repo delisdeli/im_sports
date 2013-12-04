@@ -15,7 +15,11 @@ before_filter :admin_user, only: [:new, :create, :edit, :update, :destroy]
     if params[:league_selected]
       @league_selected = League.find_by_id(params[:league_selected])
       @league_divisions = @league_selected.sorted_divisions
-      @divisions_rows = @league_divisions.values.map {|x| x.length}.max - 1
+      if @league_divisions.nil? or @league_divisions.empty?
+        @divisions_rows = 0
+      else
+        @divisions_rows = @league_divisions.values.map {|x| x.length}.max - 1
+      end
     end
   end
 

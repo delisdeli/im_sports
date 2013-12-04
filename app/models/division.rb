@@ -16,6 +16,51 @@ class Division < ActiveRecord::Base
   has_many :teams
   has_many :games
 
+  def self.determine_gameday(some_weeks_games)
+    some_weeks_games[0].date
+  end
+
+  def this_weeks_gameday
+    next_gameday(Date.today)
+  end
+
+  def prev_gameday(gameday)
+    closest_game_date(gameday, 1, -1)
+  end
+
+  def next_gameday(gameday)
+    closest_game_date(gameday, 1)
+  end
+
+  def closest_game_date(gameday, inclusive_factor=0, before_after_factor=1)
+    smallest_diff = 20.years
+    closest_date = nil
+    self.games.each do |game|
+      time_difference = (game.date - gameday).to_i * before_after_factor
+      if (0 + inclusive_factor) < time_difference and time_difference < smallest_diff
+        smallest_diff = time_difference
+        closest_date = game.date
+        p closest_date
+      end
+    end
+    closest_date = self.last_game_day unless closest_date
+    closest_date
+  end
+
+  def get_weeks_games(gameday)
+    Game.where(division_id: self.id, date: gameday)
+  end
+
+  def last_game_day
+    self.games.map {|game| game.date}.max
+    # for self.games.each do |game|
+    #   if latest_date.nil? or game.date > lastest_date
+    #     latest_date = game.date
+    #   end
+    # end
+    # latest_date
+  end
+
   def get_games_by_team(team)
     team_games = Array.new
     self.games.each do |game|
@@ -92,7 +137,7 @@ class Division < ActiveRecord::Base
   def print_time_slot
     self.print_start_time + " - " + self.print_end_time
   end
-  
+
   # def fits_schedule
   # 	errors.add("not enough locations to accomodate division schedule") unless
   # 		((self.end_time - self.start_time) / game_length / num_locations) <= num_teams
