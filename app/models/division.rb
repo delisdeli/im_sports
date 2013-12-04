@@ -40,6 +40,13 @@ class Division < ActiveRecord::Base
   def replace_fake_location(location)
     #Iterate over games and replace all instances of location X with location
     x = self.locations.count
+    fake_loc = Location.get_by_name("Placeholder Location #{x}")
+    self.games.each do |game|
+        if game.location == fake_loc.name
+            game.location = location.name
+            game.save
+        end
+    end
   end
 
   def restore_fake_location(location)
