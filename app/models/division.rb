@@ -29,12 +29,32 @@ class Division < ActiveRecord::Base
 
   def replace_fake_team(team)
     #iterate over games and replace all instances of placeholder team X with team
-    x = self.teams.count
+    x = self.real_teams.count
+    fake_team = Team.get_fake_by_name("Placeholder Team #{x}")
+    self.games.each do |game|
+        if game.team1 == fake_team
+            game.team1 = team
+            game.save
+        elsif game.team2 == fake_team
+            game.team2 = team
+            game.save
+        end
+    end
   end
 
   def restore_fake_team(team)
     #Iterate over games and replace all instances of team with placeholder team X
-    x = self.teams.count
+    x = self.real_teams.count
+    fake_team = Team.get_fake_by_name("Placeholder Team #{x}")
+    self.games.each do |game|
+        if game.team1 == team
+            game.team1 = fake_team
+            game.save
+        elsif game.team2 == team
+            game.team2 = fake_team
+            game.save
+        end
+    end
   end
 
   def replace_fake_location(location)
@@ -58,6 +78,14 @@ class Division < ActiveRecord::Base
             game.save
         end
     end
+  end
+
+  def real_teams
+    return self.teams.where(:placeholder=>false)
+  end
+
+  def fake_teams
+    return self.teams.where(:placeholder=>true)
   end
 
   def first_unplayed_team(first_team, team_queue, played_teams)

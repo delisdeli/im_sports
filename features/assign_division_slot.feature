@@ -36,3 +36,27 @@ Background:
     Then I should see "teamawesome vs. teamlame"
     And I should not see "Placeholder Team 1"
     And I should not see "Placeholder Team 2"
+
+  @javascript
+  Scenario: A team captain deleting a team replaces the team with a placeholder
+    Given I am logged in as "email@email.com" with password "password"
+    And I am on the division page for "testdiv" of league "league1"
+    Then I should see "Placeholder Team 1 vs. Placeholder Team 2"
+    When I follow "Create Team"
+    And I fill in "team[name]" with "teamawesome"
+    And I press "Create Team"
+    Given I am on the division page for "testdiv" of league "league1"
+    When I follow "Create Team"
+    And I fill in "team[name]" with "teamlame"
+    And I press "Create Team"
+    Given I am on the teams page for division "testdiv" of league "league1"
+    When I follow "teamawesome"
+    And I follow "Destroy"
+    And I accept the alert
+    And I follow "teamlame"
+    And I follow "Destroy"
+    And I accept the alert
+    Given I am on the division page for "testdiv" of league "league1"
+    Then I should see "Placeholder Team 2 vs. Placeholder Team 1"
+    And I should not see "teamawesome"
+    And I should not see "teamlame"
