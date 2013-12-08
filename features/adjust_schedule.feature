@@ -19,31 +19,35 @@ Feature: Adjust the schedule of a division
 
 Scenario: A non-admin should not be able to see adjust schedule button
   Given I am on the home page
+  And I follow "Basketball_icon"
   And I follow "league1"
   And I follow "testdiv"
-  And I follow "team1 vs. team2"
+  And I follow "team1 vs. team4"
   Then I should not see "Edit Time"
   Given I am logged in as "email2@email.com" with password "password"
-  And I am on the home page
+  Given I am on the home page
+  And I follow "Basketball_icon"
   And I follow "league1"
   And I follow "testdiv"
-  And I follow "team1 vs. team2"
+  And I follow "team1 vs. team4"
   Then I should not see "Edit Time"
 
 Scenario: An admin should be able to edit a game
   Given I am logged in as "email@email.com" with password "password"
-  And I am on the home page
+  Given I am on the home page
+  And I follow "Basketball_icon"
   And I follow "league1"
   And I follow "testdiv"
-  And I follow "team1 vs. team2"
+  And I follow "team1 vs. team4"
   When I follow "Edit"
   When I select "09" from "game[start_time(4i)]"
   And I select "00" from "game[start_time(5i)]"
   And I press "Save"
   Then I should see "Game was successfully updated."
   When I go to the home page
+  And I follow "Basketball_icon"
   And I follow "league1"
   And I follow "testdiv"
-  And I follow "team1 vs. team2"
+  And I follow "team1 vs. team4"
   Then I should see "09:00 AM"
 
