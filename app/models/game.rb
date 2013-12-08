@@ -4,7 +4,7 @@ class Game < ActiveRecord::Base
   belongs_to :team2, :class_name => 'Team', :foreign_key => "team2_id"
   attr_accessible :date, :end_time, :location, :score1, :score2, :start_time, :status, :division_id, :team1_id, :team2_id
 
-  after_save notify_user
+  after_save :notify_user
 
   def get_status
     return case self.status
@@ -33,10 +33,10 @@ class Game < ActiveRecord::Base
 
   def notify_user
     team1.users.each do |user|
-      Notification.create(:game=>self, :team=>team1, :user=>user)
+      Notification.create('game' => self, 'team' => self.team1, 'user' => user)
     end
     team2.users.each do |user|
-      Notification.create(:game=>self, :team=>team2, :user=>user)
+      Notification.create('game' => self, 'team' => self.team2, 'user' => user)
     end
   end
 end
