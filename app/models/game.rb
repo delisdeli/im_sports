@@ -4,6 +4,8 @@ class Game < ActiveRecord::Base
   belongs_to :team2, :class_name => 'Team', :foreign_key => "team2_id"
   attr_accessible :date, :end_time, :location, :score1, :score2, :start_time, :status, :division_id, :team1_id, :team2_id
 
+  after_save notify_user
+
   def get_status
     return case self.status
       when 1 then "Scheduled"
@@ -27,5 +29,14 @@ class Game < ActiveRecord::Base
 
   def print_date
     self.date.strftime("%B %e, %Y")
+  end
+
+  def notify_user
+    team1.users.each do |user|
+      Notification.create(:game=>self, :team=>team1, :user=>user)
+    end
+    team2.users.each do |user|
+      Notification.create(:game=>self, :team=>team2, :user=>user)
+    end
   end
 end
