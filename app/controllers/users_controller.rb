@@ -33,6 +33,7 @@ class UsersController < ApplicationController
   # POST /users
   # POST /users.json
   def create
+    params[:user][:has_new_notification] = false
     @user = User.new(params[:user])
 
     if @user.save

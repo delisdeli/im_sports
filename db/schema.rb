@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20131208220321) do
+ActiveRecord::Schema.define(:version => 20131208224623) do
 
   create_table "divisions", :force => true do |t|
     t.integer  "league_id"
@@ -108,6 +108,7 @@ ActiveRecord::Schema.define(:version => 20131208220321) do
     t.datetime "created_at",            :null => false
     t.datetime "updated_at",            :null => false
     t.string   "password_confirmation"
+    t.boolean  "has_new_notification"
   end
 
 end

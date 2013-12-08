@@ -5,6 +5,7 @@ Given /the following users exist/ do |users_table|
       make_admin = true
     end
     user.delete("admin")
+    user['has_new_notification'] = false
     curr_user = User.create!(user)
     curr_user.admin = true if make_admin
     curr_user.save
