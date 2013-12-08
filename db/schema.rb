@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20131130211723) do
+ActiveRecord::Schema.define(:version => 20131208220321) do
 
   create_table "divisions", :force => true do |t|
     t.integer  "league_id"
@@ -56,16 +56,6 @@ ActiveRecord::Schema.define(:version => 20131130211723) do
   add_index "games", ["team1_id"], :name => "index_games_on_team1_id"
   add_index "games", ["team2_id"], :name => "index_games_on_team2_id"
 
-  create_table "invitations", :force => true do |t|
-    t.integer  "team_id"
-    t.integer  "user_id"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
-  end
-
-  add_index "invitations", ["team_id"], :name => "index_invitations_on_team_id"
-  add_index "invitations", ["user_id"], :name => "index_invitations_on_user_id"
-
   create_table "leagues", :force => true do |t|
     t.string   "name"
     t.datetime "created_at", :null => false
@@ -77,6 +67,18 @@ ActiveRecord::Schema.define(:version => 20131130211723) do
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end
+
+  create_table "messages", :force => true do |t|
+    t.integer  "team_id"
+    t.integer  "user_id"
+    t.integer  "game_id"
+    t.string   "type"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  add_index "messages", ["type"], :name => "index_messages_on_type"
+  add_index "messages", ["user_id"], :name => "index_messages_on_user_id"
 
   create_table "teams", :force => true do |t|
     t.string   "captain_email"

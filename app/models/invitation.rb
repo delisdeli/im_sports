@@ -1,4 +1,4 @@
-class Invitation < ActiveRecord::Base
+class Invitation < Message
   belongs_to :team
   belongs_to :user
   attr_accessible :team, :user
