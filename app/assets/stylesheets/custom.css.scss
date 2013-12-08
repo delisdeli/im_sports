@@ -1,3 +1,19 @@
+$lightGrey: #EAE9E7;
+$grey: #BBBBBB;
+$darkGrey: #3F3F3E;
+$lightSalmon: #E3AA93;
+$salmon: #D57C60;
+$darkSalmon: #CD6144;
+$lightLavender: #CD6144;
+$lavender: #8D8EBA;
+$darkLavender: #48496E;
+$lightTan: #DBD1AD;
+$tan: #C7B980;
+$darkTan: #7A6F43;
+$lightMoss: #A5B796;
+$moss: #749665;
+$darkMoss: #344A2A;
+
 //CSS RESET
 html, body, div, span, applet, object, iframe,
 h1, h2, h3, h4, h5, h6, p, blockquote, pre,
@@ -43,28 +59,10 @@ table {
   border-spacing: 0;
 }
 a {
-  color: white;
+  color: $darkGrey;
   text-decoration: none;
 }
-
 // END RESET
-
-$lightGrey: #EAE9E7;
-$grey: #BBBBBB;
-$darkGrey: #3F3F3E;
-$lightSalmon: #E3AA93;
-$salmon: #D57C60;
-$darkSalmon: #CD6144;
-$lightLavender: #CD6144;
-$lavender: #8D8EBA;
-$darkLavender: #48496E;
-$lightTan: #DBD1AD;
-$tan: #C7B980;
-$darkTan: #7A6F43;
-$lightMoss: #A5B796;
-$moss: #749665;
-$darkMoss: #344A2A;
-
 
 html, body{
  height: 100%;
@@ -99,6 +97,9 @@ html, body{
     font-family: 'Pacifico', cursive;
     top: 12px;
     right: 10px;
+  }
+  a {
+    color: white;
   }
 }
 

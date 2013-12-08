@@ -33,11 +33,9 @@ before_filter :admin_user, only: [:new, :create, :edit, :update, :destroy]
   # GET /leagues/new.json
   def new
     @league = League.new
-
-    # respond_to do |format|
-      # format.html # new.html.erb
-      # f?ormat.json { render json: @league }
-    # end
+    if params[:new_sport]
+      @new_sport = true
+    end
   end
 
   # GET /leagues/1/edit
