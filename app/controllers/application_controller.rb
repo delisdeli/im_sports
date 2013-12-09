@@ -1,6 +1,17 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery
   include SessionsHelper
+
+  before_filter :check_for_notifications
+
+  def check_for_notifications
+    if params[:show_notifications]
+      @show_notifications = true
+      @user = User.find_by_id(params[:user_id])
+      @user.read_messages
+    end
+  end
+
   def signed_in_user
       unless signed_in?
         store_location

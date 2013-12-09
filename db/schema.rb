@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20131208230253) do
+ActiveRecord::Schema.define(:version => 20131209025239) do
 
   create_table "divisions", :force => true do |t|
     t.integer  "league_id"
@@ -76,6 +76,7 @@ ActiveRecord::Schema.define(:version => 20131208230253) do
     t.string   "type"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
+    t.text     "note"
   end
 
   add_index "messages", ["type"], :name => "index_messages_on_type"
@@ -110,6 +111,7 @@ ActiveRecord::Schema.define(:version => 20131208230253) do
     t.datetime "updated_at",            :null => false
     t.string   "password_confirmation"
     t.boolean  "has_new_message"
+    t.integer  "notification_counter"
   end
 
 end

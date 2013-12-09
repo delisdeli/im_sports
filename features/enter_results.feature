@@ -30,7 +30,6 @@ Feature: Enter and adjust the results of games
     And I follow "testdiv"
     And I follow "Placeholder Team 1 vs. Placeholder Team 4"
     And I follow "Edit"  
-    Then show me the page
     When I fill in "game[score1]" with "1" 
     And I fill in "game[score2]" with "3"
     And I press "Save"

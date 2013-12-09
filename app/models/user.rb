@@ -13,9 +13,11 @@ class User < ActiveRecord::Base
 
   has_and_belongs_to_many :teams
   has_many :invitations
+  has_many :notifications
   attr_accessible :name, :email, :password, :password_confirmation, :remember_token, :has_new_message
   has_secure_password
 
+  after_create { |user| user.notification_counter = 0}
   before_save { |user| user.email = email.downcase }
 
   validates :name, presence: true, length: { maximum: 50 }
@@ -33,7 +35,20 @@ class User < ActiveRecord::Base
   def User.encrypt(token)
     Digest::SHA1.hexdigest(token.to_s)
   end
-  
+
+  def read_messages
+    self.has_new_message = false
+    self.notification_counter = 0
+  end
+
+  def recent_notifications
+    self.notifications.order(created_at: :desc).limit(self.notification_counter)
+  end
+
+  def iterate_notification_counter
+    self.notification_counter += 1
+  end
+
   private
 
     def create_remember_token

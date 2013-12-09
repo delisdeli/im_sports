@@ -33,10 +33,10 @@ class Game < ActiveRecord::Base
 
   def notify_user
     team1.users.each do |user|
-      Notification.create('game' => self, 'team' => self.team1, 'user' => user)
+      user.notifications << Notification.create('game' => self, 'team' => self.team1, 'user' => user, 'note' => 'Schedule was changed')
     end
     team2.users.each do |user|
-      Notification.create('game' => self, 'team' => self.team2, 'user' => user)
+      user.notifications << Notification.create('game' => self, 'team' => self.team2, 'user' => user, 'note' => 'Schedule was changed')
     end
   end
 end

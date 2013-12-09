@@ -7,7 +7,6 @@ class DivisionsController < ApplicationController
   # GET /divisions/1.json
   def show
     if params[:gameday_shown]
-      p params[:gameday_shown]
       @gameday = Date.parse(Time.parse(params[:gameday_shown]).utc.to_s)
     else
       @gameday = @division.this_weeks_gameday
@@ -18,9 +17,7 @@ class DivisionsController < ApplicationController
     elsif params[:update_schedule] == "next"
       @gameday = @division.next_gameday(@gameday)
     end
-    p @gameday
     @games_to_show = @division.get_weeks_games(@gameday)
-    p @games_to_show
   end
 
   # GET /divisions/new
