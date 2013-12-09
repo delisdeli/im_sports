@@ -13,9 +13,9 @@ Feature: invite a member to join team
     | user2      | email4@email.com  | password  | password               | false  |
 
     Given the following leagues exist:
-    | name    |
-    | league1 |
-    | league2 |
+    | name    | sport      |
+    | league1 | basketball |
+    | league2 | basketball |
 
     Given the following divisions exist:
     | name    | num_teams  | start_time  | end_time  | num_locations  | num_weeks | year | month | day | game_length  | league_id  |
@@ -28,6 +28,7 @@ Feature: invite a member to join team
   Scenario: A team captain should be able to invite members
     Given I am logged in as "email2@email.com" with password "password"
     And I am on the home page
+    And I follow "Basketball_icon"
     And I follow "league1"
     And I follow "testdiv"
     And I follow "teamkewl"
@@ -46,6 +47,7 @@ Feature: invite a member to join team
   Scenario: A member should not be able to invite members
     Given I am logged in as "email3@email.com" with password "password"
     And I am on the home page
+    And I follow "Basketball_icon"
     And I follow "league1"
     And I follow "testdiv"
     And I follow "teamkewl"

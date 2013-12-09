@@ -1,36 +1,54 @@
-%html
-
 %head
-
   .leagues Leagues
 
 %body
-  %table 
-    %tr
-    .league-container
+  %p
+    Sports
+    - @sports.each do |sport|
+      .image-wrapper
+        .image-text 
+          = sport
+        - if Rails.application.assets.find_asset "icons/#{sport}_icon.svg"
+          = link_to (image_tag "icons/#{sport}_icon.svg"), leagues_path(sport_selected: sport), :class => "sport_icon"
+        - else
+          = link_to (image_tag "icons/basketball_icon.svg"), leagues_path(sport_selected: sport), :class => "sport_icon"
+  
+  - if @sport_selected
+    %p
+      Leagues
+      - @leagues.each do |league|
+        .image-wrapper
+          .image-text
+            = link_to league.name, league
+          - if Rails.application.assets.find_asset "icons/#{league.name}_icon.svg"
+            = link_to (image_tag "icons/#{league.name}_icon.svg"), leagues_path(sport_selected: @sport_selected, league_selected: league), :class => "sport_icon"
+          - else
+            = link_to (image_tag "icons/open_icon.svg"), leagues_path(sport_selected: @sport_selected, league_selected: league), :class => "sport_icon"
+          - if signed_in? and current_user.admin?
+            = link_to 'Edit', edit_league_path(league)
+            = link_to 'Destroy', league, :method => :delete, :data => { :confirm => 'Are you sure?' }
 
+  - if @league_divisions
+    %p
+      Divisions
+      %table
+        %tr
+          %td Sun
+          %td Mon
+          %td Tues
+          %td Wed
+          %td Thurs
+          %td Fri
+          %td Sat
+        - (0..@divisions_rows).each do |row_num|
+          %tr
+            - (0..6).each do |index|
+              - if @league_divisions[index]
+                %td 
+                  = link_to @league_divisions[index][row_num].print_time_slot, league_division_path(@league_selected, @league_divisions[index][row_num])
+              - else
+                %td -
 
-    .image-wrapper
-      .image-text Open
-      =image_tag "icons/basketball_icon.svg", :class => "bball_image"
-    
-
-    .image-wrapper
-      .image-text Rec
-      =image_tag "icons/football_icon.svg", :class => "football_image"
-
-    .image-wrapper
-      .image-text Frats
-      =image_tag "icons/volleyball_icon.svg", :class => "vball_image"
-
-    - @leagues.each do |league|
-      %tr
-        %td= league.name
-        %td= link_to "#{league.name}", league
-        %td= link_to 'Edit', edit_league_path(league)
-        %td= link_to 'Destroy', league, :method => :delete, :data => { :confirm => 'Are you sure?' }
-
-  %br
-
-- if current_user and current_user.admin?
-  = link_to 'Create League', new_league_path
+%p
+  - if signed_in? and current_user.admin?
+    = link_to 'Create League', new_league_path  

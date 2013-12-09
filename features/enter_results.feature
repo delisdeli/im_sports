@@ -11,8 +11,8 @@ Feature: Enter and adjust the results of games
     | user       | email2@email.com  | password  | password               | false  |
 
     Given the following leagues exist:
-    | name    |
-    | league1 |
+    | name    | sport      |
+    | league1 | basketball |
 
     Given the following divisions exist:
     | name    | num_teams  | start_time  | end_time  | num_locations  | num_weeks | year | month | day | game_length  | league_id  |
@@ -22,34 +22,33 @@ Feature: Enter and adjust the results of games
     | captain_email      | name       | division_id | placeholder |
     | email2@email.com   | testteam   | 1           |  false      |
 
-
-
   Scenario: An admin should be able to enter results of a game 
     Given I am logged in as "email@email.com" with password "password" 
     And I am on the home page
+    And I follow "Basketball_icon"
     And I follow "league1"
     And I follow "testdiv"
-    And I follow "Placeholder Team 1 vs. Placeholder Team 2"
+    And I follow "Placeholder Team 1 vs. Placeholder Team 4"
     And I follow "Edit"  
     Then show me the page
     When I fill in "game[score1]" with "1" 
     And I fill in "game[score2]" with "3"
     And I press "Save"
-    When I go to the home page 
+    When I go to the home page
+    And I follow "Basketball_icon" 
     And I follow "league1"
     And I follow "testdiv"
-    Then I should see "Placeholder Team 1 vs. Placeholder Team 2"
-    When I follow "Placeholder Team 1 vs. Placeholder Team 2"
+    Then I should see "Placeholder Team 1 vs. Placeholder Team 4"
+    When I follow "Placeholder Team 1 vs. Placeholder Team 4"
     Then I should see "Score1: 1"
     And I should see "Score2: 3"
-
-
 
   Scenario: A non-admin should not be able to enter results of a game
     Given I am logged in as "email2@email.com" with password "password"
     And I am on the home page
+    And I follow "Basketball_icon"
     And I follow "league1"
     And I follow "testdiv"
-    And I follow "Placeholder Team 1 vs. Placeholder Team 2"
+    And I follow "Placeholder Team 1 vs. Placeholder Team 4"
     And I follow "Edit"
     Then I should see "Must be admin user to access this feature" 

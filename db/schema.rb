@@ -60,6 +60,7 @@ ActiveRecord::Schema.define(:version => 20131208230253) do
     t.string   "name"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
+    t.string   "sport"
   end
 
   create_table "locations", :force => true do |t|

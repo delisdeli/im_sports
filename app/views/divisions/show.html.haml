@@ -4,31 +4,10 @@
 %p
   %b Name:
   = @division.name
-%p
-  %b Num teams:
-  = @division.num_teams
-%p
-  %b Start time:
-  = @division.print_start_time
-%p
-  %b End time:
-  = @division.print_end_time
-%p
-  %b Game length:
-  = @division.game_length
-%p
-  %b Num locations:
-  = @division.num_locations
-%p
-  %b Num weeks:
-  = @division.num_weeks
-%p
-  %b Start date:
-  = @division.print_start_date
 
-- @division.games.each do |game|
-  %p
-    = link_to "#{game.team1.name}" + " vs. " + "#{game.team2.name}", [@league, @division, game]
+= link_to '<-', league_division_path(league_id: @league, division_id: @division, update_schedule: "prev", gameday_shown: @gameday)
+= @gameday
+= link_to '->', league_division_path(league_id: @league, division_id: @division, update_schedule: "next", gameday_shown: @gameday)
 
 - @division.teams.each do |team|
   - unless team.fake?
@@ -42,6 +21,10 @@
       = form_tag :action => "remove_location", :id => @division.id, :league_id => @league.id, :location_id => location.id do
         = submit_tag "Remove #{location.name}"
 
+- @games_to_show.each do |game|
+  %p
+    = link_to "#{game.team1.name}" + " vs. " + "#{game.team2.name}", [@league, @division, game]
+
 - if signed_in?
   = link_to "Create Team", new_league_division_team_path(@league, @division)
 
@@ -49,7 +32,7 @@
   = link_to 'Edit', edit_league_division_path(@league, @division)
   %p
     %h3 Add New Location
-    = form_tag :action => 'add_location', :division_id => @division.id, :league_id => @league.id do
+    = form_tag :action => 'add_location', :id => @division.id, :league_id => @league.id do
       = text_field_tag "new_location"
       = submit_tag "Add Location"
 \|

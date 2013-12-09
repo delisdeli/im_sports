@@ -1,11 +1,26 @@
 class DivisionsController < ApplicationController
-  before_filter :admin_user, except: [:index, :show]
+  before_filter :admin_user, except: [:show]
   before_filter :set_league
+  before_filter :set_division, except: [:new, :create]
 
   # GET /divisions/1
   # GET /divisions/1.json
   def show
-    @division = Division.find(params[:id])
+    if params[:gameday_shown]
+      p params[:gameday_shown]
+      @gameday = Date.parse(Time.parse(params[:gameday_shown]).utc.to_s)
+    else
+      @gameday = @division.this_weeks_gameday
+    end
+
+    if params[:update_schedule] == "prev"
+      @gameday = @division.prev_gameday(@gameday)
+    elsif params[:update_schedule] == "next"
+      @gameday = @division.next_gameday(@gameday)
+    end
+    p @gameday
+    @games_to_show = @division.get_weeks_games(@gameday)
+    p @games_to_show
   end
 
   # GET /divisions/new
@@ -16,7 +31,6 @@ class DivisionsController < ApplicationController
 
   # GET /divisions/1/edit
   def edit
-    @division = Division.find(params[:id])
   end
 
   # POST /divisions
@@ -35,8 +49,6 @@ class DivisionsController < ApplicationController
   # PUT /divisions/1
   # PUT /divisions/1.json
   def update
-    @division = Division.find(params[:id])
-
     if @division.update_attributes(params[:division])
       redirect_to [@league, @division], notice: 'Division was successfully updated.'
     else
@@ -45,7 +57,6 @@ class DivisionsController < ApplicationController
   end
 
   def add_location
-    @division = Division.find(params[:division_id])
     loc = Location.get_by_name(params[:new_location])
     if @division.locations.exists?(loc)
       msg = "Division already contains that location."
@@ -71,7 +82,6 @@ class DivisionsController < ApplicationController
   # DELETE /divisions/1
   # DELETE /divisions/1.json
   def destroy
-    @division = Division.find(params[:id])
     @division.destroy
     
     redirect_to league_path @league
@@ -80,5 +90,9 @@ class DivisionsController < ApplicationController
   private
     def set_league
       @league = League.find_by_id(params[:league_id])
+    end
+
+    def set_division
+      @division = Division.find(params[:id])
     end
 end

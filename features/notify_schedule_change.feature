@@ -11,8 +11,8 @@ Feature: Notify teams when schedule is altered
     | user       | email2@email.com  | password  | password               | false  |
     | user       | email3@email.com  | password  | password               | false  |
     Given the following leagues exist:
-    | name    |
-    | league1 |
+    | name    | sport      |
+    | league1 | basketball |
 
     Given the following divisions exist:
     | name    | num_teams  | start_time  | end_time  | num_locations  | num_weeks | year | month | day | game_length  | league_id  |
@@ -27,10 +27,8 @@ Feature: Notify teams when schedule is altered
    Scenario: A team member should see a notification when schedule has been altered
      Given I am logged in as "email@email.com" with password "password"
      And user with email "email2@email.com" is a member of "teamcool"
-     And I am on the home page   
-     And I follow "league1"
-     And I follow "testdiv"
-     And I follow "teamcool vs. Placeholder Team 2"
+     And I am on the homepage
+     And I follow "Placeholder Team 5 vs. Placeholder Team 6"
      And I follow "Edit"
      And I fill in "game[location]" with "haas pav"
      And I press "Save"
@@ -43,10 +41,8 @@ Feature: Notify teams when schedule is altered
      Given I am logged in as "email@email.com" with password "password"
      And user with email "email2@email.com" is a member of "teamcool"
      And user with email "email3@email.com" is a member of "teamlame"
-     And I am on the home page   
-     And I follow "league1"
-     And I follow "testdiv"
-     And I follow "teamcool vs. Placeholder Team 2"
+     And I am on the division page for "testdiv" of league "league1"
+     And I follow "Placeholder Team 5 vs. Placeholder Team 6"
      And I follow "Edit"
      And I fill in "game[location]" with "haas pav"
      And I press "Save"

@@ -11,9 +11,9 @@ I want to be able to start a team in a league
     | user       | email2@email.com  | password  | password               | false  |
 
     Given the following leagues exist:
-    | name    |
-    | league1 |
-    | league2 |
+    | name    | sport      |
+    | league1 | basketball |
+    | league2 | basketball |
 
     Given the following divisions exist:
     | name    | num_teams  | start_time  | end_time  | num_locations  | num_weeks | year | month | day | game_length  | league_id  |
@@ -26,6 +26,7 @@ I want to be able to start a team in a league
   Scenario: A user should be able to create a team
     Given I am logged in as "email2@email.com" with password "password"
     And I am on the home page
+    And I follow "Basketball_icon"
     And I follow "league1"
     And I follow "testdiv"
     And I follow "Create Team"

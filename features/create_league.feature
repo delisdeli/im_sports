@@ -11,8 +11,8 @@ Feature: create a league
     | user       | email2@email.com  | password  | password               | false  |
 
     Given the following leagues exist:
-    | name    |
-    | league5 |
+    | name    | sport      |
+    | league5 | basketball |
 
 Scenario: A non-admin should not be able to see create league button
   Given I am on the home page
@@ -27,6 +27,7 @@ Scenario: An admin should be able to create a league
   And I follow "Create League"
   Then I should see "New League"
   When I fill in "league[name]" with "league1"
+  And I select "basketball" from "league[sport]"
   And I press "Create League"
   Then I should be on the league page for "league1"
   And I should see "league1"
@@ -43,6 +44,7 @@ Scenario: An admin can update a league
 Scenario: Can delete a league record
   Given I am logged in as "email@email.com" with password "password"
   And I am on the leagues page
+  And I follow "Basketball_icon"
   Then I should see "league5"
   When I follow "Destroy"
   And I accept the alert

@@ -6,8 +6,15 @@
         - @league.errors.full_messages.each do |msg|
           %li= msg
 
-  .field
+  .field  
     = f.label :name
     = f.text_field :name
+    = f.label :sport
+    - if @new_sport
+      = f.text_field :sport
+    - else
+      = f.select(:sport, League.sports)
+      = link_to "New Sport", new_league_path(new_sport: true)
+      
   .actions
     = f.submit 'Create League'

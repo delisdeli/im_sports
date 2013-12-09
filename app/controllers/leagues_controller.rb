@@ -5,7 +5,22 @@ before_filter :admin_user, only: [:new, :create, :edit, :update, :destroy]
   # GET /leagues
   # GET /leagues.json
   def index
-    @leagues = League.all
+    @sports = League.sports
+    if params[:sport_selected]
+      @sport_selected = params[:sport_selected]
+      @leagues = League.where(:sport => @sport_selected)
+    else
+      @leagues = League.all
+    end
+    if params[:league_selected]
+      @league_selected = League.find_by_id(params[:league_selected])
+      @league_divisions = @league_selected.sorted_divisions
+      if @league_divisions.nil? or @league_divisions.empty?
+        @divisions_rows = 0
+      else
+        @divisions_rows = @league_divisions.values.map {|x| x.length}.max - 1
+      end
+    end
   end
 
   # GET /leagues/1
@@ -18,11 +33,9 @@ before_filter :admin_user, only: [:new, :create, :edit, :update, :destroy]
   # GET /leagues/new.json
   def new
     @league = League.new
-
-    # respond_to do |format|
-      # format.html # new.html.erb
-      # f?ormat.json { render json: @league }
-    # end
+    if params[:new_sport]
+      @new_sport = true
+    end
   end
 
   # GET /leagues/1/edit
