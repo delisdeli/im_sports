@@ -1,7 +1,7 @@
 class Message < ActiveRecord::Base
-  belongs_to :team_id
-  belongs_to :user_id
-  belongs_to :game_id
+  belongs_to :team
+  belongs_to :user
+  belongs_to :game
   attr_accessible :type
   after_save :user_has_new_message
 

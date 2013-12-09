@@ -2,12 +2,6 @@ class GamesController < ApplicationController
   before_filter :admin_user, only: [:new, :create, :edit, :update, :destroy]
   before_filter :set_league
   before_filter :set_division
-  # GET /games
-  # GET /games.json
-  def index
-    @games = @division.games.all
-  end
-
   # GET /games/1
   # GET /games/1.json
   def show
@@ -53,8 +47,7 @@ class GamesController < ApplicationController
   def destroy
     @game = Game.find(params[:id])
     @game.destroy
-
-    redirect_to league_division_games_url
+    redirect_to [@league, @division]
   end
 
   private
