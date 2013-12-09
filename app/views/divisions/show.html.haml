@@ -46,7 +46,6 @@
   = link_to "Create Team", new_league_division_team_path(@league, @division)
 
 - if signed_in? and current_user.admin?
-  = link_to 'Edit', edit_league_division_path(@league, @division)
   %p
     %h3 Add New Location
     = form_tag :action => 'add_location', :division_id => @division.id, :league_id => @league.id do

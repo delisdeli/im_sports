@@ -69,14 +69,6 @@ Scenario: A divion end_time must occur after the start_time(4i)
   And I press "Save"
   Then I should see "be before end time"
 
-Scenario: An admin can update a division
-  Given I am logged in as "email@email.com" with password "password"
-  And I am on the division page for "testdiv" of league "league1"
-  When I follow "Edit"
-  And I fill in "division[name]" with "newdivisionname"
-  And I press "Save"
-  Then I should be on the division page for "newdivisionname" of league "league1"
-
 Scenario: An admin can add locations to a division
   Given I am logged in as "email@email.com" with password "password"
   And I am on the division page for "testdiv" of league "league1"

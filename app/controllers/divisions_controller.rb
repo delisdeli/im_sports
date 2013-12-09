@@ -14,11 +14,6 @@ class DivisionsController < ApplicationController
     @division = Division.new
   end
 
-  # GET /divisions/1/edit
-  def edit
-    @division = Division.find(params[:id])
-  end
-
   # POST /divisions
   # POST /divisions.json
   def create
@@ -29,18 +24,6 @@ class DivisionsController < ApplicationController
       redirect_to [@league, @division], notice: 'Division was successfully created.'
     else
       render action: "new"
-    end
-  end
-
-  # PUT /divisions/1
-  # PUT /divisions/1.json
-  def update
-    @division = Division.find(params[:id])
-
-    if @division.update_attributes(params[:division])
-      redirect_to [@league, @division], notice: 'Division was successfully updated.'
-    else
-      render action: "edit"
     end
   end
 

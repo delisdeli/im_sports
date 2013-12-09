@@ -1,6 +1,5 @@
 class LeaguesController < ApplicationController
 before_filter :admin_user, only: [:new, :create, :edit, :update, :destroy]
-  # before_filter :admin_user,     only: :destroy
 
   # GET /leagues
   # GET /leagues.json
