@@ -74,6 +74,7 @@ Scenario: an existing user can edit his information
   And I fill in "Email" with "email2@email.com"
   And I fill in "Password" with "p1"
   And I fill in "Password confirmation" with "p1"
+  And I press "Save"
 
 Scenario: Signed in user should see the correct user bar
   Given I am logged in as "email@email.com" with password "password"
