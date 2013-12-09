@@ -23,33 +23,27 @@ Feature: Notify teams when schedule is altered
     | email2@email.com   | teamcool   | 1           | false       |
     | email3@email.com   | teamlame   | 1           | false       |
 
-   
-   Scenario: A team member should see a notification when schedule has been altered
-     Given I am logged in as "email@email.com" with password "password"
-     And user with email "email2@email.com" is a member of "teamcool"
-     And I am on the homepage
-     And I follow "Placeholder Team 5 vs. Placeholder Team 6"
-     And I follow "Edit"
-     And I fill in "game[location]" with "haas pav"
-     And I press "Save"
-     Given I am logged in as "email2@email.com" with password "password"
-     When I follow "teamcool"
-     Then I should see "Schedule was changed" 
+  Scenario: A team member should see a notification when schedule has been altered
+    Given I am logged in as "email@email.com" with password "password"
+    And user with email "email2@email.com" is a member of "teamcool"
+    And I am on the division page for "testdiv" of league "league1"
+    And I follow "Placeholder Team 5 vs. Placeholder Team 6"
+    And I follow "Edit"
+    And I fill in "game[location]" with "haas pav"
+    And I press "Save"
+    Given I am logged in as "email2@email.com" with password "password"
+    And I am on the homepage
+    And I follow "Notifications"
+    Then I should see "Schedule was changed" 
 
-
-   Scenario: A non-member should not see a notification
-     Given I am logged in as "email@email.com" with password "password"
-     And user with email "email2@email.com" is a member of "teamcool"
-     And user with email "email3@email.com" is a member of "teamlame"
-     And I am on the division page for "testdiv" of league "league1"
-     And I follow "Placeholder Team 5 vs. Placeholder Team 6"
-     And I follow "Edit"
-     And I fill in "game[location]" with "haas pav"
-     And I press "Save"
-     And I follow "Sign out"
-     Given I am logged in as "email3@email.com" with password "password"
-     When I follow "teamlame"
-     Then I should not see "Schedule was changed" 
-
-
-
+  Scenario: A non-member should not see a notification
+    Given I am logged in as "email@email.com" with password "password"
+    And user with email "email2@email.com" is a member of "teamcool"
+    And I am on the division page for "testdiv" of league "league1"
+    And I follow "Placeholder Team 5 vs. Placeholder Team 6"
+    And I follow "Edit"
+    And I fill in "game[location]" with "haas pav"
+    And I press "Save"
+    And I am on the homepage
+    And I follow "Notifications"
+    Then I should not see "Schedule was changed" 

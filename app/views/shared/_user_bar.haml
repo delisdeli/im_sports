@@ -3,9 +3,11 @@
     = link_to "IM Sports", root_path
   %div.right
     - if signed_in?
+      = link_to (image_tag "icons/notifications_icon.svg"), params.merge(show_notifications: true)
       = link_to "#{current_user.name}", current_user
       |
       = link_to 'Sign out', signout_path, :method => :delete
+
     - else
       = link_to 'Sign in', signin_path, :id => "signin"
       |
