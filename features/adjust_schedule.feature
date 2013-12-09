@@ -108,11 +108,10 @@ Scenario: An admin deleting a location restores placeholder locations
 @javascript
 Scenario: Can delete a game record
   Given I am logged in as "email@email.com" with password "password"
-  And I am on the games page for division "div2" of league "league1"
-  Then I should see "Placeholder Team 1"
-  Then I should see "Placeholder Team 2"
-  When I follow "Destroy"
+  And I am on the division page for "div2" of league "league1"
+  When I follow "Placeholder Team 1 vs. Placeholder Team 2"
+  And I follow "Destroy"
   And I accept the alert
-  Then I should be on the games page for division "div2" of league "league1"
+  Then I should be on the division page for "div2" of league "league1"
   And I should not see "Placeholder Team 1"
   And I should not see "Placeholder Team 2"

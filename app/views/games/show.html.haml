@@ -30,5 +30,6 @@
   = @game.location
 
 = link_to 'Edit', edit_league_division_game_path(@league, @division, @game)
+= link_to 'Destroy', [@league, @division, @game], :method => :delete, :data => { :confirm => 'Are you sure?' }
 \|
 = link_to 'Back', league_division_games_path
