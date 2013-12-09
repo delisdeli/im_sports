@@ -44,6 +44,14 @@ class TeamsController < ApplicationController
     redirect_to @user, notice: "Successfully joined #{@team.name}"
   end
 
+  def dismiss_invite
+    @team = Team.find_by_id(params[:team_id])
+    @user = User.find_by_id(params[:user_id])
+    @invite = Invitation.find_by_id(params[:invite_id])
+    @invite.destroy
+    redirect_to @user, notice: "Successfully dismissed invite."
+  end
+
   # POST /teams
   # POST /teams.json
   def create
