@@ -9,6 +9,7 @@ I want to be able to start a team in a league
     | name       | email             | password  | password_confirmation  | admin  |
     | admin      | email@email.com   | password  | password               | true   |
     | user       | email2@email.com  | password  | password               | false  |
+    | bob        | email3@email.com  | password  | password               | false  |
 
     Given the following leagues exist:
     | name    |
@@ -63,6 +64,29 @@ I want to be able to start a team in a league
 
   @javascript
   Scenario: Team captain can delete a team
+    Given I am logged in as "email2@email.com" with password "password"
+    And I am on the teams page for division "testdiv" of league "league1"
+    Then I should see "teamcool"
+    When I follow "teamcool"
+    When I follow "Destroy"
+    And I accept the alert
+    Then I should be on the teams page for division "testdiv" of league "league1"
+    And I should not see "teamcool"
+
+  @javascript
+  Scenario: A non-admin non-team captain cannot delete a team
+    Given I am logged in as "email3@email.com" with password "password"
+    And I am on the teams page for division "testdiv" of league "league1"
+    Then I should see "teamcool"
+    When I follow "teamcool"
+    When I follow "Destroy"
+    And I accept the alert
+    Then I should be on the teams page for division "testdiv" of league "league1"
+    And I should see "teamcool"
+    And I should see "You are not authorized"
+
+  @javascript
+  Scenario: An admin can delete a team
     Given I am logged in as "email2@email.com" with password "password"
     And I am on the teams page for division "testdiv" of league "league1"
     Then I should see "teamcool"
