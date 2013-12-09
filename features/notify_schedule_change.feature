@@ -34,10 +34,8 @@ Feature: Notify teams when schedule is altered
     And I follow "Edit"
     And I fill in "game[location]" with "haas pav"
     And I press "Save"
-    And I follow "Sign out"
 
   Scenario: A team member should see a notification when schedule has been altered
-    Given I am logged in as "email@email.com" with password "password"
     Given I am on the homepage
     When I follow "Notifications"
     Then I should see "The schedule for your team teamcool has changed."
@@ -48,6 +46,7 @@ Feature: Notify teams when schedule is altered
     And I should see "teamlame"
     Given I am on the profile page for "email@email.com"
     Then I should see "The schedule for your team teamcool has changed"
+    Given I am on the home page
     When I follow "Notifications"
     Then I should see "View older notifications"
     When I follow "Notifications"
@@ -56,7 +55,7 @@ Feature: Notify teams when schedule is altered
     Then I should not see "The schedule for your team"
 
   Scenario: A team member can delete their notifications
-    Given I am logged in as "email@email.com" with password "password"
+    Given I am on the home page
     When I follow "Notifications"
     When I follow "View older notifications"
     Then I should be on the profile page for "email@email.com"
@@ -66,6 +65,8 @@ Feature: Notify teams when schedule is altered
     And I should not see "The schedule for your team"
 
   Scenario: A non-member should not see a notification
+    Given I am on the home page
+    When I follow "Sign out"
     Given I am logged in as "email3@email.com" with password "password"
     And I am on the home page
     When I follow "Notifications"

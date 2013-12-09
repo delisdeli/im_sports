@@ -8,7 +8,7 @@ class ApplicationController < ActionController::Base
     if params[:show_notifications] == "true"
       @show_notifications = true
       @user = User.find_by_id(params[:user_id])
-      @user.read_messages
+      @recent = @user.recent_notifications
     end
   end
 

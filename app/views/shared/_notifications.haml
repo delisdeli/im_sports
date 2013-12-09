@@ -1,7 +1,7 @@
 - if @show_notifications
   = link_to (image_tag "icons/notifications_icon.svg"), params.merge(show_notifications: false)
   %div.notifications
-    - current_user.recent_notifications.each_with_index do |notification, index|
+    - @recent.each_with_index do |notification, index|
       = link_to "#{index+1}: The schedule for your team #{notification.team.name} has changed.", [notification.game.division.league, notification.game.division, notification.game]
     = link_to "View older notifications", current_user
 - else
