@@ -103,13 +103,6 @@ html, body{
   }
 }
 
-
-.images {
-  padding:20px;
-  border-radius: 50%;
-  background-color: black;
-}
-
 //LEAGUES on home page
 
 .padding-container {
@@ -245,11 +238,170 @@ td {
 	font-size:30px;
 	margin-left:auto;
 	margin-right:auto;
-	width:200px;
-	padding:20px;
+	width:300px;
+	padding:15px;
 	background-color:white;
 	border-radius:7px;
 	text-align:center;
 	margin-top:20px;
+	color:$darkGrey;
+	border-style:solid;
+	border-width:1px;
+	border-color:$grey;
+}
 
+.date-container {
+	margin-top:10px;
+	font-family: league-gothic, 'Arial';
+	font-size:25px;
+	color: white;
+	background-color:$darkGrey;
+	width:180px;
+	padding:8px;
+	border-radius:7px;
+	margin-left:auto;
+	text-align:center;
+	margin-right:auto;
+
+}
+
+.versus-container {
+	padding-top:20px;
+	padding-bottom:20px;
+	font-family: league-gothic, 'Arial';
+	color:$darkGrey;
+	margin-left:auto;
+	margin-right:auto;
+	text-align:center;
+	margin-top:20px;
+	margin-bottom:15px;
+}
+
+.team-icon {
+	margin-left:20px;
+	margin-right:20px;
+	width:90px;
+	height:90px;
+	background-color: $darkGrey;
+	border-radius:50%;
+	padding:15px;
+	font-size:25px;
+ 	font-family: 'Pacifico', cursive;
+}
+
+.back {
+ 	font-family: 'Pacifico', cursive;
+	color:$grey;
+}
+
+.bottom-bar {
+  margin-left:20px;
+}
+
+
+// SIGN UP
+.sign-up {
+ 	font-family: 'Pacifico', cursive;
+	padding-left:60px;
+	margin-top:20px;
+	font-size:30px;
+	color: $darkLavender;
+}
+
+.signup-form {
+	padding:20px;
+	margin-left:50px;
+	margin-top:20px;
+	margin-top:20px;
+	background-color: white;
+	width:400px;
+	height: auto;
+	border-radius: 5px;
+	margin-bottom:30px;
+}
+
+.sign-in {
+ 	font-family: 'Pacifico', cursive;
+	padding-left:25px;
+	margin-top:20px;
+	font-size:23px;
+	color: $darkLavender;
+	margin-bottom:20px;
+}
+
+.sign-in-form {
+	padding: 10px;
+	background:white;
+	margin-left:20px;
+	border-radius: 5px;
+	width:400px;
+}
+
+.new-user-container {
+	padding-top: 5px;
+
+}
+
+.new-user {
+ 	font-family: 'Pacifico', cursive;
+	color: $darkLavender;
+	padding-left: 3px;
+	display: inline-block;
+}
+
+.sign-up-now {
+ 	font-family: 'Pacifico', cursive;
+	color:$grey;
+	display: inline-block;
+}
+
+.field {
+	font-family: league-gothic, 'Arial';
+	font-size:20px;
+	color:$darkGrey;
+}
+
+
+// LISTING TEAMS
+.listing-teams {
+	font-size:30px;
+	font-family: league-gothic, 'Arial';
+	color:$darkGrey;
+	padding:20px;
+	margin-left:10px;
+	text-align:center;
+}
+
+.teams-table {
+	width:600px;
+	font-size: 20px;
+	background:$grey;
+	margin-left:20%;
+	margin-right:20%;
+	padding:5px;
+	border-radius:5px;
+}		
+
+.new-team {
+	margin-left:50px;
+	margin-top:20px;
+ 	font-family: 'Pacifico', cursive;
+	font-size:20px;
+}
+
+// NEW TEAM SIGN UP
+.new-team-title{
+	margin-left:40px;
+	margin-top:20px;
+ 	font-family: 'Pacifico', cursive;
+	font-size:25px;
+	margin-bottom:20px;
+	color:$darkLavender;
+}
+
+.team-back {
+	margin:15px;
+	padding-top:50px;
+ 	font-family: 'Pacifico', cursive;
+	color:$grey;
 }

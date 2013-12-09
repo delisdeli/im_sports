@@ -1,21 +1,22 @@
-%h1 Listing teams
+.listing-teams Listing teams
 
-%table
-  %tr
-    %th Captain email
-    %th Name
-    %th League
-    %th Division
-    %th
-    %th
-
-  - @teams.each do |team|
+.teams-table
+  %table
     %tr
-      %td= team.captain_email
-      %td= link_to team.name, [@league, @division, team]
-      %td= link_to team.division.league.name, @league
-      %td= link_to team.division.name, [@league, @division]
-      %td= link_to 'Edit', edit_league_division_team_path(@league, @division, team)
+      %th Captain email
+      %th Name
+      %th League
+      %th Division
+      %th
+      %th
+
+    - @teams.each do |team|
+      %tr
+        %td= team.captain_email
+        %td= link_to team.name, [@league, @division, team]
+        %td= link_to team.division.league.name, @league
+        %td= link_to team.division.name, [@league, @division]
+        %td= link_to 'Edit', edit_league_division_team_path(@league, @division, team)
 
 %br
-= link_to 'New Team', new_league_division_team_path
+= link_to 'New Team', new_league_division_team_path, :class => "new-team"

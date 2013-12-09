@@ -1,5 +1,6 @@
-%h1 New team
+.new-team-title New team
 
-= render 'form'
+.sign-in-form
+  = render 'form'
 
-= link_to 'Back', league_division_teams_path
+= link_to 'Back', league_division_teams_path, :class => "team-back"

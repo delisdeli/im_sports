@@ -1,11 +1,12 @@
 %title Sign in
-%h2 Sign In
+.sign-in Sign In
 
-= form_for(:session, url: sessions_path) do |f|
-  = f.text_field :email, :placeholder => "Email"
-  = f.password_field :password, :placeholder => "Password"
-  = f.submit "Sign in"
+.sign-in-form
+  = form_for(:session, url: sessions_path) do |f|
+    = f.text_field :email, :placeholder => "Email"
+    = f.password_field :password, :placeholder => "Password"
+    = f.submit "Sign in"
 
-%p 
-  New user?
-  = link_to "Sign up now!", signup_path
+  .new-user-container 
+    .new-user New user?
+    = link_to "Sign up now!", signup_path, :class => "sign-up-now"
