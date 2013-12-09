@@ -26,6 +26,7 @@ Feature: View the schedule of a division
     Given I am logged in as "email2@email.com" with password "password"
     And user with email "email2@email.com" is a member of "team1"
     And I am on the home page
+    And I follow "Basketball_icon"
     And I follow "league1"
     And I follow "testdiv"
     Then I should see "team1 vs. team2" or "team2 vs. team1"

@@ -28,6 +28,7 @@ Feature: invite a member to join team
   Scenario: A team captain should be able to invite members
     Given I am logged in as "email2@email.com" with password "password"
     And I am on the home page
+    And I follow "Basketball_icon"
     And I follow "league1"
     And I follow "testdiv"
     And I follow "teamkewl"
@@ -46,6 +47,7 @@ Feature: invite a member to join team
   Scenario: A member should not be able to invite members
     Given I am logged in as "email3@email.com" with password "password"
     And I am on the home page
+    And I follow "Basketball_icon"
     And I follow "league1"
     And I follow "testdiv"
     And I follow "teamkewl"

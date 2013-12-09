@@ -26,6 +26,7 @@ I want to be able to start a team in a league
   Scenario: A user should be able to create a team
     Given I am logged in as "email2@email.com" with password "password"
     And I am on the home page
+    And I follow "Basketball_icon"
     And I follow "league1"
     And I follow "testdiv"
     And I follow "Create Team"
