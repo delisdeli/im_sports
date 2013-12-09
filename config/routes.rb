@@ -29,6 +29,7 @@ ImSports::Application.routes.draw do
   post "teams/add_member"
   post "divisions/add_location"
   post "divisions/remove_location"
+  post 'users/clear_notifications'
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

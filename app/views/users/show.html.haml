@@ -15,6 +15,11 @@
     %p Invitation to join #{Team.find(invite.team).name}
     = form_tag :controller => 'teams', :action => 'add_member', :team_id => Team.find(invite.team).id, :user_id => @user.id, :invite_id => invite.id do
       = submit_tag "Accept invitation to join #{Team.find(invite.team).name}"
+- if (@notifications)
+  - @notifications.each do |notification|
+    = link_to "The schedule for your team #{notification.team.name} has changed.", [notification.game.division.league, notification.game.division, notification.game]
+  = form_tag :controller=> 'users', :action => 'clear_notifications', :id=>@user.id do
+    = submit_tag "Remove all read notifications"
 
 = link_to 'Edit', edit_user_path(@user)
 \|

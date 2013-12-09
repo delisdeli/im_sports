@@ -76,7 +76,6 @@ ActiveRecord::Schema.define(:version => 20131209025239) do
     t.string   "type"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
-    t.text     "note"
   end
 
   add_index "messages", ["type"], :name => "index_messages_on_type"
