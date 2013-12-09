@@ -134,9 +134,11 @@ class Division < ActiveRecord::Base
 
   def first_unplayed_team(first_team, team_queue, played_teams)
     team_queue.each do |team|
-      (return team) unless played_teams[first_team.id].include? team.id
+      if not played_teams[first_team.id].include? team.id
+        return team
+      end
     end
-    nil
+    team_queue[0]
   end
 
   def gen_time_slots
@@ -162,6 +164,7 @@ class Division < ActiveRecord::Base
           team1 = team_queue[0]
           team_queue << team_queue.delete_at(0)
           team2 = first_unplayed_team(team1, team_queue, played_teams)
+          team_queue << team_queue.delete_at(team_queue.index(team2))
           played_teams[team1.id] << team2.id
           played_teams[team2.id] << team1.id
           self.games << Game.create!( team1_id: team1.id,
