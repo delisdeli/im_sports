@@ -18,7 +18,6 @@ Feature: Notify teams when schedule is altered
     | name    | num_teams  | start_time  | end_time  | num_locations  | num_weeks | year | month | day | game_length  | league_id  |
     | div2    | 2          | 8pm         | 9pm       | 1              | 1         | 2013 | 11    | 18  | 60           | 1          |
 
-  Scenario: A team member should see a notification when schedule has been altered
     Given I am logged in as "email2@email.com" with password "password"
     And I am on the division page for "div2" of league "league1"
     When I follow "Create Team"
@@ -35,29 +34,39 @@ Feature: Notify teams when schedule is altered
     And I follow "Edit"
     And I fill in "game[location]" with "haas pav"
     And I press "Save"
+    And I follow "Sign out"
+
+  Scenario: A team member should see a notification when schedule has been altered
+    Given I am logged in as "email@email.com" with password "password"
     Given I am on the homepage
     When I follow "Notifications"
-    Then I should see "Schedule was changed" 
+    Then I should see "The schedule for your team teamcool has changed."
+    When I follow "1: The schedule for your team teamcool has changed."
+    Then I should see "Score1: 0"
+    And I should see "Score2: 0"
+    And I should see "teamcool"
+    And I should see "teamlame"
+    Given I am on the profile page for "email@email.com"
+    Then I should see "The schedule for your team teamcool has changed"
+    When I follow "Notifications"
+    Then I should see "View older notifications"
+    When I follow "Notifications"
+    Then I should not see "View older notifications"
+    When I follow "Notifications"
+    Then I should not see "The schedule for your team"
+
+  Scenario: A team member can delete their notifications
+    Given I am logged in as "email@email.com" with password "password"
+    When I follow "Notifications"
+    When I follow "View older notifications"
+    Then I should be on the profile page for "email@email.com"
+    And I should see "The schedule for your team"
+    When I press "Remove all read notifications"
+    Then I should be on the profile page for "email@email.com"
+    And I should not see "The schedule for your team"
 
   Scenario: A non-member should not see a notification
-    Given I am logged in as "email2@email.com" with password "password"
-    And I am on the division page for "div2" of league "league1"
-    When I follow "Create Team"
-    And I fill in "team[name]" with "teamlame"
-    And I press "Create Team"
-    And I follow "Sign out"
-    Given I am logged in as "email@email.com" with password "password"
-    And I am on the division page for "div2" of league "league1"
-    When I follow "Create Team"
-    And I fill in "team[name]" with "teamcool"
-    And I press "Create Team"
-    Given I am on the division page for "div2" of league "league1"
-    When I follow "teamlame vs. teamcool"
-    And I follow "Edit"
-    And I fill in "game[location]" with "haas pav"
-    And I press "Save"
-    And I follow "Sign out"
     Given I am logged in as "email3@email.com" with password "password"
     And I am on the home page
     When I follow "Notifications"
-    Then I should not see "Schedule was changed" 
+    Then I should not see "The schedule for your team"

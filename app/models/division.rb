@@ -41,7 +41,6 @@ class Division < ActiveRecord::Base
       if (0 + inclusive_factor) < time_difference and time_difference < smallest_diff
         smallest_diff = time_difference
         closest_date = game.date
-        p closest_date
       end
     end
     closest_date = self.last_game_day unless closest_date
@@ -168,6 +167,8 @@ class Division < ActiveRecord::Base
           self.games << Game.create!( team1_id: team1.id,
                                       team2_id: team2.id,
                                       division_id: self.id,
+                                      score1: 0,
+                                      score2: 0,
                                       status: 1,
                                       start_time: time_slot,
                                       end_time: time_slot + self.game_length.minutes,

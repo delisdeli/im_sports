@@ -1,6 +1,7 @@
 class UsersController < ApplicationController
   before_filter :correct_or_admin_user, only: [:edit, :update]
   before_filter :admin_user, only: [:destroy, :index]
+  before_filter :correct_user, only: [:clear_notifications]
 
   def index
     @users = User.all
@@ -12,6 +13,16 @@ class UsersController < ApplicationController
     if current_user?(@user)
       @invites = @user.invitations
     end
+    if current_user?(@user)
+      @notifications = @user.notifications
+      @user.read_messages
+    end
+  end
+
+  def clear_notifications
+    @user = User.find(params[:id])
+    @user.clear_notifications
+    redirect_to @user
   end
 
   # GET /users/new

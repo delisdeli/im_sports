@@ -14,7 +14,7 @@ class User < ActiveRecord::Base
   has_and_belongs_to_many :teams
   has_many :invitations
   has_many :notifications
-  attr_accessible :name, :email, :password, :password_confirmation, :remember_token, :has_new_message
+  attr_accessible :name, :email, :password, :password_confirmation, :remember_token, :has_new_message, :notification_counter
   has_secure_password
 
   after_create { |user| user.notification_counter = 0}
@@ -36,9 +36,17 @@ class User < ActiveRecord::Base
     Digest::SHA1.hexdigest(token.to_s)
   end
 
+  def clear_notifications
+    self.notification_counter = 0 if self.notification_counter == nil
+    self.notifications.order(created_at: :asc).limit(self.notifications.count-self.notification_counter).each do |note|
+      note.destroy
+    end
+  end
+
   def read_messages
     self.has_new_message = false
     self.notification_counter = 0
+    self.save
   end
 
   def recent_notifications
@@ -46,7 +54,13 @@ class User < ActiveRecord::Base
   end
 
   def iterate_notification_counter
-    self.notification_counter += 1
+    self.has_new_message = true
+    if (self.notification_counter == nil)
+      self.notification_counter = 1
+    else
+      self.notification_counter += 1
+    end
+    self.save
   end
 
   private
