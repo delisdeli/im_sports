@@ -1,47 +1,52 @@
 %head
-  .leagues Leagues
 
-%body
-  %p
-    Sports
+.padding-container
+  .sports-wrapper
+    .title Sports
     - @sports.each do |sport|
       .image-wrapper
         .image-text 
           = sport
-        = link_to (image_tag "icons/#{sport}_icon.svg"), leagues_path(sport_selected: sport), :class => "sport_icon"
-  
+        - if sport == "basketball"
+          = link_to (image_tag "icons/#{sport}_icon.svg", :class => "bball_image"), leagues_path(sport_selected: sport), :class => "sport_icon_all"
+        - if sport == "football"
+          = link_to (image_tag "icons/#{sport}_icon.svg", :class => "football_image"), leagues_path(sport_selected: sport), :class => "sport_icon_all"
+        - if sport == "volleyball"
+          = link_to (image_tag "icons/#{sport}_icon.svg", :class => "vball_image"), leagues_path(sport_selected: sport), :class => "sport_icon_all"
+ 
   - if @sport_selected
-    %p
-      Leagues
+    .leagues-wrapper
+      .title Leagues
       - @leagues.each do |league|
         .image-wrapper
           .image-text
             = link_to league.name, league
-          = link_to (image_tag "icons/#{league.name}_icon.svg"), leagues_path(sport_selected: @sport_selected, league_selected: league), :class => "sport_icon"
+          = link_to (image_tag "icons/#{league.name}_icon.svg", :class=>"sport_icon"), leagues_path(sport_selected: @sport_selected, league_selected: league), :class => "sport_icon_all"
           - if signed_in? and current_user.admin?
             = link_to 'Edit', edit_league_path(league)
             = link_to 'Destroy', league, :method => :delete, :data => { :confirm => 'Are you sure?' }
 
   - if @league_divisions
-    %p
-      Divisions
-      %table
-        %tr
-          %td Sun
-          %td Mon
-          %td Tues
-          %td Wed
-          %td Thurs
-          %td Fri
-          %td Sat
-        - (0..@divisions_rows).each do |row_num|
+    .divisions-wrapper
+      .divisions-title Divisions
+      .tab
+        %table
           %tr
-            - (0..6).each do |index|
-              - if @league_divisions[index]
-                %td 
-                  = link_to @league_divisions[index][row_num].print_time_slot, league_division_path(@league_selected, @league_divisions[index][row_num])
-              - else
-                %td -
+            %td Sun
+            %td Mon
+            %td Tues
+            %td Wed
+            %td Thurs
+            %td Fri
+            %td Sat
+          - (0..@divisions_rows).each do |row_num|
+            %tr
+              - (0..6).each do |index|
+                - if @league_divisions[index]
+                  %td 
+                    = link_to @league_divisions[index][row_num].print_time_slot, league_division_path(@league_selected, @league_divisions[index][row_num])
+                - else
+                  %td -
 
 %p
   - if signed_in? and current_user.admin?
