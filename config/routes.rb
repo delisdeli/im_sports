@@ -27,6 +27,7 @@ ImSports::Application.routes.draw do
 
   post "teams/invite"
   post "teams/add_member"
+  post "teams/dismiss_invite"
   post "divisions/add_location"
   post "divisions/remove_location"
   post 'users/clear_notifications'

@@ -38,11 +38,26 @@ Feature: invite a member to join team
     And I press "Invite Player"
     Then I should see "email4@email.com has been invited."
 
-  Scenario: A user that has been invited to join a team should see the invite
+  Scenario: A user that has been invited to join a team can accept the invite
     Given I am logged in as "email4@email.com" with password "password"
     And user with email "email4@email.com" has been invited to join "teamkewl"
     And I am on the profile page for "email4@email.com"
     Then I should see "Invitation to join teamkewl"
+    When I press "Accept invitation to join teamkewl"
+    Given I am on the team page for "teamkewl" of division "testdiv" of league "league1"
+    Then I should see "Members" before "user2"
+
+  Scenario: A user that has been invited to join a team can dismiss the invite
+    Given I am logged in as "email4@email.com" with password "password"
+    And user with email "email4@email.com" has been invited to join "teamkewl"
+    And I am on the profile page for "email4@email.com"
+    Then I should see "Invitation to join teamkewl"
+    When I press "Dismiss invitation to join teamkewl"
+    Then I should be on the profile page for "email4@email.com"
+    And I should not see "Invititation to join teamkewl"
+    And I should see "Successfully dismissed invite"
+    Given I am on the team page for "teamkewl" of division "testdiv" of league "league1"
+    Then I should not see "Members" before "user2"
 
   Scenario: A member should not be able to invite members
     Given I am logged in as "email3@email.com" with password "password"

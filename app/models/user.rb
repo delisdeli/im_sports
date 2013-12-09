@@ -16,7 +16,6 @@ class User < ActiveRecord::Base
   has_many :notifications
   attr_accessible :name, :email, :password, :password_confirmation, :remember_token, :has_new_message, :notification_counter
   has_secure_password
-#after_save :print_stuff
 
   after_create { |user| user.notification_counter = 0}
   before_save { |user| user.email = email.downcase }
@@ -39,7 +38,10 @@ class User < ActiveRecord::Base
 
   def clear_notifications
     self.notification_counter = 0 if self.notification_counter == nil
-    self.notifications.order(created_at: :asc).limit(self.notifications.count-self.notification_counter).each do |note|
+    my_messages = Message.where(user_id: self.id)
+    msg_count = my_messages.count
+    my_messages.order(created_at: :asc).limit(msg_count-self.notification_counter).where(type: "Notification").each do |note|
+#    self.notifications.order(created_at: :asc).limit(self.notifications.count-self.notification_counter).each do |note|
       note.destroy
     end
   end
@@ -51,7 +53,7 @@ class User < ActiveRecord::Base
   end
 
   def recent_notifications
-    recent = self.notifications.order(created_at: :desc).limit(self.notification_counter)
+    recent = Message.where(user_id: self.id).order(created_at: :desc).limit(self.notification_counter)
     self.read_messages
     return recent
   end

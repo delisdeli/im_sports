@@ -24,7 +24,6 @@
       = link_to "Edit #{game.team1.name} vs. #{game.team2.name}", edit_league_division_game_path(@league, @division, game)
       = link_to "Destroy #{game.team1.name} vs. #{game.team2.name}", [@league, @division, game], :method => :delete, :data => { :confirm => 'Are you sure?' }
 
-
 - @division.locations.each do |location|
   %p
     = "#{location.name}"

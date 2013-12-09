@@ -12,8 +12,6 @@ class UsersController < ApplicationController
     @invites = []
     if current_user?(@user)
       @invites = @user.invitations
-    end
-    if current_user?(@user)
       @notifications = @user.notifications
       @user.read_messages
     end
