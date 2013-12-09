@@ -6,8 +6,10 @@ Feature: create an account and authenticate
 
   Background:
     Given the following users exist:
-    | name       | email            | password  | password_confirmation  |
-    | user_name  | email@email.com  | password  | password               |
+    | name       | email            | password  | password_confirmation  | admin |
+    | user_name  | email@email.com  | password  | password               | false |
+    | user       | email2@email.com | password  | password               | true  |
+    | user2      | email3@email.com | password  | password               | false |
 
 Scenario: a user can be created
   Given I am on the signup page
@@ -72,15 +74,7 @@ Scenario: an existing user can edit his information
   And I fill in "Email" with "email2@email.com"
   And I fill in "Password" with "p1"
   And I fill in "Password confirmation" with "p1"
-
-Scenario: we can change the name of an existing user
-  Given I am on the profile page for "email@email.com"
-  And I follow "Edit"
-  And I fill in "user[name]" with "anothername"
-  And I fill in "user[password]" with "password"
-  And I fill in "user[password_confirmation]" with "password"
-  When I press "Save"
-  Then I should see "anothername"
+  And I press "Save"
 
 Scenario: Signed in user should see the correct user bar
   Given I am logged in as "email@email.com" with password "password"
@@ -104,11 +98,29 @@ Scenario: Non-signed in user should see the correct user bar
   When I follow "Register"
   Then I should be on the signup page
 
+Scenario: Admin user can edit other users
+  Given I am logged in as "email2@email.com" with password "password"
+  And I am on the edit page for user "email3@email.com"
+  Then I should see "Editing user"
+
+Scenario: A non-admin user cannot edit other users
+  Given I am logged in as "email3@email.com" with password "password"
+  And I am on the edit page for user "email2@email.com"
+  Then I should be on the home page
+  And I should see "You are not authorized"
+
 @javascript
-Scenario: Can delete a user record
-  Given I am on the users page
+Scenario: An admin can delete a user record
+  Given I am logged in as "email2@email.com" with password "password"
+  And I am on the users page
   Then I should see "email@email.com"
-  When I follow "Destroy"
+  When I follow "Destroy user_name"
   And I accept the alert
   Then I should be on the users page
   And I should not see "email@email.com"
+
+Scenario: A non-admin cannot delete a user record
+  Given I am logged in as "email3@email.com" with password "password"
+  And I am on the users page
+  Then I should be on the home page
+  And I should see "Must be admin user"

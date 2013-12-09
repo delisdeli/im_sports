@@ -76,9 +76,12 @@ class TeamsController < ApplicationController
   # DELETE /teams/1.json
   def destroy
     @team = Team.find(params[:id])
-    @division.restore_fake_team(@team)
-    @team.destroy
-
+    if current_user.admin? or current_user?(User.find_by_email(@team.captain_email))
+      @division.restore_fake_team(@team)
+      @team.destroy
+    else
+      flash[:notice] = "You are not authorized to access this function"
+    end
     redirect_to league_division_teams_url
   end
 

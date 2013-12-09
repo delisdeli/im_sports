@@ -109,14 +109,33 @@ Scenario: An admin deleting a location restores placeholder locations
     #And I follow "Placeholder Team 4 vs. Placeholder Team 5"
     #Then I should see "Placeholder Location 1"
 
+Scenario: An admin can add a new game to a division
+  Given I am logged in as "email@email.com" with password "password"
+  And I am on the division page for "testdiv" of league "league1"
+  When I follow "Add a New Game"
+  And I fill in "game[team1_id]" with "1"
+  And I fill in "game[team2_id]" with "2"
+  And I fill in "game[score1]" with "0"
+  And I fill in "game[score2]" with "0"
+  And I select "2013" from "game[date(1i)]"
+  And I select "December" from "game[date(2i)]"
+  And I select "10" from "game[date(3i)]"
+  And I select "10" from "game[start_time(4i)]"
+  And I select "30" from "game[start_time(5i)]"
+  And I select "12" from "game[end_time(4i)]"
+  And I select "30" from "game[end_time(5i)]"
+  And I select "Scheduled" from "game[status]"
+  And I fill in "game[location]" with "RSF"
+  And I press "Save"
+  Then I should see "Game was successfully created"
+
 @javascript
 Scenario: Can delete a game record
   Given I am logged in as "email@email.com" with password "password"
-  And I am on the games page for division "div2" of league "league1"
-  Then I should see "Placeholder Team 1"
-  Then I should see "Placeholder Team 2"
-  When I follow "Destroy"
+  And I am on the division page for "div2" of league "league1"
+  When I follow "Placeholder Team 1 vs. Placeholder Team 2"
+  And I follow "Destroy"
   And I accept the alert
-  Then I should be on the games page for division "div2" of league "league1"
+  Then I should be on the division page for "div2" of league "league1"
   And I should not see "Placeholder Team 1"
   And I should not see "Placeholder Team 2"
