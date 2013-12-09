@@ -184,11 +184,11 @@ class Division < ActiveRecord::Base
   end 
 
   def print_start_time
-    self.start_time.strftime("%I:%M %p")
+    self.start_time.strftime("%I:%M %P")
   end
 
   def print_end_time
-    self.end_time.strftime("%I:%M %p")
+    self.end_time.strftime("%I:%M %P")
   end
   
   def print_start_date
