@@ -29,14 +29,12 @@ Feature: View the schedule of a division
     And I follow "Basketball_icon"
     And I follow "league1"
     And I follow "testdiv"
-    Then I should see "Placeholder Team 1 vs. Placeholder Team 4"
-    And I should see "Placeholder Team 2 vs. Placeholder Team 5"
-    And I should see "Placeholder Team 3 vs. Placeholder Team 6"
-    And I should see "Placeholder Team 4 vs. Placeholder Team 7"
-    When I follow "Placeholder Team 1 vs. Placeholder Team 4"
+    Then I should see "Placeholder Team 1 vs. Placeholder Team 8"
+    And I should see "Placeholder Team 5 vs. Placeholder Team 4"
+    When I follow "Placeholder Team 1 vs. Placeholder Team 8"
     Then I should see "Placeholder Location 1"
     Given I am on the division page for "testdiv" of league "league1"
-    When I follow "Placeholder Team 2 vs. Placeholder Team 5"
+    When I follow "Placeholder Team 5 vs. Placeholder Team 4"
     Then I should see "Placeholder Location 2"
 
   Scenario: A user should be able to view his/her schedule via the user's profile

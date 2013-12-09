@@ -48,21 +48,36 @@ Feature: Notify teams when schedule is altered
     Then I should see "The schedule for your team teamcool has changed"
     Given I am on the home page
     When I follow "Notifications"
-    Then I should see "View older notifications"
+    Then I should see "View older messages"
     When I follow "Notifications"
-    Then I should not see "View older notifications"
+    Then I should not see "View older messages"
     When I follow "Notifications"
     Then I should not see "The schedule for your team"
 
   Scenario: A team member can delete their notifications
     Given I am on the home page
     When I follow "Notifications"
-    When I follow "View older notifications"
+    When I follow "View older messages"
     Then I should be on the profile page for "email@email.com"
     And I should see "The schedule for your team"
     When I press "Remove all read notifications"
     Then I should be on the profile page for "email@email.com"
     And I should not see "The schedule for your team"
+
+  Scenario: Should show both invites and notifications
+    Given user with email "email@email.com" has been invited to join "teamlame"
+    Given I am on the home page
+    When I follow "Notifications"
+    Then I should see "The schedule for your team"
+    And I should see "You have been invited"
+    When I follow "Notifications"
+    When I follow "Notifications"
+    Then I should not see "The schedule for your team"
+    And I should not see "You have been invited"
+    When I follow "View older messages"
+    And I press "Remove all read notifications"
+    Then I should not see "The schedule for your team"
+    And I should see "Invitation to join teamlame"
 
   Scenario: A non-member should not see a notification
     Given I am on the home page

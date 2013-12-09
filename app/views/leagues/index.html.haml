@@ -25,6 +25,7 @@
           - if signed_in? and current_user.admin?
             = link_to 'Edit', edit_league_path(league)
             = link_to 'Destroy', league, :method => :delete, :data => { :confirm => 'Are you sure?' }
+            = link_to 'Create Division', new_league_division_path(league)
 
   - if @league_divisions
     .divisions-wrapper
