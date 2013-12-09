@@ -39,4 +39,19 @@ class Game < ActiveRecord::Base
       user.notifications << Notification.create('game' => self, 'team' => self.team2, 'user' => user)
     end
   end
+
+  def game_status
+    if score1 and score2 and (score1 > 0 or score2 > 0)
+      return post_game_info
+    end
+    return pre_game_info
+  end
+
+  def pre_game_info
+    "#{self.location} @ #{self.print_start_time}"
+  end
+
+  def post_game_info
+    "#{self.score1} - #{self.score2}"
+  end
 end

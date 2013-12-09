@@ -30,10 +30,12 @@ Feature: Notify teams when schedule is altered
     And I fill in "team[name]" with "teamcool"
     And I press "Create Team"
     And I am on the division page for "div2" of league "league1"
-    And I follow "teamlame vs. teamcool"
-    And I follow "Edit"
-    And I fill in "game[location]" with "haas pav"
-    And I press "Save"
+    When I fill in "new_location" with "haas pav"
+    And I press "Add Location"
+    #And I follow "teamlame vs. teamcool"
+    #And I follow "Edit"
+    #And I fill in "game[location]" with "haas pav"
+    #And I press "Save"
 
   Scenario: A team member should see a notification when schedule has been altered
     Given I am on the homepage

@@ -7,13 +7,11 @@
       .image-wrapper
         .image-text 
           = sport
-        - if sport == "basketball"
-          = link_to (image_tag "icons/#{sport}_icon.svg", :class => "bball_image"), leagues_path(sport_selected: sport), :class => "sport_icon_all"
-        - if sport == "football"
-          = link_to (image_tag "icons/#{sport}_icon.svg", :class => "football_image"), leagues_path(sport_selected: sport), :class => "sport_icon_all"
-        - if sport == "volleyball"
-          = link_to (image_tag "icons/#{sport}_icon.svg", :class => "vball_image"), leagues_path(sport_selected: sport), :class => "sport_icon_all"
- 
+        - if Rails.application.assets.find_asset "icons/#{sport}_icon.svg"
+          = link_to (image_tag "icons/#{sport}_icon.svg", :class => "sport_image"), leagues_path(sport_selected: sport), :class => "sport_icon_all"
+        - else
+          = link_to (image_tag "icons/basketball_icon.svg", :class => "sport_image"), leagues_path(sport_selected: sport), :class => "sport_icon_all"
+
   - if @sport_selected
     .leagues-wrapper
       .title Leagues
@@ -21,10 +19,14 @@
         .image-wrapper
           .image-text
             = link_to league.name, league
-          = link_to (image_tag "icons/#{league.name}_icon.svg", :class=>"sport_icon"), leagues_path(sport_selected: @sport_selected, league_selected: league), :class => "sport_icon_all"
+          - if Rails.application.assets.find_asset "icons/#{league.name}_icon.svg"
+            = link_to (image_tag "icons/#{league.name}_icon.svg", :class => "sport_image"), leagues_path(sport_selected: @sport_selected, league_selected: league), :class => "sport_icon_all"
+          - else
+            = link_to (image_tag "icons/Open_icon.svg", :class => "sport_image"), leagues_path(sport_selected: @sport_selected, league_selected: league), :class => "sport_icon_all"
           - if signed_in? and current_user.admin?
             = link_to 'Edit', edit_league_path(league)
             = link_to 'Destroy', league, :method => :delete, :data => { :confirm => 'Are you sure?' }
+            = link_to 'Create Division', new_league_division_path(league)
 
   - if @league_divisions
     .divisions-wrapper
