@@ -19,6 +19,9 @@ module NavigationHelpers
       '/signup'
     when /^the signin page$/
       '/signin'
+    when /^the edit page for user "(.*)"$/
+      user_id = User.find_by_email($1).id
+      '/users/1/edit'
     when /^the league page for "(.*)"$/
       league_id = League.find_by_name($1).id
       "/leagues/#{league_id}"

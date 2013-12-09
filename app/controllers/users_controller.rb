@@ -1,16 +1,11 @@
 class UsersController < ApplicationController
-  # before_action :signed_in_user, only: [:edit, :update]
-  # before_action :correct_user,   only: [:edit, :update]
-  # before_action :admin_user,     only: :destroy
+  before_filter :correct_or_admin_user, only: [:edit, :update]
+  before_filter :admin_user, only: [:destroy, :index]
 
-  # GET /users
-  # GET /users.json
   def index
     @users = User.all
   end
 
-  # GET /users/1
-  # GET /users/1.json
   def show
     @user = User.find(params[:id])
     @invites = []

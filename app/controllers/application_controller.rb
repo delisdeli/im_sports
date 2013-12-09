@@ -19,4 +19,12 @@ class ApplicationController < ActionController::Base
         redirect_to(root_url)
       end
     end
+
+    def correct_or_admin_user
+      @user = User.find(params[:id])
+      unless current_user?(@user) or (current_user and current_user.admin?)
+        flash[:notice] = "You are not authorized to access this function"
+        redirect_to(root_url)
+      end
+    end
 end
