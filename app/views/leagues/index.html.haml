@@ -23,10 +23,11 @@
             = link_to (image_tag "icons/#{league.name}_icon.svg", :class => "sport_image"), leagues_path(sport_selected: @sport_selected, league_selected: league), :class => "sport_icon_all"
           - else
             = link_to (image_tag "icons/Open_icon.svg", :class => "sport_image"), leagues_path(sport_selected: @sport_selected, league_selected: league), :class => "sport_icon_all"
-          - if signed_in? and current_user.admin?
-            = link_to 'Edit', edit_league_path(league)
-            = link_to 'Destroy', league, :method => :delete, :data => { :confirm => 'Are you sure?' }
-            = link_to 'Create Division', new_league_division_path(league)
+          .admin-stuff
+            - if signed_in? and current_user.admin?
+              = link_to 'Edit', edit_league_path(league)
+              = link_to 'Destroy', league, :method => :delete, :data => { :confirm => 'Are you sure?' }
+              = link_to 'Create Division', new_league_division_path(league)
 
   - if @league_divisions
     .divisions-wrapper
@@ -52,4 +53,4 @@
 
 %p
   - if signed_in? and current_user.admin?
-    = link_to 'Create League', new_league_path  
+    = link_to 'Create League', new_league_path, :class => "create-league"  
