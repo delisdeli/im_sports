@@ -75,29 +75,25 @@ class Division < ActiveRecord::Base
     #iterate over games and replace all instances of placeholder team X with team
     x = self.real_teams.count
     fake_team = Team.get_fake_by_name("Placeholder Team #{x}")
-    self.games.each do |game|
-        if game.team1 == fake_team
-            game.team1 = team
-            game.save
-        elsif game.team2 == fake_team
-            game.team2 = team
-            game.save
-        end
-    end
+    swap_teams(fake_team, team)
   end
 
   def restore_fake_team(team)
     #Iterate over games and replace all instances of team with placeholder team X
     x = self.real_teams.count
     fake_team = Team.get_fake_by_name("Placeholder Team #{x}")
+    swap_teams(team, fake_team)
+  end
+
+  def swap_teams(team, replacement)
     self.games.each do |game|
-        if game.team1 == team
-            game.team1 = fake_team
-            game.save
-        elsif game.team2 == team
-            game.team2 = fake_team
-            game.save
-        end
+      if game.team1 == team
+        game.team1 = replacement
+        game.save
+      elsif game.team2 == team
+        game.team2 = replacement
+        game.save
+      end
     end
   end
 
