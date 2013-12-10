@@ -91,3 +91,11 @@ Scenario: Can delete a game record
   Then I should be on the division page for "div2" of league "league1"
   And I should not see "Placeholder Team 1"
   And I should not see "Placeholder Team 2"
+
+Scenario: A non-existent game should give nice error message
+  Given I am on the game page for game id "100" for division id "1" for league id "1"
+  Then I should see "That game doesn't exist"
+  Given I am on the game page for game id "1" for division id "100" for league id "1"
+  Then I should see "That division doesn't exist"
+  Given I am on the game page for game id "1" for division id "1" for league id "100"
+  Then I should see "That league doesn't exist"

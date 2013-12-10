@@ -62,3 +62,7 @@ Scenario: Can delete a league record
   And I should not see "league5"
   Given I am on the profile page for "email2@email.com"
   Then I should not see "teamlame"
+
+Scenario: Non-existent league should give nice error message
+  Given I am on the league page for id "20"
+  Then I should see "That league doesn't exist"

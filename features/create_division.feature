@@ -116,9 +116,15 @@ Scenario: Can delete a division record
   Then I should see "teamlame"
   Given I am logged in as "email@email.com" with password "password"
   And I am on the division page for "testdiv" of league "league1"
-  When I follow "Destroy"
+  When I follow "Destroy Division"
   And I accept the alert
   Then I should be on the league page for "league1"
   And I should not see "testdiv"
   Given I am on the profile page for "email2@email.com"
   Then I should not see "teamlame"
+
+Scenario: Bad league and division should give nice error message
+  Given I am on the division page for id "10" of league id "1"
+  Then I should see "That division doesn't exist"
+  Given I am on the division page for id "1" of league id "20"
+  Then I should see "That league doesn't exist" or "That division doesn't exist"

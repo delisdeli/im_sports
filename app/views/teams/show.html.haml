@@ -20,7 +20,7 @@
 - if signed_in? and @team.captain_email == current_user.email
   %p
     %h3 Invite Player
-    = form_tag :action => 'invite', :team_id => @team.id, :league_id => @league.id, :division_id => @division.id do 
+    = form_tag :action => 'invite', :id => @team.id, :league_id => @league.id, :division_id => @division.id do 
       = text_field_tag "to_invite" 
       = submit_tag "Invite Player" 
 

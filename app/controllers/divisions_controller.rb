@@ -40,7 +40,14 @@ class DivisionsController < ApplicationController
   end
 
   def add_location
-    loc = Location.get_by_name(params[:new_location])
+    begin
+      loc = Location.get_by_name(params[:new_location])
+    rescue
+    end
+    unless loc
+      redirect_to [@league, @division], notice: "Could not create location"
+      return
+    end
     if @division.locations.exists?(loc)
       msg = "Division already contains that location."
     else
@@ -52,8 +59,14 @@ class DivisionsController < ApplicationController
   end
 
   def remove_location
-    @division = Division.find(params[:id])
-    loc = Location.find_by_id(params[:location_id])
+    begin
+      loc = Location.find_by_id(params[:location_id])
+    rescue
+    end
+    unless loc
+      redirect_to [@league, @division], notice: "Could not find location" unless loc
+      return
+    end
     @division.restore_fake_location(loc)
     @division.locations.delete(loc)
     if (loc.divisions.count == 0)
@@ -71,10 +84,18 @@ class DivisionsController < ApplicationController
 
   private
     def set_league
-      @league = League.find_by_id(params[:league_id])
+      begin
+        @league = League.find_by_id(params[:league_id])
+      rescue
+      end
+      redirect_to root_url, notice: "That league doesn't exist" unless @league
     end
 
     def set_division
-      @division = Division.find(params[:id])
+      begin
+        @division = Division.find(params[:id])
+      rescue
+      end
+      redirect_to root_url, notice: "That division doesn't exist" unless @division
     end
 end
