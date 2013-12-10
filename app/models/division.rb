@@ -11,7 +11,7 @@ class Division < ActiveRecord::Base
   validates :num_weeks, presence: true
   validates :start_date, presence: true
   validate :start_before_end_time
-  # validate :fits_schedule
+  validate :fits_schedule
   before_destroy :clean_up
 
   has_many :teams
@@ -209,8 +209,11 @@ class Division < ActiveRecord::Base
     self.print_start_time + " - " + self.print_end_time
   end
 
-  # def fits_schedule
-  # 	errors.add("not enough locations to accomodate division schedule") unless
-  # 		((self.end_time - self.start_time) / game_length / num_locations) <= num_teams
-  # end
+  def fits_schedule
+    if (num_teams && num_weeks)
+      if ((num_teams-1) > num_weeks)
+        errors.add("not enough time to accomodate division schedule")
+      end
+    end
+  end
 end
