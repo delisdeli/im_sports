@@ -26,6 +26,7 @@
     = submit_tag "Remove all read notifications"
 
 .edit-back
-  = link_to 'Edit', edit_user_path(@user)
-  \|
+  -if current_user == @user or (current_user and current_user.admin?)
+    = link_to 'Edit', edit_user_path(@user)
+    \|
   = link_to 'Back', root_url
