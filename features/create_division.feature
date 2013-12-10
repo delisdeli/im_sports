@@ -16,7 +16,7 @@ Feature: create a division
 
     Given the following divisions exist:
     | name    | num_teams  | start_time  | end_time  | num_locations  | num_weeks | year | month | day | game_length  | league_id  |
-    | testdiv | 8          | 8pm         | 10pm      | 2              | 7         | 2013 | 11    | 18  | 60           | 1          |
+    | testdiv | 8          | 8pm         | 10pm      | 2              | 8         | 2013 | 11    | 18  | 60           | 1          |
 
     Given I am logged in as "email2@email.com" with password "password"
     And I am on the division page for "testdiv" of league "league1"
@@ -45,7 +45,7 @@ Scenario: An admin should be able to create a division
   And I fill in "division[game_length]" with "60"
   And I fill in "division[num_locations]" with "2"
   And I fill in "division[num_teams]" with "8"
-  And I fill in "division[num_weeks]" with "5"
+  And I fill in "division[num_weeks]" with "9"
   And I select "2013" from "division[start_date(1i)]"
   And I select "November" from "division[start_date(2i)]"
   And I select "18" from "division[start_date(3i)]"
@@ -72,6 +72,7 @@ Scenario: A divion end_time must occur after the start_time(4i)
   And I select "07 PM" from "division[end_time(4i)]"
   And I select "00" from "division[end_time(5i)]"
   And I press "Save"
+  Then show me the page
   Then I should see "be before end time"
 
 Scenario: An admin can add locations to a division
@@ -127,3 +128,45 @@ Scenario: Bad league and division should give nice error message
   Then I should see "That division doesn't exist"
   Given I am on the division page for id "1" of league id "20"
   Then I should see "That league doesn't exist" or "That division doesn't exist"
+
+Scenario: Division that is too large should error 
+  Given I am logged in as "email@email.com" with password "password"
+  And I am on the league page for "league1"
+  And I follow "Create Division"
+  Then I should see "New Division"
+  When I fill in "division[name]" with "somedivision"
+  And I fill in "division[num_teams]" with "8"
+  And I select "08 PM" from "division[start_time(4i)]"
+  And I select "00" from "division[start_time(5i)]"
+  And I select "10 PM" from "division[end_time(4i)]"
+  And I select "00" from "division[end_time(5i)]"
+  And I fill in "division[game_length]" with "60"
+  And I fill in "division[num_locations]" with "2"
+  And I fill in "division[num_teams]" with "8"
+  And I fill in "division[num_weeks]" with "5"
+  And I select "2013" from "division[start_date(1i)]"
+  And I select "November" from "division[start_date(2i)]"
+  And I select "18" from "division[start_date(3i)]"
+  And I press "Save"
+  Then I should see "Not enough time to accomodate division schedule"
+
+Scenario: Division with too few locations should error
+  Given I am logged in as "email@email.com" with password "password"
+  And I am on the league page for "league1"
+  And I follow "Create Division"
+  Then I should see "New Division"
+  When I fill in "division[name]" with "somedivision"
+  And I fill in "division[num_teams]" with "25"
+  And I select "08 PM" from "division[start_time(4i)]"
+  And I select "00" from "division[start_time(5i)]"
+  And I select "10 PM" from "division[end_time(4i)]"
+  And I select "00" from "division[end_time(5i)]"
+  And I fill in "division[game_length]" with "60"
+  And I fill in "division[num_locations]" with "1"
+  And I fill in "division[num_teams]" with "8"
+  And I fill in "division[num_weeks]" with "9"
+  And I select "2013" from "division[start_date(1i)]"
+  And I select "November" from "division[start_date(2i)]"
+  And I select "18" from "division[start_date(3i)]"
+  And I press "Save"
+  Then I should see "Not enough locations to accomodate division schedule"
