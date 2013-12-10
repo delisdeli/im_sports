@@ -37,6 +37,9 @@ team7 = Team.create(captain_email:'daniel@berkeley.edu', name:'AAA', division_id
 team8 = Team.create(captain_email:'sam@berkeley.edu', name:'Theta Tau', division_id:8, placeholder:false)
 team9 = Team.create(captain_email:'anni@berkeley.edu', name:'Cal Bears', division_id:1, placeholder:false)
 
+adminUser = User.create(name:'admin', email:'admin@admin.com', password:'123456', password_confirmation:'123456', remember_token:1)
+adminUser.admin = true
+adminUser.save
 user1 = User.create(name:'Dennis', email:'dennis@berkeley.edu', password:'123456', password_confirmation:'123456', remember_token:1)
 user2 = User.create(name:'Francis', email:'francis@berkeley.edu', password:'123456', password_confirmation:'123456', remember_token:1)
 user3 = User.create(name:'Andrew', email:'andrew@berkeley.edu', password:'123456', password_confirmation:'123456', remember_token:1)
