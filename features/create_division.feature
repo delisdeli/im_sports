@@ -50,7 +50,6 @@ Scenario: An admin should be able to create a division
   And I select "November" from "division[start_date(2i)]"
   And I select "18" from "division[start_date(3i)]"
   And I press "Save"
-  #Then I should be on the division page for "somedivision" of league "league1"
   Then I should see "Division was successfully created."
 
 Scenario: An admin must fill in all fields in order to create the division
@@ -122,3 +121,9 @@ Scenario: Can delete a division record
   And I should not see "testdiv"
   Given I am on the profile page for "email2@email.com"
   Then I should not see "teamlame"
+
+Scenario: Bad league and division should give nice error message
+  Given I am on the division page for id "10" of league id "1"
+  Then I should see "That division doesn't exist"
+  Given I am on the division page for id "1" of league id "20"
+  Then I should see "That league doesn't exist" or "That division doesn't exist"

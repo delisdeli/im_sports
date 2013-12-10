@@ -1,5 +1,6 @@
 class LeaguesController < ApplicationController
 before_filter :admin_user, only: [:new, :create, :edit, :update, :destroy]
+before_filter :set_league, except: [:index, :new, :create]
 
   # GET /leagues
   # GET /leagues.json
@@ -12,9 +13,15 @@ before_filter :admin_user, only: [:new, :create, :edit, :update, :destroy]
       @leagues = League.all
     end
     if params[:league_selected]
-      @league_selected = League.find_by_id(params[:league_selected])
+      begin
+        @league_selected = League.find_by_id(params[:league_selected])
+      rescue
+      end
+      unless @league_selected
+        redirect_to root_url, notice: "That league doesn't exist"
+        return
+      end
       @league_divisions = @league_selected.sorted_divisions
-      p @league_divisions
       if @league_divisions.nil? or @league_divisions.empty?
         @divisions_rows = 0
       else
@@ -26,7 +33,6 @@ before_filter :admin_user, only: [:new, :create, :edit, :update, :destroy]
   # GET /leagues/1
   # GET /leagues/1.json
   def show
-    @league = League.find(params[:id])
   end
 
   # GET /leagues/new
@@ -40,7 +46,6 @@ before_filter :admin_user, only: [:new, :create, :edit, :update, :destroy]
 
   # GET /leagues/1/edit
   def edit
-    @league = League.find(params[:id])
   end
 
   # POST /leagues
@@ -58,8 +63,6 @@ before_filter :admin_user, only: [:new, :create, :edit, :update, :destroy]
   # PUT /leagues/1
   # PUT /leagues/1.json
   def update
-    @league = League.find(params[:id])
-
     if @league.update_attributes(params[:league])
       # Handle a successful update.
       redirect_to @league, notice: 'League was successfully updated.'
@@ -71,10 +74,15 @@ before_filter :admin_user, only: [:new, :create, :edit, :update, :destroy]
   # DELETE /leagues/1
   # DELETE /leagues/1.json
   def destroy
-    @league = League.find(params[:id])
     @league.destroy
-
     redirect_to leagues_url
   end
   
+  def set_league
+    begin
+      @league = League.find(params[:id])
+    rescue
+    end
+    redirect_to root_url, notice: "That league doesn't exist" unless @league
+  end
 end

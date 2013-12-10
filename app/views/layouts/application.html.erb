@@ -9,10 +9,10 @@
   <script src="//use.edgefonts.net/league-gothic.js"></script>
 </head>
 <body>
+<%= render 'shared/user_bar' %>
 <% flash.each do |key, value| %>
   <div class="flash"><%= value %></div>
 <% end %>
-<%= render 'shared/user_bar' %>
 <div class="container">
   <%= yield %>
 </div>

@@ -7,7 +7,12 @@ class ApplicationController < ActionController::Base
   def check_for_notifications
     if params[:show_notifications] == "true"
       @show_notifications = true
-      @user = User.find_by_id(params[:user_id])
+      begin
+        @user = User.find_by_id(params[:user_id])
+      rescue Exception => e
+        redirect_to root_url, notice: "That user doesn't exist" unless @user
+        return
+      end
       @recent = @user.recent_notifications
     end
   end
@@ -32,7 +37,11 @@ class ApplicationController < ActionController::Base
     end
 
     def correct_or_admin_user
-      @user = User.find(params[:id])
+      begin 
+        @user = User.find(params[:id])
+      rescue Exception => e
+        redirect_to root_url, notice: "You are not authorized to access this function"
+      end
       unless current_user?(@user) or (current_user and current_user.admin?)
         flash[:notice] = "You are not authorized to access this function"
         redirect_to(root_url)

@@ -124,3 +124,7 @@ Scenario: A non-admin cannot delete a user record
   And I am on the users page
   Then I should be on the home page
   And I should see "Must be admin user"
+
+Scenario: Non-existent user show should give nice error
+  Given I am on the profile page for id "20"
+  Then I should see "That user doesn't exist"

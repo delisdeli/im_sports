@@ -38,6 +38,17 @@ Feature: invite a member to join team
     And I press "Invite Player"
     Then I should see "email4@email.com has been invited."
 
+  Scenario: A team captain can't invite non-existent users
+    Given I am logged in as "email2@email.com" with password "password"
+    And I am on the home page
+    When I follow "Basketball_icon"
+    And I follow "league1"
+    And I follow "testdiv"
+    And I follow "teamkewl"
+    When I fill in "to_invite" with "email10000@email.com"
+    And I press "Invite Player"
+    Then I should see "That user doesn't exist"
+
   Scenario: A user that has been invited to join a team can accept the invite
     Given I am logged in as "email4@email.com" with password "password"
     And user with email "email4@email.com" has been invited to join "teamkewl"

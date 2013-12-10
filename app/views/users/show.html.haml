@@ -13,9 +13,9 @@
 - if (@invites)
   - @invites.each do |invite|
     %p Invitation to join #{Team.find(invite.team).name}
-    = form_tag :controller => 'teams', :action => 'add_member', :team_id => Team.find(invite.team).id, :user_id => @user.id, :invite_id => invite.id do
+    = form_tag :controller => 'teams', :action => 'add_member', :id => Team.find(invite.team).id, :user_id => @user.id, :invite_id => invite.id do
       = submit_tag "Accept invitation to join #{Team.find(invite.team).name}"
-    = form_tag :controller => 'teams', :action => 'dismiss_invite', :team_id => Team.find(invite.team).id, :user_id => @user.id, :invite_id => invite.id do
+    = form_tag :controller => 'teams', :action => 'dismiss_invite', :id => Team.find(invite.team).id, :user_id => @user.id, :invite_id => invite.id do
       = submit_tag "Dismiss invitation to join #{Team.find(invite.team).name}"
 - if (@notifications)
   - @notifications.each do |notification|

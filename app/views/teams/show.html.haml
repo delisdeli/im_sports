@@ -13,7 +13,7 @@
       (Captain)
   - if signed_in? and @team.captain_email == current_user.email
     %p
-      = form_tag :action => 'invite', :team_id => @team.id, :league_id => @league.id, :division_id => @division.id do 
+      = form_tag :action => 'invite', :id => @team.id, :league_id => @league.id, :division_id => @division.id do 
         = text_field_tag "to_invite", nil, class: "text-field"
         = submit_tag "Invite Player", class: "white-button" 
 
@@ -27,7 +27,6 @@
           = game.game_status
 
 
-/ - if signed_in? and @team.captain_email == current_user.email
 %h1
   = link_to 'Destroy Team', [@league, @division, @team], :method => :delete, :data => { :confirm => 'Are you sure?' }
 %h1

@@ -2,13 +2,13 @@ class UsersController < ApplicationController
   before_filter :correct_or_admin_user, only: [:edit, :update]
   before_filter :admin_user, only: [:destroy, :index]
   before_filter :correct_user, only: [:clear_notifications]
+  before_filter :set_user, only: [:show, :clear_notifications, :edit, :update, :destroy]
 
   def index
     @users = User.all
   end
 
   def show
-    @user = User.find(params[:id])
     @invites = []
     if current_user?(@user)
       @invites = @user.invitations
@@ -18,7 +18,6 @@ class UsersController < ApplicationController
   end
 
   def clear_notifications
-    @user = User.find(params[:id])
     @user.clear_notifications
     redirect_to @user
   end
@@ -31,7 +30,6 @@ class UsersController < ApplicationController
 
   # GET /users/1/edit
   def edit
-    @user = User.find(params[:id])
   end
 
   # POST /users
@@ -51,7 +49,6 @@ class UsersController < ApplicationController
   # PUT /users/1
   # PUT /users/1.json
   def update
-    @user = User.find(params[:id])
     if @user.update_attributes(params[:user])
       # Handle a successful update.
       flash[:success] = "Profile updated"
@@ -65,8 +62,15 @@ class UsersController < ApplicationController
   # DELETE /users/1
   # DELETE /users/1.json
   def destroy
-    @user = User.find(params[:id])
     @user.destroy
     redirect_to users_path
+  end
+
+  def set_user
+    begin
+      @user = User.find(params[:id])
+    rescue
+    end
+    redirect_to root_url, notice: "That user doesn't exist" unless @user
   end
 end

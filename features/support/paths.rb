@@ -25,6 +25,11 @@ module NavigationHelpers
     when /^the league page for "(.*)"$/
       league_id = League.find_by_name($1).id
       "/leagues/#{league_id}"
+    when /^the league page for id "(.*)"$/
+      league_id = $1.to_i
+      "/leagues/#{league_id}"
+    when /^the game page for game id "(.*)" for division id "(.*)" for league id "(.*)"$/
+      "/leagues/#{$3.to_i}/divisions/#{$2.to_i}/games/#{$1.to_i}/"
     when /^the team page for "(.*)" of division "(.*)" of league "(.*)"$/
       team_id = Team.find_by_name($1).id
       division_id = Division.find_by_name($2).id
@@ -37,9 +42,16 @@ module NavigationHelpers
     when /^the profile page for "(.*)"$/
       user_id = User.find_by_email($1).id
       "/users/#{user_id}"
+    when /^the profile page for id "(.*)"$/
+      user_id = $1.to_i
+      "/users/#{user_id}"
     when /^the division page for "(.*)" of league "(.*)"$/
       division_id = Division.find_by_name($1).id
       league_id = League.find_by_name($2).id
+      "/leagues/#{league_id}/divisions/#{division_id}"
+    when /^the division page for id "(.*)" of league id "(.*)"$/
+      division_id = $1.to_i
+      league_id = $2.to_i
       "/leagues/#{league_id}/divisions/#{division_id}"
     when /^the divisions page for league "(.*)"$/
       league_id = League.find_by_name($1).id
