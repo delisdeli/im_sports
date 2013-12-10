@@ -17,6 +17,7 @@ League.create(name:'Recreational', sport:'volleyball')
 League.create(name:'Open', sport:'basketball')
 
 
+
 Division.create(end_time:'8PM', game_length:60, name:'Division 1', num_teams:8, start_time:'6PM', num_locations:2, league_id:1, start_date:Date.new(2013, 8, 20), num_weeks:7)
 Division.create(end_time:'8PM', game_length:60, name:'Division 2', num_teams:8, start_time:'6PM', num_locations:2, league_id:2, start_date:Date.new(2013, 8, 22), num_weeks:7)
 Division.create(end_time:'8PM', game_length:60, name:'Division 3', num_teams:8, start_time:'6PM', num_locations:2, league_id:3, start_date:Date.new(2013, 8, 21), num_weeks:7)

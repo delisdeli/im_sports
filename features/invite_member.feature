@@ -33,7 +33,7 @@ Feature: invite a member to join team
     And I follow "testdiv"
     And I follow "teamkewl"
     Then I should be on the team page for "teamkewl" of division "testdiv" of league "league1"
-    And I should see "Invite Player"
+    Then I should see "Invite Player" button
     When I fill in "to_invite" with "email4@email.com"
     And I press "Invite Player"
     Then I should see "email4@email.com has been invited."
