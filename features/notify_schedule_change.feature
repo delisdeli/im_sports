@@ -35,7 +35,7 @@ Feature: Notify teams when schedule is altered
 
   Scenario: A team member should see a notification when schedule has been altered
     Given I am on the homepage
-    When I follow "Notifications"
+    When I follow "Unread_notifications"
     Then I should see "The schedule for your team teamcool has changed."
     When I follow "1: The schedule for your team teamcool has changed."
     Then I should see "Score1: 0"
@@ -54,7 +54,7 @@ Feature: Notify teams when schedule is altered
 
   Scenario: A team member can delete their notifications
     Given I am on the home page
-    When I follow "Notifications"
+    When I follow "Unread_notifications"
     When I follow "View older messages"
     Then I should be on the profile page for "email@email.com"
     And I should see "The schedule for your team"
@@ -65,7 +65,7 @@ Feature: Notify teams when schedule is altered
   Scenario: Should show both invites and notifications
     Given user with email "email@email.com" has been invited to join "teamlame"
     Given I am on the home page
-    When I follow "Notifications"
+    When I follow "Unread_notifications"
     Then I should see "The schedule for your team"
     And I should see "You have been invited"
     When I follow "Notifications"
