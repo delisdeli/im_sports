@@ -28,7 +28,7 @@
           = game.game_status
 
 
-%h1
+-if current_user == User.find_by_email(@team.captain_email) or (current_user and current_user.admin?)
   = link_to 'Destroy Team', [@league, @division, @team], :method => :delete, :data => { :confirm => 'Are you sure?' }
-%h1
+  \|
   = link_to 'Edit Team', edit_league_division_team_path(@league, @division, @team)
