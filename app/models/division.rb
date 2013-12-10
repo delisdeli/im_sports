@@ -212,7 +212,7 @@ class Division < ActiveRecord::Base
   def fits_schedule
     if (num_teams && num_weeks)
       if ((num_teams-1) > num_weeks)
-        errors.add("not enough time to accomodate division schedule")
+        errors.add(:not_enough_time, "to accomodate division schedule")
       end
     end
   end
