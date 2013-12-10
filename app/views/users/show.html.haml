@@ -1,12 +1,14 @@
-%p
-  %b Name:
-  = @user.name
-%p
-  %b Email:
-  = @user.email
+.header-container
+  .name-header 
+    .block
+      Name:
+      = @user.name
+    .block
+      Email:
+      = @user.email
 
-%p
-  %b Teams:
+.teams-box
+  Teams:
   - @user.teams.each do |team|
     = link_to "#{team.name}", [team.division.league, team.division, team]
 
@@ -23,6 +25,7 @@
   = form_tag :controller=> 'users', :action => 'clear_notifications', :id=>@user.id do
     = submit_tag "Remove all read notifications"
 
-= link_to 'Edit', edit_user_path(@user)
-\|
-= link_to 'Back', root_url
+.edit-back
+  = link_to 'Edit', edit_user_path(@user)
+  \|
+  = link_to 'Back', root_url
