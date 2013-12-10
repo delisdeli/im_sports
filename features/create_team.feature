@@ -35,8 +35,7 @@ I want to be able to start a team in a league
     And I press "Create Team"
     Then I should be on the team page for "teamlame" of division "testdiv" of league "league1"
     And I should see "teamlame"
-    And I should see "testdiv"
-    And I should see "Team Members" before "user"
+    And I should see "Roster" before "user"
     Given I am on the profile page for "email2@email.com"
     Then I should see "teamlame"
     Given I am on the teams page for division "testdiv" of league "league1"
@@ -69,7 +68,7 @@ I want to be able to start a team in a league
     And I am on the teams page for division "testdiv" of league "league1"
     Then I should see "teamcool"
     When I follow "teamcool"
-    When I follow "Destroy"
+    When I follow "Destroy Team"
     And I accept the alert
     Then I should be on the teams page for division "testdiv" of league "league1"
     And I should not see "teamcool"
@@ -80,7 +79,7 @@ I want to be able to start a team in a league
     And I am on the teams page for division "testdiv" of league "league1"
     Then I should see "teamcool"
     When I follow "teamcool"
-    When I follow "Destroy"
+    When I follow "Destroy Team"
     And I accept the alert
     Then I should be on the teams page for division "testdiv" of league "league1"
     And I should see "teamcool"

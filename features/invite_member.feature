@@ -45,7 +45,7 @@ Feature: invite a member to join team
     Then I should see "Invitation to join teamkewl"
     When I press "Accept invitation to join teamkewl"
     Given I am on the team page for "teamkewl" of division "testdiv" of league "league1"
-    Then I should see "Members" before "user2"
+    Then I should see "Roster" before "user2"
 
   Scenario: A user that has been invited to join a team can dismiss the invite
     Given I am logged in as "email4@email.com" with password "password"
@@ -57,7 +57,7 @@ Feature: invite a member to join team
     And I should not see "Invititation to join teamkewl"
     And I should see "Successfully dismissed invite"
     Given I am on the team page for "teamkewl" of division "testdiv" of league "league1"
-    Then I should not see "Members" before "user2"
+    Then I should not see "Roster" before "user2"
 
   Scenario: A member should not be able to invite members
     Given I am logged in as "email3@email.com" with password "password"

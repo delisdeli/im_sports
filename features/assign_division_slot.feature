@@ -55,10 +55,10 @@ Background:
     And I press "Create Team"
     Given I am on the teams page for division "testdiv" of league "league1"
     When I follow "teamawesome"
-    And I follow "Destroy"
+    And I follow "Destroy Team"
     And I accept the alert
     And I follow "teamlame"
-    And I follow "Destroy"
+    And I follow "Destroy Team"
     And I accept the alert
     Given I am on the division page for "testdiv" of league "league1"
     Then I should see "Placeholder Team 2 vs. Placeholder Team 1"

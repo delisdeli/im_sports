@@ -68,6 +68,13 @@ class User < ActiveRecord::Base
     self.save(:validate => false)
   end
 
+  def is_captain?(team)
+    if self.email == team.captain_email
+      return true
+    end
+    false
+  end
+
   private
 
     def create_remember_token

@@ -116,7 +116,7 @@ Scenario: Can delete a division record
   Then I should see "teamlame"
   Given I am logged in as "email@email.com" with password "password"
   And I am on the division page for "testdiv" of league "league1"
-  When I follow "Destroy"
+  When I follow "Destroy Division"
   And I accept the alert
   Then I should be on the league page for "league1"
   And I should not see "testdiv"

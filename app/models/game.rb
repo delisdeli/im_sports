@@ -54,4 +54,11 @@ class Game < ActiveRecord::Base
   def post_game_info
     "#{self.score1} - #{self.score2}"
   end
+
+  def opponent(team)
+    if self.team1 == team
+      return self.team2
+    end
+    self.team1
+  end
 end
