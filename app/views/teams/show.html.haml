@@ -2,7 +2,8 @@
   %div.title
     = @team.name
   %div.body
-    = @league.name + " - " + @division.print_time_slot
+    = @league.name + " - "
+    = link_to "#{@division.print_time_slot}", [@league, @division]
 
 %div.left-container
   %div.grey-header Roster

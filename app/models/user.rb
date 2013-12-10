@@ -40,7 +40,7 @@ class User < ActiveRecord::Base
     self.notification_counter = 0 if self.notification_counter == nil
     my_messages = Message.where(user_id: self.id)
     msg_count = my_messages.count
-    my_messages.order(created_at: :asc).limit(msg_count-self.notification_counter).where(type: "Notification").each do |note|
+    my_messages.order("created_at ASC").limit(msg_count-self.notification_counter).where(type: "Notification").each do |note|
 #    self.notifications.order(created_at: :asc).limit(self.notifications.count-self.notification_counter).each do |note|
       note.destroy
     end
@@ -53,7 +53,7 @@ class User < ActiveRecord::Base
   end
 
   def recent_notifications
-    recent = Message.where(user_id: self.id).order(created_at: :desc).limit(self.notification_counter)
+    recent = Message.where(user_id: self.id).order("created_at DESC").limit(self.notification_counter)
     self.read_messages
     return recent
   end
