@@ -210,9 +210,12 @@ class Division < ActiveRecord::Base
   end
 
   def fits_schedule
-    if (num_teams && num_weeks)
+    if (num_teams && num_weeks && num_locations && start_time && end_time && game_length)
       if ((num_teams-1) > num_weeks)
         errors.add(:not_enough_time, "to accomodate division schedule")
+      end
+      if (((num_locations * (end_time - start_time)/3600)/ (game_length/60)) < (num_teams/2))        
+        errors.add(:not_enough_locations, "to accomodate division schedule")
       end
     end
   end
