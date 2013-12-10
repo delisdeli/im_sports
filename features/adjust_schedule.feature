@@ -31,7 +31,7 @@ Scenario: An admin should be able to edit a game
   And I follow "Basketball_icon"
   And I follow "league1"
   And I follow "testdiv"
-  When I follow "Edit Placeholder Team 1 vs. Placeholder Team 3"
+  When I follow "Edit Placeholder Team 1 vs. Placeholder Team 8"
   When I select "09" from "game[start_time(4i)]"
   And I select "00" from "game[start_time(5i)]"
   And I press "Save"
