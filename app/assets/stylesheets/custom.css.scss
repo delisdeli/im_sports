@@ -4,7 +4,7 @@ $darkGrey: #3F3F3E;
 $lightSalmon: #E3AA93;
 $salmon: #D57C60;
 $darkSalmon: #CD6144;
-$lightLavender: #CD6144;
+$lightLavender: #C9A0DC;
 $lavender: #8D8EBA;
 $darkLavender: #48496E;
 $lightTan: #DBD1AD;
@@ -71,7 +71,7 @@ td {
 }
 
 a {
-  color: white;
+  color: $moss;
   text-decoration: none;
 }
 // END RESET

@@ -7,14 +7,14 @@
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
 
-League.create(name: 'Frat', sport:'basketball')
-League.create(name: 'Recreational', sport:'basketball')
-League.create(name: '3on3', sport:'football')
-League.create(name: 'Frat', sport:'football')
-League.create(name:'3on3', sport:'volleyball')
-League.create(name:'Frat', sport:'volleyball')
-League.create(name:'Recreational', sport:'volleyball')
-League.create(name:'Open', sport:'basketball')
+league1 = League.create(name: 'Frat', sport:'basketball')
+league2 = League.create(name: 'Recreational', sport:'basketball')
+league3 = League.create(name: '3on3', sport:'football')
+league4 = League.create(name: 'Frat', sport:'football')
+league5 = League.create(name:'3on3', sport:'volleyball')
+league6 = League.create(name:'Frat', sport:'volleyball')
+league7 = League.create(name:'Recreational', sport:'volleyball')
+league8 = League.create(name:'Open', sport:'basketball')
 
 
 
