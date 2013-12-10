@@ -71,7 +71,7 @@ td {
 }
 
 a {
-  color: white;
+  color: $grey;
   text-decoration: none;
 }
 // END RESET
@@ -127,6 +127,7 @@ h1 {
     }
     td {
       padding-bottom: 55px;
+			padding-right:20px;
     }
   }
 }
@@ -436,7 +437,11 @@ h1 {
   }
   td {
     padding-bottom: 35px;
+		padding-right:20px;
   }
+	.admin-game {
+		color: $darkGrey;
+	}
 }
 
 .team-icon {
@@ -566,4 +571,21 @@ h1 {
   padding-top:50px;
   font-family: 'Pacifico', cursive;
   color:$grey;
+}
+
+.create-league {
+  font-family: 'Pacifico', cursive;
+	margin-left:20px;
+}
+
+.admin-stuff {
+	padding:5px;
+}
+
+.edit-game{
+	color:grey;
+}
+
+td {
+
 }
