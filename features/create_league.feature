@@ -42,6 +42,16 @@ Scenario: An admin can update a league
 
 @javascript
 Scenario: Can delete a league record
+  Given the following divisions exist:
+  | name    | num_teams  | start_time  | end_time  | num_locations  | num_weeks | year | month | day | game_length  | league_id  |
+  | testdiv | 8          | 8pm         | 10pm      | 2              | 7         | 2013 | 11    | 18  | 60           | 1          |
+  Given I am logged in as "email2@email.com" with password "password"
+  And I am on the division page for "testdiv" of league "league5"
+  When I follow "Create Team"
+  And I fill in "team[name]" with "teamlame"
+  And I press "Create Team"
+  Given I am on the profile page for "email2@email.com"
+  Then I should see "teamlame"
   Given I am logged in as "email@email.com" with password "password"
   And I am on the leagues page
   And I follow "Basketball_icon"
@@ -50,3 +60,5 @@ Scenario: Can delete a league record
   And I accept the alert
   Then I should be on the leagues page
   And I should not see "league5"
+  Given I am on the profile page for "email2@email.com"
+  Then I should not see "teamlame"

@@ -11,13 +11,14 @@ class Game < ActiveRecord::Base
       when 1 then "Scheduled"
       when 2 then "Finished"
       when 3 then "TBD"
+      when 4 then "Canceled"
       #add extra statuses here
       else "Unknown"
     end
   end
 
   def self.status_options
-    return {"Scheduled"=>1, "Finished"=>2, "TBD"=>3}
+    return {"Scheduled"=>1, "Finished"=>2, "TBD"=>3, "Canceled"=>4}
   end
 
   def print_start_time

@@ -4,6 +4,7 @@ class League < ActiveRecord::Base
 
   validates :sport, presence: true
   before_save { |league| league.sport = sport.downcase }
+  before_destroy :clean_up
 
   def self.sports
     League.all.map {|league| league.sport}.uniq
@@ -18,4 +19,9 @@ class League < ActiveRecord::Base
     sorted_divisions
   end
 
+  def clean_up
+    self.divisions.each do |div|
+      div.destroy
+    end
+  end
 end

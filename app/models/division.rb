@@ -12,6 +12,7 @@ class Division < ActiveRecord::Base
   validates :start_date, presence: true
   validate :start_before_end_time
   # validate :fits_schedule
+  before_destroy :clean_up
 
   has_many :teams
   has_many :games
@@ -69,6 +70,15 @@ class Division < ActiveRecord::Base
       end
     end
     team_games
+  end
+
+  def clean_up
+    self.games.each do |game|
+      game.destroy
+    end
+    self.teams.each do |team|
+      team.destroy unless team.placeholder
+    end
   end
 
   def replace_fake_team(team)

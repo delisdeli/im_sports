@@ -18,6 +18,12 @@ Feature: create a division
     | name    | num_teams  | start_time  | end_time  | num_locations  | num_weeks | year | month | day | game_length  | league_id  |
     | testdiv | 8          | 8pm         | 10pm      | 2              | 7         | 2013 | 11    | 18  | 60           | 1          |
 
+    Given I am logged in as "email2@email.com" with password "password"
+    And I am on the division page for "testdiv" of league "league1"
+    When I follow "Create Team"
+    And I fill in "team[name]" with "teamlame"
+    And I press "Create Team"
+
 Scenario: A non-admin should not be able to see create division button
   Given I am on the league page for "league1"
   Then I should not see "Create Division"
@@ -106,9 +112,13 @@ Scenario: An admin can delete locations
 
 @javascript
 Scenario: Can delete a division record
+  Given I am on the profile page for "email2@email.com"
+  Then I should see "teamlame"
   Given I am logged in as "email@email.com" with password "password"
   And I am on the division page for "testdiv" of league "league1"
   When I follow "Destroy"
   And I accept the alert
   Then I should be on the league page for "league1"
   And I should not see "testdiv"
+  Given I am on the profile page for "email2@email.com"
+  Then I should not see "teamlame"
