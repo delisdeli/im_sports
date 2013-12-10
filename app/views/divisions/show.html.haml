@@ -1,48 +1,53 @@
 %head
 .div-padding-container
 .league-box
-  %b League:
-  = @division.league.name + " - " + @division.print_time_slot
-
-- @division.teams.each do |team|
-  - unless team.fake?
-    %p
-      = link_to "#{team.name}", [@league, @division, team]
+  = "League " + @division.league.name + " - " + @division.print_time_slot
 
 .date-container
   = link_to '<-', league_division_path(league_id: @league, division_id: @division, update_schedule: "prev", gameday_shown: @gameday)
   = @gameday
   = link_to '->', league_division_path(league_id: @league, division_id: @division, update_schedule: "next", gameday_shown: @gameday)
 
-- @games_to_show.each do |game|
-  .versus-container
-    = link_to "#{game.team1.name}", [@league, @division, game.team1], :class => 'team-icon'
-    vs.
-    = game.game_status
-    = link_to "#{game.team2.name}", [@league, @division, game.team2], :class => 'team-icon'
+%div.versus-container
+  %table
+    - @games_to_show.each do |game|
+      %tr
+        %td
+          = link_to "#{game.team1.name}", [@league, @division, game.team1], :class => 'team-icon'
+        %td
+          %p vs.
+          = game.game_status
+        %td
+          = link_to "#{game.team2.name}", [@league, @division, game.team2], :class => 'team-icon'
+        - if signed_in? and current_user.admin?
+          %td
+            %p
+              = link_to "Edit #{game.team1.name} vs. #{game.team2.name}", edit_league_division_game_path(@league, @division, game)
+            %p
+              = link_to "Destroy #{game.team1.name} vs. #{game.team2.name}", [@league, @division, game], :method => :delete, :data => { :confirm => 'Are you sure?' }
     - if signed_in? and current_user.admin?
-      = link_to "Edit #{game.team1.name} vs. #{game.team2.name}", edit_league_division_game_path(@league, @division, game)
-      = link_to "Destroy #{game.team1.name} vs. #{game.team2.name}", [@league, @division, game], :method => :delete, :data => { :confirm => 'Are you sure?' }
+      %tr
+        %td
+          = link_to "Add a New Game", new_league_division_game_path(@league, @division), :class => 'team-icon'
 
-- @division.locations.each do |location|
-  %p
-    = "#{location.name}"
-    - if signed_in? and current_user.admin?
-      = form_tag :action => "remove_location", :id => @division.id, :league_id => @league.id, :location_id => location.id do
-        = submit_tag "Remove #{location.name}"
-
-.bottom-bar
+%div.teams-box
+  Teams:
+  - @division.teams.each do |team|
+    - unless team.fake?
+      %p
+        = link_to "#{team.name}", [@league, @division, team]
   - if signed_in?
     = link_to "Create Team", new_league_division_team_path(@league, @division)
 
+%div.teams-box
+  %p Locations
+  - @division.locations.each do |location|
+    = "#{location.name}"
+    - if signed_in? and current_user.admin?
+      = form_tag :action => "remove_location", :id => @division.id, :league_id => @league.id, :location_id => location.id do
+        = submit_tag "Remove #{location.name}", :class => "grey-button"
   - if signed_in? and current_user.admin?
-    %h3 Add New Location
     = form_tag :action => 'add_location', :id => @division.id, :league_id => @league.id do
-      = text_field_tag "new_location"
-      = submit_tag "Add Location"
-    = link_to "Add a New Game", new_league_division_game_path(@league, @division)
-    \|
-  = link_to 'Back', @league, :class => "back"
-
-  - if signed_in? and current_user.admin?
-    = link_to 'Destroy', [@league, @division], :method => :delete, :data => { :confirm => 'Are you sure?' }
+      = text_field_tag "new_location", nil, :class => "text-field"
+      = submit_tag "Add Location", :class => "grey-button"
+    = link_to 'Destroy Division', [@league, @division], :method => :delete, :data => { :confirm => 'Are you sure?' }

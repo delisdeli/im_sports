@@ -1,9 +1,10 @@
 %div.user-bar
   %div.logo 
     = link_to "IM Sports", root_path
+  %div.notification-icon
+    = render "shared/notifications"
   %div.right
     - if signed_in?
-      = render "shared/notifications"
       = link_to "#{current_user.name}", current_user
       |
       = link_to 'Sign out', signout_path, :method => :delete

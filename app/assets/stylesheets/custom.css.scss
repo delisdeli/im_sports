@@ -57,7 +57,19 @@ q:before, q:after {
 table {
   border-collapse: collapse;
   border-spacing: 0;
+  margin-left:auto;
+  margin-right:auto;
+  width: 600px;
+  height:50px;
+  font-family: 'Pacifico', cursive;
+  color: white;
 }
+
+td {
+  text-align:center;
+  width:40px;
+}
+
 a {
   color: white;
   text-decoration: none;
@@ -81,6 +93,39 @@ html, body{
   font-family: 'Helvetica Neue', 'Arial';
 }   
 
+.grey-button {
+  font-size: .8em;
+  background: $lightGrey;
+  border-radius: 10px;
+  border: 1px solid $grey; 
+  margin: 5px;
+  text-align: center;
+  padding: 10px;
+  font-family: league-gothic;
+}
+
+.white-button {
+  font-size: .8em;
+  background: white;
+  border-radius: 10px;
+  border: 1px solid $grey; 
+  margin: 5px;
+  text-align: center;
+  padding: 10px;
+  font-family: league-gothic;
+}
+
+.text-field {
+  font-size: .8em;
+  background: white;
+  border-radius: 10px;
+  border: 1px solid $grey; 
+  margin: 5px;
+  text-align: center;
+  padding: 10px;
+  font-family: league-gothic;
+}
+
 /* USERBAR */
 .user-bar {
   background-color: $darkGrey;
@@ -91,11 +136,25 @@ html, body{
     font-size: 3em;
     padding-left: 10px;
   }
+  .notification-icon {
+    position: absolute;
+    top: 0px;
+    right: 175px;
+    .notifications {
+      background-color: $darkGrey;
+      position: absolute;
+      top: 48px;
+      right: 0;
+      width: 200px;
+      padding-left: 10px;
+      font-size: 1.3em;
+      }
+  }
   .right {
     position: absolute;
     font-size: 1.3em;
     font-family: 'Pacifico', cursive;
-    top: 12px;
+    top: 16px;
     right: 10px;
   }
   a {
@@ -106,54 +165,53 @@ html, body{
 //LEAGUES on home page
 
 .padding-container {
-	margin-left: 8%;
-	margin-right: 8%;
+  margin-left: 8%;
+  margin-right: 8%;
 
 }
 
 .sports-wrapper, leagues-wrapper {
-	height:150px;
-	width:500px;
-	padding-top:30px;
+  height:150px;
+  width:500px;
+  padding-top:30px;
 }
 
 .sports-wrapper{
-	margin-left:12px;
+  margin-left:12px;
 }
 
 .title{
-	font-size: 35px;
-	font-weight:200;
-	display:inline-block;
-	font-family: league-gothic, 'Arial';
-	color: $darkGrey;
-	display:inline-block;
-	vertical-align:30px;
-	
+  font-size: 35px;
+  font-weight:200;
+  display:inline-block;
+  font-family: league-gothic, 'Arial';
+  color: $darkGrey;
+  display:inline-block;
+  vertical-align:30px;
+  
 }
-
 
 .image-wrapper {
   display: inline-block;
   padding: 20px;
   font-family: 'Pacifico', cursive;
-	text-align:center;
+  text-align:center;
 }
 
 .image-text{
   color: $grey;
   padding-bottom: 7px;
-	a {
-	color:$grey;
-	}
+  a {
+  color:$grey;
+  }
 }
 
 .sport_icon{
   padding: 10px;
   border-radius: 50%;
   background-color: #8D8EBA;
-	width:60px;
-	height:60px;
+  width:60px;
+  height:60px;
 
 }
 
@@ -169,24 +227,24 @@ html, body{
   padding: 10px;
   border-radius: 50%;
   background-color: $lavender;
-	width:60px;
-	height:60px;
+  width:60px;
+  height:60px;
 }
 
 .football_image {
   padding:10px;
   border-radius: 50%;
   background-color:#CD6144;
-	width:60px;
-	height:60px;
+  width:60px;
+  height:60px;
 }
 
 .vball_image {
   padding:10px;
   border-radius: 50%;
   background-color: #749665;
-	width:60px;
-	height:60px;
+  width:60px;
+  height:60px;
 }
 
 .sport_icon_all{
@@ -196,110 +254,124 @@ html, body{
 // DIVISIONS on home page
 
 .divisions-wrapper {
-	padding-top:20px;
-	width:670px;
-	margin-left:auto;
-	margin-right:auto;
-	
+  padding-top:20px;
+  width:670px;
+  margin-left:auto;
+  margin-right:auto;
+  
 }
 
 .divisions-title {
-	text-align:center;
-	color: $darkGrey;
-	font-size: 35px;
-	font-weight:200;
-	font-family: league-gothic, 'Arial';
-	margin-bottom:6px;
+  text-align:center;
+  color: $darkGrey;
+  font-size: 35px;
+  font-weight:200;
+  font-family: league-gothic, 'Arial';
+  margin-bottom:6px;
 }
 
 .tab {
-	padding:20px;
-	background-color:$darkLavender;
-	border-radius:7px;
+  padding:20px;
+  background-color:$darkLavender;
+  border-radius:7px;
 }
 
-table {
-	margin-left:auto;
-	margin-right:auto;
-	width:600px;
-	height:50px;
-  font-family: 'Pacifico', cursive;
-	color:white;
-}
 
 .div-slot {
-	width:50px;
-	text-align:center;
+  width:50px;
+  text-align:center;
 }
 
-td {
-	text-align:center;
-	width:40px;
-}
+
 
 //DIVISION PAGE
 .div-padding-container {
 }
 
 .league-box {
-	font-family: league-gothic, 'Arial';
-	font-size:30px;
-	margin-left:auto;
-	margin-right:auto;
-	width:300px;
-	padding:15px;
-	background-color:white;
-	border-radius:7px;
-	text-align:center;
-	margin-top:20px;
-	color:$darkGrey;
-	border-style:solid;
-	border-width:1px;
-	border-color:$grey;
+  font-family: league-gothic, 'Arial';
+  font-size:30px;
+  margin-left:auto;
+  margin-right:auto;
+  width:50%;
+  padding:15px;
+  background-color:white;
+  border-radius:7px;
+  text-align:center;
+  margin-top:20px;
+  color:$darkGrey;
+  border-style:solid;
+  border-width:1px;
+  border-color:$grey;
 }
 
 .date-container {
-	margin-top:10px;
-	font-family: league-gothic, 'Arial';
-	font-size:25px;
-	color: white;
-	background-color:$darkGrey;
-	width:180px;
-	padding:8px;
-	border-radius:7px;
-	margin-left:auto;
-	text-align:center;
-	margin-right:auto;
-
+  margin-top:10px;
+  font-family: league-gothic, 'Arial';
+  font-size:25px;
+  color: white;
+  background-color:$darkGrey;
+  width:180px;
+  padding:8px;
+  border-radius:7px;
+  margin-left:auto;
+  text-align:center;
+  margin-right:auto;
+  margin-bottom: 35px;
 }
 
-.versus-container {
-	padding-top:20px;
-	padding-bottom:20px;
-	font-family: league-gothic, 'Arial';
-	color:$darkGrey;
-	margin-left:auto;
-	margin-right:auto;
-	text-align:center;
-	margin-top:20px;
-	margin-bottom:15px;
+.teams-box {
+  font-family: league-gothic, 'Arial';
+  font-size:30px;
+  margin-left:auto;
+  margin-right:auto;
+  width:30%;
+  padding:15px;
+  background-color:white;
+  border-radius:7px;
+  text-align:center;
+  margin-top:20px;
+  color:$darkGrey;
+  border-style:solid;
+  border-width:1px;
+  border-color:$grey;
+  a {
+    color: $darkGrey;
+  }
+}
+
+.versus-container{
+  & table {
+    margin-left:auto;
+  margin-right:auto;
+  width:100%;
+  height:50px;
+    font-family: 'Pacifico', cursive;
+  color:$darkGrey;
+  a {
+      color: white;
+  }
+  }
+  td {
+    padding-bottom: 35px;
+  }
 }
 
 .team-icon {
-	margin-left:20px;
-	margin-right:20px;
-	width:90px;
-	height:90px;
-	background-color: $darkGrey;
-	border-radius:50%;
-	padding:15px;
-	font-size:25px;
- 	font-family: 'Pacifico', cursive;
+  margin-left:20px;
+  margin-right:20px;
+  width:90px;
+  height:90px;
+  background-color: $darkGrey;
+  border-radius:50%;
+  padding:15px;
+  font-size:25px;
+  font-family: 'Pacifico', cursive;
 }
 
 .back {
- 	font-family: 'Pacifico', cursive;
-	color:$grey;
+  font-family: 'Pacifico', cursive;
+  color:$grey;
 }
 
 .bottom-bar {
@@ -309,107 +381,107 @@ td {
 
 // SIGN UP
 .sign-up {
- 	font-family: 'Pacifico', cursive;
-	padding-left:60px;
-	margin-top:20px;
-	font-size:30px;
-	color: $darkLavender;
+  font-family: 'Pacifico', cursive;
+  padding-left:60px;
+  margin-top:20px;
+  font-size:30px;
+  color: $darkLavender;
 }
 
 .signup-form {
-	padding:20px;
-	margin-left:50px;
-	margin-top:20px;
-	margin-top:20px;
-	background-color: white;
-	width:400px;
-	height: auto;
-	border-radius: 5px;
-	margin-bottom:30px;
+  padding:20px;
+  margin-left:50px;
+  margin-top:20px;
+  margin-top:20px;
+  background-color: white;
+  width:400px;
+  height: auto;
+  border-radius: 5px;
+  margin-bottom:30px;
 }
 
 .sign-in {
- 	font-family: 'Pacifico', cursive;
-	padding-left:25px;
-	margin-top:20px;
-	font-size:23px;
-	color: $darkLavender;
-	margin-bottom:20px;
+  font-family: 'Pacifico', cursive;
+  padding-left:25px;
+  margin-top:20px;
+  font-size:23px;
+  color: $darkLavender;
+  margin-bottom:20px;
 }
 
 .sign-in-form {
-	padding: 10px;
-	background:white;
-	margin-left:20px;
-	border-radius: 5px;
-	width:400px;
+  padding: 10px;
+  background:white;
+  margin-left:20px;
+  border-radius: 5px;
+  width:400px;
 }
 
 .new-user-container {
-	padding-top: 5px;
+  padding-top: 5px;
 
 }
 
 .new-user {
- 	font-family: 'Pacifico', cursive;
-	color: $darkLavender;
-	padding-left: 3px;
-	display: inline-block;
+  font-family: 'Pacifico', cursive;
+  color: $darkLavender;
+  padding-left: 3px;
+  display: inline-block;
 }
 
 .sign-up-now {
- 	font-family: 'Pacifico', cursive;
-	color:$grey;
-	display: inline-block;
+  font-family: 'Pacifico', cursive;
+  color:$grey;
+  display: inline-block;
 }
 
 .field {
-	font-family: league-gothic, 'Arial';
-	font-size:20px;
-	color:$darkGrey;
+  font-family: league-gothic, 'Arial';
+  font-size:20px;
+  color:$darkGrey;
 }
 
 
 // LISTING TEAMS
 .listing-teams {
-	font-size:30px;
-	font-family: league-gothic, 'Arial';
-	color:$darkGrey;
-	padding:20px;
-	margin-left:10px;
-	text-align:center;
+  font-size:30px;
+  font-family: league-gothic, 'Arial';
+  color:$darkGrey;
+  padding:20px;
+  margin-left:10px;
+  text-align:center;
 }
 
 .teams-table {
-	width:600px;
-	font-size: 20px;
-	background:$grey;
-	margin-left:20%;
-	margin-right:20%;
-	padding:5px;
-	border-radius:5px;
-}		
+  width:600px;
+  font-size: 20px;
+  background:$grey;
+  margin-left:20%;
+  margin-right:20%;
+  padding:5px;
+  border-radius:5px;
+}   
 
 .new-team {
-	margin-left:50px;
-	margin-top:20px;
- 	font-family: 'Pacifico', cursive;
-	font-size:20px;
+  margin-left:50px;
+  margin-top:20px;
+  font-family: 'Pacifico', cursive;
+  font-size:20px;
 }
 
 // NEW TEAM SIGN UP
 .new-team-title{
-	margin-left:40px;
-	margin-top:20px;
- 	font-family: 'Pacifico', cursive;
-	font-size:25px;
-	margin-bottom:20px;
-	color:$darkLavender;
+  margin-left:40px;
+  margin-top:20px;
+  font-family: 'Pacifico', cursive;
+  font-size:25px;
+  margin-bottom:20px;
+  color:$darkLavender;
 }
 
 .team-back {
-	margin:15px;
-	padding-top:50px;
- 	font-family: 'Pacifico', cursive;
-	color:$grey;
+  margin:15px;
+  padding-top:50px;
+  font-family: 'Pacifico', cursive;
+  color:$grey;
 }

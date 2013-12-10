@@ -44,7 +44,7 @@
           - (0..@divisions_rows).each do |row_num|
             %tr
               - (0..6).each do |index|
-                - if @league_divisions[index]
+                - if @league_divisions[index] and @league_divisions[index][row_num]
                   %td 
                     = link_to @league_divisions[index][row_num].print_time_slot, league_division_path(@league_selected, @league_divisions[index][row_num])
                 - else
