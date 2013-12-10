@@ -213,4 +213,5 @@ class Division < ActiveRecord::Base
   # 	errors.add("not enough locations to accomodate division schedule") unless
   # 		((self.end_time - self.start_time) / game_length / num_locations) <= num_teams
   # end
+
 end
