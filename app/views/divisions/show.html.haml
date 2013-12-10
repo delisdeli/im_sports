@@ -20,12 +20,13 @@
         %td
           = link_to "#{game.team2.name}", [@league, @division, game.team2], :class => 'team-icon'
         - if signed_in? and current_user.admin?
-          %tr
-            %td
-              = link_to "Edit #{game.team1.name} vs. #{game.team2.name}", edit_league_division_game_path(@league, @division, game), :class => 'admin-game'
-              = link_to "Destroy #{game.team1.name} vs. #{game.team2.name}", [@league, @division, game], :method => :delete, :data => { :confirm => 'Are you sure?' }, :class => 'admin-game'
-            %td
-              = link_to "Add a New Game", new_league_division_game_path(@league, @division), :class => 'team-icon'
+          %td
+            = link_to "Edit #{game.team1.name} vs. #{game.team2.name}", edit_league_division_game_path(@league, @division, game), :class => 'admin-game'
+            = link_to "Destroy #{game.team1.name} vs. #{game.team2.name}", [@league, @division, game], :method => :delete, :data => { :confirm => 'Are you sure?' }, :class => 'admin-game'
+    - if signed_in? and current_user.admin?
+      %tr
+        %td
+          = link_to "Add a New Game", new_league_division_game_path(@league, @division), :class => 'team-icon'
 
 %div.teams-box
   Teams:
